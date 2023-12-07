@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>spring on haokiu</title>
+    <link>http://121.199.2.5:6080/tags/spring/</link>
+    <description>Recent content in spring on haokiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>haokiu.com</copyright>
+    <lastBuildDate>Thu, 17 Sep 2020 13:58:36 +0000</lastBuildDate><atom:link href="http://121.199.2.5:6080/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在线交互式学习k8s/docker/linux</title>
+      <link>http://121.199.2.5:6080/baIB8x/</link>
+      <pubDate>Thu, 17 Sep 2020 13:58:36 +0000</pubDate>
+      
+      <guid>http://121.199.2.5:6080/baIB8x/</guid>
+      <description>katacoda is Interactive Learning and Training Platform for Software Engineers Helping Developers Learn and Companies Increase Adoption
+可以交互式的学习各种前沿技术：k8s linux docker 机器学习等</description>
+    </item>
+    
+  </channel>
+</rss>

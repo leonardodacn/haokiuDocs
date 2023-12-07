@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>pixiublog on haokiu</title>
+    <link>http://121.199.2.5:6080/tags/pixiublog/</link>
+    <description>Recent content in pixiublog on haokiu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>haokiu.com</copyright>
+    <lastBuildDate>Fri, 16 Oct 2020 17:10:58 +0000</lastBuildDate><atom:link href="http://121.199.2.5:6080/tags/pixiublog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>简单脚本实现服务监控</title>
+      <link>http://121.199.2.5:6080/5XKHkb/</link>
+      <pubDate>Fri, 16 Oct 2020 17:10:58 +0000</pubDate>
+      
+      <guid>http://121.199.2.5:6080/5XKHkb/</guid>
+      <description>服务经常会重启失败，写了个简单的shell叫脚本，可以发现服务端口是否起来，没有发现监听端口会重启服务
+1.监控脚本 if [ -z &amp;#34;`lsof -i:443 | grep LISTEN`&amp;#34; ];then echo -e &amp;#34;restart $(date +&amp;#39;%Y-%m-%d %H:%M:%S&amp;#39;)&amp;#34; systemctl restart pixiublog fi 2.系统定时任务 */3 * * * * /usr/local/pixiublog/monitor.sh &amp;gt;&amp;gt; /usr/local/pixiublog/monitor.log 2&amp;gt;&amp;amp;1 </description>
+    </item>
+    
+    <item>
+      <title>haokiu网站启动脚本</title>
+      <link>http://121.199.2.5:6080/v3yn45/</link>
+      <pubDate>Thu, 15 Oct 2020 17:08:15 +0000</pubDate>
+      
+      <guid>http://121.199.2.5:6080/v3yn45/</guid>
+      <description>haokiu 的启动脚本，配置 https 可以参考beego 通过acms.sh 使用 https
+#!/bin/sh siteDir=&amp;#39;/usr/local/pixiublog&amp;#39; appName=&amp;#39;pixiublogMain&amp;#39; echo &amp;#34;kill the running program&amp;#34; ps -ef | grep $appName | grep -v grep | awk &amp;#39;{print $2}&amp;#39; | xargs kill -9 echo &amp;#34;sleep 3 secons for app to shutdown&amp;#34; sleep 3 echo &amp;#34;start program&amp;#34; cd $siteDir nohup $siteDir/$appName &amp;gt;&amp;gt; $siteDir/console.log 2&amp;gt;&amp;amp;1 &amp;amp; </description>
+    </item>
+    
+    <item>
+      <title>网站部署脚本</title>
+      <link>http://121.199.2.5:6080/1gTd1h/</link>
+      <pubDate>Thu, 17 Sep 2020 21:52:12 +0000</pubDate>
+      
+      <guid>http://121.199.2.5:6080/1gTd1h/</guid>
+      <description>网站的部署脚本
+#!/bin/sh #部署目录 siteDir=&amp;#39;/usr/local/pixiublog&amp;#39; # 源代码目录 cd /root/pixiublog echo &amp;#34;update code&amp;#34; git pull echo &amp;#34;build pixiublog&amp;#34; go build main.go echo &amp;#34;remove old&amp;#34; rm -rf $siteDir/views rm -rf $siteDir/static rm -rf $siteDir/pixiublog echo &amp;#34;mv new program to $siteDir&amp;#34; cp main $siteDir/pixiublog cp -rf views $siteDir/ cp -rf static $siteDir/ echo &amp;#34;kill the running program&amp;#34; ps -ef | grep &amp;#39;pixiublog&amp;#39; | grep -v grep | awk &amp;#39;{print $2}&amp;#39; | xargs kill -9 echo &amp;#34;start program&amp;#34; cd $siteDir nohup $siteDir/pixiublog &amp;gt;&amp;gt; $siteDir/console.log 2&amp;gt;&amp;amp;1 &amp;amp; </description>
+    </item>
+    
+  </channel>
+</rss>
