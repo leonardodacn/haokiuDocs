@@ -20,15 +20,15 @@ void db_thread_func() { while (!m_bExit) { if (NULL != (pTask = m_sqlTask.Pop())
 （二）工作线程和主线程 在介绍主线程和工作线程具体做什么时，我们介绍下服务器编程中常常抽象出来的几个概念（这里以 tcp 连接为例）：
 TcpServer 即 Tcp 服务，服务器需要绑定ip地址和端口号，并在该端口号上侦听客户端的连接（往往由一个成员变量 TcpListener 来管理侦听细节）。所以一个 TcpServer 要做的就是这些工作。除此之外，每当有新连接到来时，TcpServer 需要接收新连接，当多个新连接存在时，TcpServer 需要有条不紊地管理这些连接：连接的建立、断开等，即产生和管理下文中说的 TcpConnection 对象。 一个连接对应一个 TcpConnection 对象，TcpConnection 对象管理着这个连接的一些信息：如连接状态、本端和对端的 ip 地址和端口号等。 数据通道对象 Channel，Channel 记录了 socket 的句柄，因而是一个连接上执行数据收发的真正执行者，Channel 对象一般作为 TcpConnection 的成员变量。 TcpSession 对象，是将 Channel 收取的数据进行解包，或者对准备好的数据进行装包，并传给 Channel 发送。 归纳起来：一个 TcpServer 依靠 TcpListener 对新连接的侦听和处理，依靠 TcpConnection 对象对连接上的数据进行管理，TcpConnection 实际依靠 Channel 对数据进行收发，依靠 TcpSession 对数据进行装包和解包。也就是说一个 TcpServer 存在一个 TcpListener，对应多个 TcpConnection，有几个TcpConnection 就有几个 TcpSession，同时也就有几个 Channel。">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/f6db032966024846bbd5dbc28868bb17/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/f6db032966024846bbd5dbc28868bb17/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -81,7 +81,7 @@ void db_thread_func() { while (!m_bExit) { if (NULL != (pTask = m_sqlTask.Pop())
 （二）工作线程和主线程 在介绍主线程和工作线程具体做什么时，我们介绍下服务器编程中常常抽象出来的几个概念（这里以 tcp 连接为例）：
 TcpServer 即 Tcp 服务，服务器需要绑定ip地址和端口号，并在该端口号上侦听客户端的连接（往往由一个成员变量 TcpListener 来管理侦听细节）。所以一个 TcpServer 要做的就是这些工作。除此之外，每当有新连接到来时，TcpServer 需要接收新连接，当多个新连接存在时，TcpServer 需要有条不紊地管理这些连接：连接的建立、断开等，即产生和管理下文中说的 TcpConnection 对象。 一个连接对应一个 TcpConnection 对象，TcpConnection 对象管理着这个连接的一些信息：如连接状态、本端和对端的 ip 地址和端口号等。 数据通道对象 Channel，Channel 记录了 socket 的句柄，因而是一个连接上执行数据收发的真正执行者，Channel 对象一般作为 TcpConnection 的成员变量。 TcpSession 对象，是将 Channel 收取的数据进行解包，或者对准备好的数据进行装包，并传给 Channel 发送。 归纳起来：一个 TcpServer 依靠 TcpListener 对新连接的侦听和处理，依靠 TcpConnection 对象对连接上的数据进行管理，TcpConnection 实际依靠 Channel 对数据进行收发，依靠 TcpSession 对数据进行装包和解包。也就是说一个 TcpServer 存在一个 TcpListener，对应多个 TcpConnection，有几个TcpConnection 就有几个 TcpSession，同时也就有几个 Channel。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/f6db032966024846bbd5dbc28868bb17/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/f6db032966024846bbd5dbc28868bb17/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:43+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:43+00:00" />
 
@@ -105,18 +105,18 @@ TcpServer 即 Tcp 服务，服务器需要绑定ip地址和端口号，并在该
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "实例：一个服务器程序的架构介绍",
-      "item": "http://121.199.2.5:6080/f6db032966024846bbd5dbc28868bb17/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/f6db032966024846bbd5dbc28868bb17/"
     }
   ]
 }
@@ -138,14 +138,14 @@ TcpServer 即 Tcp 服务，服务器需要绑定ip地址和端口号，并在该
   "dateModified": "2021-01-11T09:20:43Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/f6db032966024846bbd5dbc28868bb17/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/f6db032966024846bbd5dbc28868bb17/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -167,7 +167,7 @@ TcpServer 即 Tcp 服务，服务器需要绑定ip地址和端口号，并在该
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -193,38 +193,48 @@ TcpServer 即 Tcp 服务，服务器需要绑定ip地址和端口号，并在该
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -234,7 +244,7 @@ TcpServer 即 Tcp 服务，服务器需要绑定ip地址和端口号，并在该
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       实例：一个服务器程序的架构介绍
     </h1>
@@ -272,16 +282,16 @@ TcpServer 即 Tcp 服务，服务器需要绑定ip地址和端口号，并在该
     </details>
 </div>
 
-  <div class="post-content"><h2 id="实例一个服务器程序的架构介绍">实例：一个服务器程序的架构介绍<a hidden class="anchor" aria-hidden="true" href="#实例一个服务器程序的架构介绍">#</a></h2>
+  <div class="post-content"><h2 id="实例一个服务器程序的架构介绍">实例：一个服务器程序的架构介绍</h2>
 <p>本文将介绍我曾经做过的一个项目的服务器架构和服务器编程的一些重要细节。</p>
-<h4 id="一程序运行环境">一、程序运行环境<a hidden class="anchor" aria-hidden="true" href="#一程序运行环境">#</a></h4>
+<h4 id="一程序运行环境">一、程序运行环境</h4>
 <p>操作系统：<strong>Centos 7.0</strong></p>
 <p>编译器：<strong>gcc/g++ 4.8.3</strong>、<strong>cmake 2.8.11</strong></p>
 <p>mysql数据库：<strong>5.5.47</strong></p>
 <p>项目代码管理工具：<strong>Visual Studio 2013</strong></p>
-<h4 id="一程序结构">一、程序结构<a hidden class="anchor" aria-hidden="true" href="#一程序结构">#</a></h4>
+<h4 id="一程序结构">一、程序结构</h4>
 <p>该程序总共有 <strong>17</strong> 个线程，其中分为 <strong>9</strong> 个数据库工作线程 D 和一个日志线程 L，<strong>6</strong> 个普通工作线程 W，一个主线程 M。（以下会用这些字母来代指这些线程）</p>
-<h5 id="一数据库工作线程的用途">（一）、数据库工作线程的用途<a hidden class="anchor" aria-hidden="true" href="#一数据库工作线程的用途">#</a></h5>
+<h5 id="一数据库工作线程的用途">（一）、数据库工作线程的用途</h5>
 <p><strong>9</strong> 个数据库工作线程在线程启动之初，与 mysql 建立连接，也就是说每个线程都与 mysql 保持一路连接，共 <strong>9</strong> 个数据库连接。</p>
 <p>每个数据库工作线程同时存在两个任务队列，第一个队列 A 存放需要执行数据库增删查改操作的任务 <strong>sqlTask</strong>，第二个队列 B 存放 <strong>sqlTask</strong> 执行完成后的结果。<strong>sqlTask</strong> 执行完成后立即放入结果队列中，因而结果队列中任务也是一个个的需要执行的任务。大致伪代码如下：</p>
 <pre tabindex="0"><code>void db_thread_func()  {  
@@ -305,7 +315,7 @@ TcpServer 即 Tcp 服务，服务器需要绑定ip地址和端口号，并在该
 <li>任务队列 B 中的任务将去何方，目前只有生产者没有消费者。</li>
 </ol>
 <p>这两个问题先放一会儿，等到后面我再来回答。</p>
-<h5 id="二工作线程和主线程">（二）工作线程和主线程<a hidden class="anchor" aria-hidden="true" href="#二工作线程和主线程">#</a></h5>
+<h5 id="二工作线程和主线程">（二）工作线程和主线程</h5>
 <p>在介绍主线程和工作线程具体做什么时，我们介绍下服务器编程中常常抽象出来的几个概念（这里以 tcp 连接为例）：</p>
 <ol>
 <li><strong>TcpServer</strong> 即 Tcp 服务，服务器需要绑定ip地址和端口号，并在该端口号上侦听客户端的连接（往往由一个成员变量 <strong>TcpListener</strong> 来管理侦听细节）。所以一个 <strong>TcpServer</strong> 要做的就是这些工作。除此之外，每当有新连接到来时，<strong>TcpServer</strong> 需要接收新连接，当多个新连接存在时，<strong>TcpServer</strong> 需要有条不紊地管理这些连接：连接的建立、断开等，即产生和管理下文中说的 <strong>TcpConnection</strong> 对象。</li>
@@ -481,19 +491,18 @@ void do_task()
     return true;      
 }
 </code></pre>
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/1469709fbebd462cb012819cdfb07156/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/1469709fbebd462cb012819cdfb07156/">
     <span class="title">« Prev</span>
     <br>
     <span>如何设计断线自动重连机制</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/82046162d4f74d3b9745ef1e8f8cdf57/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/82046162d4f74d3b9745ef1e8f8cdf57/">
     <span class="title">Next »</span>
     <br>
     <span>心跳包机制设计详解</span>
@@ -504,14 +513,6 @@ void do_task()
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

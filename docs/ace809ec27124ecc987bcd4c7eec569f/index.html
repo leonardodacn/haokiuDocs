@@ -25,15 +25,15 @@ Sql数 5k CPU 50% 硬盘IO 0.5M(突发3M） 网卡流量 30Mbit/s(100M网卡） 
 可移动基地在全立体空间的设想： 早在两年前，看过《超时空要塞F》的时候，就产生了一个想法，就是玩家的基地是可以移动的。玩家的母舰在游戏的过程中，已一定的速度在整个世界里移动。 可以移动体系的设计要点：
 用户的基地可移动 用户基地只能拥有一个（武林三国、travian都能建立多个） 空间坐标由x坐标 y坐标 z坐标 组成，并且坐标的值应为小数 同一个坐标里运行多个玩家存在，玩家的航线交叉并不会造成影响（只是为了方便计算减少判断过程） 移动的数据通过后台定时刷新 a)每个短周期(1~60s)在内存里更新坐标 b)每个长周期（10~100个短周期时间）将坐标的数据更新的数据库 攻击舰队移动的时间是按照2个阶段来进行的 a)第一个阶段是从母舰移动到目标坐标的时间 b)第二个阶段，在快到达时（前60分钟），做一个判断，判断攻击舰队的雷达能否搜索到目标的母舰坐标，能则做攻击坐标的新修正，如果不能则继续按照原先的坐标点移动。以上判断将每隔1分钟做一次，直到到达目标坐标点。如果到达目标坐标点仍然无法视为攻击失败，舰队返回 舰队的移动距离和舰队所携带的能量有关，超过移动范围的坐标，舰队是无法出发的。 部队和母舰应该是可以进行空间跳跃实现长距离的移动，不过空间跳跃需要在制定地点消耗大量的能量才能实现。 默认情况下，母舰移动速度为1格（x、y、z坐标）/天。 默认舰队的雷达查询范围为1格 默认母舰的雷达查询范围为3格 玩家数据的数据库设计 数据库的划分: 在游戏里数据交互最频繁的还是玩家的数据，他的访问量是一台服务器所不能解决的，因此我们考虑将这部分数据分担到多台服务器里。分担的方法还是做水平切 割，但这次不使用数据库自身的切割功能，而是在应用逻辑层上对数据库进行切割。根据用户的ID取模后写入对应的服务器里。 服务器1 用户ID % 服务器数量 = 0 服务器2 用户ID % 服务器数量 = 1 …… 预计每台服务器能提供6k~8k的在线用户访问，预计一共需要16台服务器。考虑到服务器的进一步扩容问题，在初期规划时，建议规划为32个数据库，每台服务器可以先放3~5个数据库，等服务器用户人数上来后，再将数据库拆分到不同的服务器里。">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/ace809ec27124ecc987bcd4c7eec569f/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/ace809ec27124ecc987bcd4c7eec569f/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -91,7 +91,7 @@ Sql数 5k CPU 50% 硬盘IO 0.5M(突发3M） 网卡流量 30Mbit/s(100M网卡） 
 可移动基地在全立体空间的设想： 早在两年前，看过《超时空要塞F》的时候，就产生了一个想法，就是玩家的基地是可以移动的。玩家的母舰在游戏的过程中，已一定的速度在整个世界里移动。 可以移动体系的设计要点：
 用户的基地可移动 用户基地只能拥有一个（武林三国、travian都能建立多个） 空间坐标由x坐标 y坐标 z坐标 组成，并且坐标的值应为小数 同一个坐标里运行多个玩家存在，玩家的航线交叉并不会造成影响（只是为了方便计算减少判断过程） 移动的数据通过后台定时刷新 a)每个短周期(1~60s)在内存里更新坐标 b)每个长周期（10~100个短周期时间）将坐标的数据更新的数据库 攻击舰队移动的时间是按照2个阶段来进行的 a)第一个阶段是从母舰移动到目标坐标的时间 b)第二个阶段，在快到达时（前60分钟），做一个判断，判断攻击舰队的雷达能否搜索到目标的母舰坐标，能则做攻击坐标的新修正，如果不能则继续按照原先的坐标点移动。以上判断将每隔1分钟做一次，直到到达目标坐标点。如果到达目标坐标点仍然无法视为攻击失败，舰队返回 舰队的移动距离和舰队所携带的能量有关，超过移动范围的坐标，舰队是无法出发的。 部队和母舰应该是可以进行空间跳跃实现长距离的移动，不过空间跳跃需要在制定地点消耗大量的能量才能实现。 默认情况下，母舰移动速度为1格（x、y、z坐标）/天。 默认舰队的雷达查询范围为1格 默认母舰的雷达查询范围为3格 玩家数据的数据库设计 数据库的划分: 在游戏里数据交互最频繁的还是玩家的数据，他的访问量是一台服务器所不能解决的，因此我们考虑将这部分数据分担到多台服务器里。分担的方法还是做水平切 割，但这次不使用数据库自身的切割功能，而是在应用逻辑层上对数据库进行切割。根据用户的ID取模后写入对应的服务器里。 服务器1 用户ID % 服务器数量 = 0 服务器2 用户ID % 服务器数量 = 1 …… 预计每台服务器能提供6k~8k的在线用户访问，预计一共需要16台服务器。考虑到服务器的进一步扩容问题，在初期规划时，建议规划为32个数据库，每台服务器可以先放3~5个数据库，等服务器用户人数上来后，再将数据库拆分到不同的服务器里。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/ace809ec27124ecc987bcd4c7eec569f/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/ace809ec27124ecc987bcd4c7eec569f/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -120,18 +120,18 @@ Sql数 5k CPU 50% 硬盘IO 0.5M(突发3M） 网卡流量 30Mbit/s(100M网卡） 
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "10 十万在线的WebGame的数据库设计思路",
-      "item": "http://121.199.2.5:6080/ace809ec27124ecc987bcd4c7eec569f/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/ace809ec27124ecc987bcd4c7eec569f/"
     }
   ]
 }
@@ -153,14 +153,14 @@ Sql数 5k CPU 50% 硬盘IO 0.5M(突发3M） 网卡流量 30Mbit/s(100M网卡） 
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/ace809ec27124ecc987bcd4c7eec569f/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/ace809ec27124ecc987bcd4c7eec569f/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -182,7 +182,7 @@ Sql数 5k CPU 50% 硬盘IO 0.5M(突发3M） 网卡流量 30Mbit/s(100M网卡） 
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -208,38 +208,48 @@ Sql数 5k CPU 50% 硬盘IO 0.5M(突发3M） 网卡流量 30Mbit/s(100M网卡） 
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -249,7 +259,7 @@ Sql数 5k CPU 50% 硬盘IO 0.5M(突发3M） 网卡流量 30Mbit/s(100M网卡） 
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       10 十万在线的WebGame的数据库设计思路
     </h1>
@@ -286,8 +296,8 @@ Sql数 5k CPU 50% 硬盘IO 0.5M(突发3M） 网卡流量 30Mbit/s(100M网卡） 
     </details>
 </div>
 
-  <div class="post-content"><h1 id="10-十万在线的webgame的数据库设计思路">10 十万在线的WebGame的数据库设计思路<a hidden class="anchor" aria-hidden="true" href="#10-十万在线的webgame的数据库设计思路">#</a></h1>
-<h3 id="服务器数量预估">服务器数量预估<a hidden class="anchor" aria-hidden="true" href="#服务器数量预估">#</a></h3>
+  <div class="post-content"><h1 id="10-十万在线的webgame的数据库设计思路">10 十万在线的WebGame的数据库设计思路</h1>
+<h3 id="服务器数量预估">服务器数量预估</h3>
 <p><strong>在线人数预估：</strong>
 在项目设计之前，需要先对运营后的服务器人数做一下预估，预计激活人数300w，活跃人数40w，同时在线10w。而服务器的设计极限则在激活人数500w，活跃人数60w，最高同时在线15w。
 数据参考：</p>
@@ -320,7 +330,7 @@ Sql数 5k CPU 50% 硬盘IO 0.5M(突发3M） 网卡流量 30Mbit/s(100M网卡） 
 </tbody>
 </table>
 <p>按照上面的分析，在正常情况下，我们需要为整个系统提供20台db。Web服务端按照1:1和db做搭配，也将安排20台，预计3个机柜的服务器。</p>
-<h3 id="数据库表结构划分">数据库表结构划分<a hidden class="anchor" aria-hidden="true" href="#数据库表结构划分">#</a></h3>
+<h3 id="数据库表结构划分">数据库表结构划分</h3>
 <p><strong>数据库表设计：</strong>
 因为要把这么多访问量分担到不同的服务器里，原先的数据库表设计肯定不会合适。初步的想法是根据游戏的逻辑模块，将不同模块的数据库表拆分到各个服务器 里，如果按照上面的服务器预估得到的结论是4~6组服务器，实际上这个方案还是可行的。但如果是20组服务器的话，除非是一台服务器一张数据库表，但这的 设计会造成数据表太分散，在处理事务的时候，会跨多个数据库
 策略类webgame一般的主要模块为：建筑物和资源、军事、英雄、物品、帮会、交易、地图。根据这些模块的应用场景，可以将数据库表分为2种类型，一种是属于玩家的数据，另外一种是公共数据。</p>
@@ -335,7 +345,7 @@ Sql数 5k CPU 50% 硬盘IO 0.5M(突发3M） 网卡流量 30Mbit/s(100M网卡） 
 <p><strong>用户表和其单表的设计思路：</strong>
 这里所说的单表是指在逻辑上部队数据库表做拆分，程序在访问时只访问一个数据库。当然这只是逻辑上的单一，根据实际上的访问压力，可以将数据库文件作水平切割分布在不同的文件分区和服务器里。这部分的数据库表设计继续沿用之前的设计方案就可以了。
 对于用户信息，帮会信息等数据，实际上插入和更新的频率不会太高，更多的是在查询上，因此这部分的设计重点应该是在缓存上。从以前的资料里得知Memcache服务器每秒可以响应4w次的读请求，用一台Memcache就能处理好用户和帮会信息的缓存处理。</p>
-<h3 id="地图模块设计思路">地图模块设计思路<a hidden class="anchor" aria-hidden="true" href="#地图模块设计思路">#</a></h3>
+<h3 id="地图模块设计思路">地图模块设计思路</h3>
 <p><strong>地图模块：</strong>
 地图在传统策略类webgame里都是以平面的方式展示和存储的。地图的移动都是在这个平面上实现。但一般来说，平面地图的设计容量都会有一个上限，一般来 地图多为400*400，他的人数上限就是16w，实际上服务器容纳3~5w人后，整张地图就会显得很拥挤了。如果要想容纳几百万人在线，平面地图的尺寸 就需要扩容得相当大了，这样玩家从地图中间移动到边缘的时间会相当恐怖，因此平面地图在这里不是很合适。因此，地图不能用平面来构造，必须是立体的方法构 造。在这里我设计了两组方案：</p>
 <p><strong>立体平面空间：</strong></p>
@@ -378,7 +388,7 @@ b)第二个阶段，在快到达时（前60分钟），做一个判断，判断�
 <li>默认舰队的雷达查询范围为1格</li>
 <li>默认母舰的雷达查询范围为3格</li>
 </ol>
-<h3 id="玩家数据的数据库设计">玩家数据的数据库设计<a hidden class="anchor" aria-hidden="true" href="#玩家数据的数据库设计">#</a></h3>
+<h3 id="玩家数据的数据库设计">玩家数据的数据库设计</h3>
 <p><strong>数据库的划分:</strong>
 在游戏里数据交互最频繁的还是玩家的数据，他的访问量是一台服务器所不能解决的，因此我们考虑将这部分数据分担到多台服务器里。分担的方法还是做水平切 割，但这次不使用数据库自身的切割功能，而是在应用逻辑层上对数据库进行切割。根据用户的ID取模后写入对应的服务器里。
 服务器1
@@ -398,12 +408,11 @@ b)第二个阶段，在快到达时（前60分钟），做一个判断，判断�
 好友表本身就可以分为2个表，已某位玩家ID为主键和对应玩家放在同一个数据库里。但是好友申请则需要另外考虑了。如果申请的申请方不可见自己发出的申 请，则只需把申请记录和被申请玩家放在一个数据里。但如果需要可见，则会麻烦一些，一种方法是参考战斗表的设计思路，分为申请表和被申请表。还有一种方法 就是把申请表独立出来，所用用户的申请都放在这张表里。作为我个人，我倾向于后面的一种方法。</p>
 <p><strong>用户邮件表设计:</strong>
 用户邮件虽然是属于2位用户之间的交互数据，但从整个系统的角度上来说，用单一的一张表放在单独的服务器里会更简单一些。因为邮件表的内容基本为只读内容，只存在插入和读取功能，并且用户访问的频率不是很高，可以很方便的在逻辑层和web层作缓存。</p>
-<h3 id="整体架构和总结">整体架构和总结<a hidden class="anchor" aria-hidden="true" href="#整体架构和总结">#</a></h3>
+<h3 id="整体架构和总结">整体架构和总结</h3>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/b01ab997d8d5b46c94bcb02fc848e722.webp" alt=""  />
 </p>
 <p><strong>总结：</strong>
 虽然对于单一世界的webgame思考了很多，但到最后细化写成文字，也就只有这4篇短文。不是说不想深入细节去讨论，而是发现如果不做一些具体开发就没法深入写下去，因此本系列文章页就在这里点到即止，希望能给大家一些启发。</p>
-
 
   </div>
 
@@ -411,12 +420,12 @@ b)第二个阶段，在快到达时（前60分钟），做一个判断，判断�
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/867310d7f5a74f758c1745b3083cfcc8/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/867310d7f5a74f758c1745b3083cfcc8/">
     <span class="title">« Prev</span>
     <br>
     <span>1 游戏服务器开发的基本体系与服务器端开发的一些建议</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/601f5e2b4c0a4303a540259d9d394d0b/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/601f5e2b4c0a4303a540259d9d394d0b/">
     <span class="title">Next »</span>
     <br>
     <span>10 开放一个TeamTalk测试服务器地址和几个测试账号</span>
@@ -427,14 +436,6 @@ b)第二个阶段，在快到达时（前60分钟），做一个判断，判断�
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

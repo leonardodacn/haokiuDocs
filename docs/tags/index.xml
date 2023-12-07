@@ -2,99 +2,126 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on haokiu</title>
-    <link>http://121.199.2.5:6080/tags/</link>
+    <link>https://leonardodacn.github.io/haokiuDocs/tags/</link>
     <description>Recent content in Tags on haokiu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>haokiu.com</copyright>
-    <lastBuildDate>Sat, 24 Jun 2023 15:03:53 +0000</lastBuildDate><atom:link href="http://121.199.2.5:6080/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Jun 2023 15:03:53 +0000</lastBuildDate><atom:link href="https://leonardodacn.github.io/haokiuDocs/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>区块链</title>
-      <link>http://121.199.2.5:6080/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
       <pubDate>Sat, 24 Jun 2023 15:03:53 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
       <description></description>
     </item>
     
     <item>
       <title>bigdata</title>
-      <link>http://121.199.2.5:6080/tags/bigdata/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/bigdata/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/tags/bigdata/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/bigdata/</guid>
       <description></description>
     </item>
     
     <item>
       <title>其他</title>
-      <link>http://121.199.2.5:6080/tags/%E5%85%B6%E4%BB%96/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/%E5%85%B6%E4%BB%96/</link>
       <pubDate>Tue, 08 Jun 2021 10:09:53 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/tags/%E5%85%B6%E4%BB%96/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/%E5%85%B6%E4%BB%96/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/java/</link>
+      <pubDate>Wed, 24 Feb 2021 10:24:56 +0000</pubDate>
+      
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linux</title>
-      <link>http://121.199.2.5:6080/tags/linux/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/linux/</link>
       <pubDate>Tue, 02 Feb 2021 20:57:44 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/tags/linux/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>datax</title>
-      <link>http://121.199.2.5:6080/tags/datax/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/datax/</link>
       <pubDate>Tue, 02 Feb 2021 17:45:01 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/tags/datax/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/datax/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/golang/</link>
+      <pubDate>Fri, 22 Jan 2021 15:40:43 +0000</pubDate>
+      
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>beego</title>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/beego/</link>
+      <pubDate>Fri, 22 Jan 2021 14:52:21 +0000</pubDate>
+      
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/beego/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker</title>
-      <link>http://121.199.2.5:6080/tags/docker/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/docker/</link>
       <pubDate>Tue, 24 Nov 2020 13:56:48 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/tags/docker/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git</title>
-      <link>http://121.199.2.5:6080/tags/git/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/git/</link>
       <pubDate>Mon, 09 Nov 2020 09:25:45 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/tags/git/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pixiublog</title>
-      <link>http://121.199.2.5:6080/tags/pixiublog/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/pixiublog/</link>
       <pubDate>Fri, 16 Oct 2020 17:10:58 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/tags/pixiublog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>前端</title>
-      <link>http://121.199.2.5:6080/tags/%E5%89%8D%E7%AB%AF/</link>
-      <pubDate>Mon, 21 Sep 2020 09:30:35 +0000</pubDate>
-      
-      <guid>http://121.199.2.5:6080/tags/%E5%89%8D%E7%AB%AF/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/pixiublog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>spring</title>
-      <link>http://121.199.2.5:6080/tags/spring/</link>
-      <pubDate>Thu, 17 Sep 2020 13:58:36 +0000</pubDate>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/spring/</link>
+      <pubDate>Sun, 27 Sep 2020 10:59:03 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/tags/spring/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>前端</title>
+      <link>https://leonardodacn.github.io/haokiuDocs/tags/%E5%89%8D%E7%AB%AF/</link>
+      <pubDate>Mon, 21 Sep 2020 09:30:35 +0000</pubDate>
+      
+      <guid>https://leonardodacn.github.io/haokiuDocs/tags/%E5%89%8D%E7%AB%AF/</guid>
       <description></description>
     </item>
     

@@ -15,15 +15,15 @@ Env* const env_; // 用来操作文件 const std::string dbname_; // db名 Cache
 void Evict(uint64_tfile_number); // 该函数用以清除指定文件所有cache的entry， //函数实现很简单，就是根据file number清除cache对象。 EncodeFixed64(buf,file_number); cache_-&gt;Erase(Slice(buf, sizeof(buf))); Iterator* NewIterator(constReadOptions&amp; options, uint64_t file_number, uint64_t file_size, Table**tableptr = NULL); //该函数为指定的file返回一个iterator(对应的文件长度必须是&#34;file_size&#34;字节). //如果tableptr不是NULL，那么tableptr保存的是底层的Table指针。 //返回的tableptr是cache拥有的，不能被删除，生命周期同返回的iterator Status Get(constReadOptions&amp; options, uint64_t file_number,uint64_t file_size, const Slice&amp; k,void* arg, void(*handle_result)(void*, const Slice&amp;, const Slice&amp;)); // 这是一个查找函数，如果在指定文件中seek 到internal key &#34;k&#34; 找到一个entry， //就调用 (*handle_result)(arg,found_key, found_value). 7.2 TableCache::Get() 先来看看**Get接口，**只有几行代码：
 Cache::Handle* handle = NULL; Status s =FindTable(file_number, file_size, &amp;handle); if (s.ok()) { Table* t =reinterpret_cast&lt;TableAndFile*&gt;(cache_-&gt;Value(handle))-&gt;table; s = t-&gt;InternalGet(options,k, arg, saver); cache_-&gt;Release(handle); } return s; 首先根据file_number找到Table的cache对象，如果找到了就调用Table::InternalGet，对查找结果的处理在调用者传入的saver回调函数中。 Cache在Lookup找到cache对象后，如果不再使用需要调用Release减引用计数。这个见Cache的接口说明。">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/0159e326ba0e4917878529ee1ae3af48/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/0159e326ba0e4917878529ee1ae3af48/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -71,7 +71,7 @@ Env* const env_; // 用来操作文件 const std::string dbname_; // db名 Cache
 void Evict(uint64_tfile_number); // 该函数用以清除指定文件所有cache的entry， //函数实现很简单，就是根据file number清除cache对象。 EncodeFixed64(buf,file_number); cache_-&gt;Erase(Slice(buf, sizeof(buf))); Iterator* NewIterator(constReadOptions&amp; options, uint64_t file_number, uint64_t file_size, Table**tableptr = NULL); //该函数为指定的file返回一个iterator(对应的文件长度必须是&#34;file_size&#34;字节). //如果tableptr不是NULL，那么tableptr保存的是底层的Table指针。 //返回的tableptr是cache拥有的，不能被删除，生命周期同返回的iterator Status Get(constReadOptions&amp; options, uint64_t file_number,uint64_t file_size, const Slice&amp; k,void* arg, void(*handle_result)(void*, const Slice&amp;, const Slice&amp;)); // 这是一个查找函数，如果在指定文件中seek 到internal key &#34;k&#34; 找到一个entry， //就调用 (*handle_result)(arg,found_key, found_value). 7.2 TableCache::Get() 先来看看**Get接口，**只有几行代码：
 Cache::Handle* handle = NULL; Status s =FindTable(file_number, file_size, &amp;handle); if (s.ok()) { Table* t =reinterpret_cast&lt;TableAndFile*&gt;(cache_-&gt;Value(handle))-&gt;table; s = t-&gt;InternalGet(options,k, arg, saver); cache_-&gt;Release(handle); } return s; 首先根据file_number找到Table的cache对象，如果找到了就调用Table::InternalGet，对查找结果的处理在调用者传入的saver回调函数中。 Cache在Lookup找到cache对象后，如果不再使用需要调用Release减引用计数。这个见Cache的接口说明。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/0159e326ba0e4917878529ee1ae3af48/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/0159e326ba0e4917878529ee1ae3af48/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -90,18 +90,18 @@ Cache::Handle* handle = NULL; Status s =FindTable(file_number, file_size, &amp;h
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "leveldb源码分析11",
-      "item": "http://121.199.2.5:6080/0159e326ba0e4917878529ee1ae3af48/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/0159e326ba0e4917878529ee1ae3af48/"
     }
   ]
 }
@@ -123,14 +123,14 @@ Cache::Handle* handle = NULL; Status s =FindTable(file_number, file_size, &amp;h
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/0159e326ba0e4917878529ee1ae3af48/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/0159e326ba0e4917878529ee1ae3af48/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -152,7 +152,7 @@ Cache::Handle* handle = NULL; Status s =FindTable(file_number, file_size, &amp;h
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -178,38 +178,48 @@ Cache::Handle* handle = NULL; Status s =FindTable(file_number, file_size, &amp;h
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -219,7 +229,7 @@ Cache::Handle* handle = NULL; Status s =FindTable(file_number, file_size, &amp;h
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       leveldb源码分析11
     </h1>
@@ -273,11 +283,11 @@ Cache::Handle* handle = NULL; Status s =FindTable(file_number, file_size, &amp;h
     </details>
 </div>
 
-  <div class="post-content"><h1 id="leveldb源码分析11">leveldb源码分析11<a hidden class="anchor" aria-hidden="true" href="#leveldb源码分析11">#</a></h1>
+  <div class="post-content"><h1 id="leveldb源码分析11">leveldb源码分析11</h1>
 <p>本系列《leveldb源码分析》共有22篇文章，这是第十一篇</p>
-<h2 id="7tablecache">7.TableCache<a hidden class="anchor" aria-hidden="true" href="#7tablecache">#</a></h2>
+<h2 id="7tablecache">7.TableCache</h2>
 <p>这章的内容比较简单，篇幅也不长。</p>
-<h3 id="71-tablecache简介">7.1 TableCache简介<a hidden class="anchor" aria-hidden="true" href="#71-tablecache简介">#</a></h3>
+<h3 id="71-tablecache简介">7.1 TableCache简介</h3>
 <p><strong>TableCache缓存</strong>的是Table对象，每个DB一个，它内部使用一个LRUCache缓存所有的table对象，实际上其内容是文件编号{file number, TableAndFile}*。<em>TableAndFile是一个拥有<strong>2个变量</strong>的结构体：RandomAccessFile和Table</em>；</p>
 <p>TableCache类的<strong>主要成员变量</strong>有：</p>
 <pre tabindex="0"><code>Env* const env_;            // 用来操作文件  
@@ -301,7 +311,7 @@ Status Get(constReadOptions&amp; options,
 
 // 这是一个查找函数，如果在指定文件中seek 到internal key &#34;k&#34; 找到一个entry，
 //就调用 (*handle_result)(arg,found_key, found_value).
-</code></pre><h3 id="72-tablecacheget">7.2 TableCache::Get()<a hidden class="anchor" aria-hidden="true" href="#72-tablecacheget">#</a></h3>
+</code></pre><h3 id="72-tablecacheget">7.2 TableCache::Get()</h3>
 <p>先来看看**Get接口，**只有几行代码：</p>
 <pre tabindex="0"><code>Cache::Handle* handle = NULL;  
 Status s =FindTable(file_number, file_size, &amp;handle);  
@@ -314,40 +324,40 @@ if (s.ok())
 return s;
 </code></pre><p><strong>首先</strong>根据file_number找到Table的cache对象，<strong>如果</strong>找到了就调用Table::InternalGet，对查找结果的处理在调用者传入的<strong>saver回调函数</strong>中。
 Cache在Lookup找到<strong>cache对象</strong>后，<strong>如果</strong>不再使用需要调用Release减引用计数。这个见Cache的接口说明。</p>
-<h3 id="73-tablecache遍历">7.3 TableCache遍历<a hidden class="anchor" aria-hidden="true" href="#73-tablecache遍历">#</a></h3>
+<h3 id="73-tablecache遍历">7.3 TableCache遍历</h3>
 <p>函数NewIterator()，返回一个可以遍历<strong>Table对象的Iterator指针</strong>，函数逻辑：</p>
-<h4 id="s1-初始化tableptr调用findtable返回cache对象">S1 初始化tableptr，调用FindTable，返回cache对象<a hidden class="anchor" aria-hidden="true" href="#s1-初始化tableptr调用findtable返回cache对象">#</a></h4>
+<h4 id="s1-初始化tableptr调用findtable返回cache对象">S1 初始化tableptr，调用FindTable，返回cache对象</h4>
 <pre tabindex="0"><code>if (tableptr != NULL) *tableptr =NULL;  
 Cache::Handle* handle = NULL;  
 Status s =FindTable(file_number, file_size, &amp;handle);  
 if (!s.ok()) returnNewErrorIterator(s);
-</code></pre><h4 id="s2-从cache对象中取出table对象指针调用其newiterator返回iterator对象并为iterator注册一个cleanup函数">S2 从cache对象中取出Table对象指针，调用其NewIterator返回Iterator对象，并为Iterator注册一个cleanup函数。<a hidden class="anchor" aria-hidden="true" href="#s2-从cache对象中取出table对象指针调用其newiterator返回iterator对象并为iterator注册一个cleanup函数">#</a></h4>
+</code></pre><h4 id="s2-从cache对象中取出table对象指针调用其newiterator返回iterator对象并为iterator注册一个cleanup函数">S2 从cache对象中取出Table对象指针，调用其NewIterator返回Iterator对象，并为Iterator注册一个cleanup函数。</h4>
 <pre tabindex="0"><code>Table* table =reinterpret_cast&lt;TableAndFile*&gt;(cache_-&gt;Value(handle))-&gt;table;  
 Iterator* result =table-&gt;NewIterator(options);  
 result-&gt;RegisterCleanup(&amp;UnrefEntry, cache_, handle);  
 if (tableptr != NULL) *tableptr= table;  
 return result;
-</code></pre><h3 id="74-tablecachefindtable">7.4 TableCache::FindTable()<a hidden class="anchor" aria-hidden="true" href="#74-tablecachefindtable">#</a></h3>
+</code></pre><h3 id="74-tablecachefindtable">7.4 TableCache::FindTable()</h3>
 <p>前面的<strong>遍历和Get函数</strong>都依赖于FindTable这个私有函数完成对cache的查找，下面就来看看该函数的逻辑。函数声明为：</p>
 <pre tabindex="0"><code>Status FindTable(uint64_t file_number, uint64_t file_size,
                  Cache::Handle** handle)
 </code></pre><p>函数流程为：</p>
-<h4 id="s1-首先根据file-number从cache中查找table找到就直接返回成功">S1 首先根据file number从cache中查找table，找到就直接返回成功。<a hidden class="anchor" aria-hidden="true" href="#s1-首先根据file-number从cache中查找table找到就直接返回成功">#</a></h4>
+<h4 id="s1-首先根据file-number从cache中查找table找到就直接返回成功">S1 首先根据file number从cache中查找table，找到就直接返回成功。</h4>
 <pre tabindex="0"><code>char buf[sizeof(file_number)];  
 EncodeFixed64(buf, file_number);  
 Slice key(buf, sizeof(buf));  
 *handle = cache_-&gt;Lookup(key);
-</code></pre><h4 id="s2-如果没有找到说明table不在cache中则根据file-number和db-name打开一个radomaccessfiletable文件格式为sst如果文件打开成功则调用tableopen读取sstable文件">S2 如果没有找到，说明table不在cache中，则根据file number和db name打开一个RadomAccessFile。Table文件格式为：..sst。如果文件打开成功，则调用Table::Open读取sstable文件。<a hidden class="anchor" aria-hidden="true" href="#s2-如果没有找到说明table不在cache中则根据file-number和db-name打开一个radomaccessfiletable文件格式为sst如果文件打开成功则调用tableopen读取sstable文件">#</a></h4>
+</code></pre><h4 id="s2-如果没有找到说明table不在cache中则根据file-number和db-name打开一个radomaccessfiletable文件格式为sst如果文件打开成功则调用tableopen读取sstable文件">S2 如果没有找到，说明table不在cache中，则根据file number和db name打开一个RadomAccessFile。Table文件格式为：..sst。如果文件打开成功，则调用Table::Open读取sstable文件。</h4>
 <pre tabindex="0"><code>std::string fname =TableFileName(dbname_, file_number);  
 RandomAccessFile* file = NULL;  
 Table* table = NULL;  
 s =env_-&gt;NewRandomAccessFile(fname, &amp;file);  
 if (s.ok()) s =Table::Open(*options_, file, file_size, &amp;table);
-</code></pre><h4 id="s3-如果tableopen成功则插入到cache中">S3 如果Table::Open成功则，插入到Cache中。<a hidden class="anchor" aria-hidden="true" href="#s3-如果tableopen成功则插入到cache中">#</a></h4>
+</code></pre><h4 id="s3-如果tableopen成功则插入到cache中">S3 如果Table::Open成功则，插入到Cache中。</h4>
 <pre tabindex="0"><code>TableAndFile* tf = newTableAndFile(table, file);  
 *handle = cache_-&gt;Insert(key,tf, 1, &amp;DeleteEntry); 
 </code></pre><p>如果失败，则<strong>删除file</strong>，直接返回失败，失败的结果是不会cache的。</p>
-<h3 id="75-辅助函数">7.5 辅助函数<a hidden class="anchor" aria-hidden="true" href="#75-辅助函数">#</a></h3>
+<h3 id="75-辅助函数">7.5 辅助函数</h3>
 <p>有点啰嗦，不过还是写一下吧。其中一个是为<strong>LRUCache注册的删除函数DeleteEntry。</strong></p>
 <pre tabindex="0"><code>static void DeleteEntry(const Slice&amp; key, void* value) 
 {  
@@ -364,19 +374,18 @@ if (s.ok()) s =Table::Open(*options_, file, file_size, &amp;table);
     cache-&gt;Release(h);  
 }
 </code></pre>
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/603a94de7932474cbf7478a2d7b94ebf/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/603a94de7932474cbf7478a2d7b94ebf/">
     <span class="title">« Prev</span>
     <br>
     <span>leveldb源码分析10</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/cd6a8ad07c9f4c479a1e88591f05cd70/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/cd6a8ad07c9f4c479a1e88591f05cd70/">
     <span class="title">Next »</span>
     <br>
     <span>leveldb源码分析12</span>
@@ -387,14 +396,6 @@ if (s.ok()) s =Table::Open(*options_, file, file_size, &amp;table);
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

@@ -18,15 +18,15 @@ SELECT 语句，语法顺序如下：
 1. SELECT 2. DISTINCT &lt;select_list&gt; 3. FROM &lt;left_table&gt; 4. &lt;join_type&gt; JOIN &lt;right_table&gt; 5. ON &lt;join_condition&gt; 6. WHERE &lt;where_condition&gt; 7. GROUP BY &lt;group_by_list&gt; 8. HAVING &lt;having_condition&gt; 9. ORDER BY &lt;order_by_condition&gt; 10.LIMIT &lt;limit_number&gt; SELECT 语句，执行顺序如下：
 FROM &lt;表名&gt; # 选取表，将多个表数据通过笛卡尔积变成一个表。 ON &lt;筛选条件&gt; # 对笛卡尔积的虚表进行筛选 JOIN &lt;join, left join, right join...&gt; &lt;join表&gt; # 指定join，用于添加数据到on之后的虚表中，例如left join会将左表的剩余数据添加到虚表中 WHERE &lt;where条件&gt; # 对上述虚表进行筛选 GROUP BY &lt;分组条件&gt; # 分组 &lt;SUM()等聚合函数&gt; # 用于having子句进行判断，在书写上这类聚合函数是写在having判断里面的 HAVING &lt;分组筛选&gt; # 对分组后的结果进行聚合筛选 SELECT &lt;返回数据列表&gt; # 返回的单列必须在group by子句中，聚合函数除外 DISTINCT # 数据除重 ORDER BY &lt;排序条件&gt; # 排序 LIMIT &lt;行数限制&gt; 以下 SQL 优化策略适用于数据量较大的场景下，如果数据量较小，没必要以此为准，以免画蛇添足。">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/XEhpYv/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/XEhpYv/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -77,7 +77,7 @@ SELECT 语句，语法顺序如下：
 1. SELECT 2. DISTINCT &lt;select_list&gt; 3. FROM &lt;left_table&gt; 4. &lt;join_type&gt; JOIN &lt;right_table&gt; 5. ON &lt;join_condition&gt; 6. WHERE &lt;where_condition&gt; 7. GROUP BY &lt;group_by_list&gt; 8. HAVING &lt;having_condition&gt; 9. ORDER BY &lt;order_by_condition&gt; 10.LIMIT &lt;limit_number&gt; SELECT 语句，执行顺序如下：
 FROM &lt;表名&gt; # 选取表，将多个表数据通过笛卡尔积变成一个表。 ON &lt;筛选条件&gt; # 对笛卡尔积的虚表进行筛选 JOIN &lt;join, left join, right join...&gt; &lt;join表&gt; # 指定join，用于添加数据到on之后的虚表中，例如left join会将左表的剩余数据添加到虚表中 WHERE &lt;where条件&gt; # 对上述虚表进行筛选 GROUP BY &lt;分组条件&gt; # 分组 &lt;SUM()等聚合函数&gt; # 用于having子句进行判断，在书写上这类聚合函数是写在having判断里面的 HAVING &lt;分组筛选&gt; # 对分组后的结果进行聚合筛选 SELECT &lt;返回数据列表&gt; # 返回的单列必须在group by子句中，聚合函数除外 DISTINCT # 数据除重 ORDER BY &lt;排序条件&gt; # 排序 LIMIT &lt;行数限制&gt; 以下 SQL 优化策略适用于数据量较大的场景下，如果数据量较小，没必要以此为准，以免画蛇添足。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/XEhpYv/" /><meta property="article:section" content="4" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/XEhpYv/" /><meta property="article:section" content="4" />
 <meta property="article:published_time" content="2020-09-23T16:59:17+00:00" />
 <meta property="article:modified_time" content="2020-09-23T16:59:17+00:00" />
 
@@ -99,18 +99,18 @@ FROM &lt;表名&gt; # 选取表，将多个表数据通过笛卡尔积变成一�
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "4s",
-      "item": "http://121.199.2.5:6080/4/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/4/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "sql 优化",
-      "item": "http://121.199.2.5:6080/XEhpYv/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/XEhpYv/"
     }
   ]
 }
@@ -132,14 +132,14 @@ FROM &lt;表名&gt; # 选取表，将多个表数据通过笛卡尔积变成一�
   "dateModified": "2020-09-23T16:59:17Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/XEhpYv/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/XEhpYv/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -161,7 +161,7 @@ FROM &lt;表名&gt; # 选取表，将多个表数据通过笛卡尔积变成一�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -187,47 +187,47 @@ FROM &lt;表名&gt; # 选取表，将多个表数据通过笛卡尔积变成一�
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/tags/" title="Tags">
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
                     <span>tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/categories/" title="Categories">
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -238,7 +238,7 @@ FROM &lt;表名&gt; # 选取表，将多个表数据通过笛卡尔积变成一�
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://121.199.2.5:6080">Home</a>&nbsp;»&nbsp;<a href="http://121.199.2.5:6080/4/">4s</a></div>
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/4/">4s</a></div>
     <h1 class="post-title">
       sql 优化
     </h1>
@@ -572,20 +572,8 @@ Select @now;
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://121.199.2.5:6080/tags/bigdata/">bigdata</a></li>
+      <li><a href="https://leonardodacn.github.io/haokiuDocs/tags/bigdata/">bigdata</a></li>
     </ul>
-<nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/7mlwkW/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>presto 支持的数据源</span>
-  </a>
-  <a class="next" href="http://121.199.2.5:6080/3XTrh1/">
-    <span class="title">Next »</span>
-    <br>
-    <span>elasticsearch</span>
-  </a>
-</nav>
 
   </footer>
 </article>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>git on haokiu</title>
-    <link>http://121.199.2.5:6080/tags/git/</link>
+    <link>https://leonardodacn.github.io/haokiuDocs/tags/git/</link>
     <description>Recent content in git on haokiu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>haokiu.com</copyright>
-    <lastBuildDate>Mon, 09 Nov 2020 09:25:45 +0000</lastBuildDate><atom:link href="http://121.199.2.5:6080/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Nov 2020 09:25:45 +0000</lastBuildDate><atom:link href="https://leonardodacn.github.io/haokiuDocs/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>git 查看远程地址</title>
-      <link>http://121.199.2.5:6080/ss9sfI/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/ss9sfI/</link>
       <pubDate>Mon, 09 Nov 2020 09:25:45 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/ss9sfI/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/ss9sfI/</guid>
       <description>有时需要查看本地开发的git项目的远程仓库地址
 git remote -v 可以方便的查看远程仓库的地址
 git remote -v origin https://gitee.com/leonardodacn/pixiublog.git (fetch) origin https://gitee.com/leonardodacn/pixiublog.git (push) -v : verbose，冗余的意思</description>

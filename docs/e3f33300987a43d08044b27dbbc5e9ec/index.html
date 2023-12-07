@@ -16,15 +16,15 @@ DebugLogError(L&#34;我喜欢你!&#34;); DebugLogError(L&#34;我喜欢你!&#34;,
 va_list va_start va_end 这几个宏是C函数库提供的，位于头文件stdarg.h中。下面我们利用这几个宏自定义一个ShowLove()函数：
 #include &lt;stdio.h&gt; #include &lt;tchar.h&gt; #include &lt;stdarg.h&gt; #include &lt;locale.h&gt; int ShowLove(wchar_t* szFirstSentence, ...) { //用来统计可变参数数量 int num = 0; //第一步： //申明一个va_list类型对象ap，用于对参数进行遍历 va_list ap; //第二步： //使用va_start对变量进行初始化 //这里需要注意的是: //在传统C语言中，va_start把ap中内部指针设置为传递给函数参数的【第一个实参】； //而在标准的C中，va_start接受一个额外参数，也就是最后一个【固定参数】的名称， //并把ap中的内部指针设置为传递给函数的第一个【可变参数】. //所以你在VC&#43;&#43; 6.0和VS2008等高版本的编译器中使用va_start需要注意区别 //这里使用标准C va_start(ap, szFirstSentence); //第三步： //使用va_arg宏返回实参列表中的下一个参数值，并把ap的内部指针推向下一个参数（如果有的话） //必须指定下一个参数的类型。 //在调用va_start之后第一次调用va_arg将返回第一个可变参数的值 wprintf(szFirstSentence); wchar_t* p = 0; while(p = va_arg(ap, wchar_t*)) { wprintf(L&#34;%s&#34;, p); num &#43;&#43;; } //第四步： //待所有可变参数都读取完毕以后，调用va_end宏对ap和va_list做必要的清理工作 va_end(ap); return num; } int main(int argc, char* argv[]) { setlocale(LC_ALL, &#34;&#34;); int z = ShowLoveL&#34;我喜欢你！\n&#34;); int y = ShowLove(L&#34;我喜欢你！&#34;, L&#34;你喜欢谁？\n&#34;); int l = ShowLove(L&#34;我喜欢你！&#34;, L&#34;你喜欢谁？&#34;, L&#34;萧雨萌！\n&#34;); printf(&#34;可变参数个数依次是：%d\t%d\t%d\n&#34;, z, y, l); return 0; } 上述代码的运行结果是：">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/e3f33300987a43d08044b27dbbc5e9ec/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/e3f33300987a43d08044b27dbbc5e9ec/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -73,7 +73,7 @@ DebugLogError(L&#34;我喜欢你!&#34;); DebugLogError(L&#34;我喜欢你!&#34;,
 va_list va_start va_end 这几个宏是C函数库提供的，位于头文件stdarg.h中。下面我们利用这几个宏自定义一个ShowLove()函数：
 #include &lt;stdio.h&gt; #include &lt;tchar.h&gt; #include &lt;stdarg.h&gt; #include &lt;locale.h&gt; int ShowLove(wchar_t* szFirstSentence, ...) { //用来统计可变参数数量 int num = 0; //第一步： //申明一个va_list类型对象ap，用于对参数进行遍历 va_list ap; //第二步： //使用va_start对变量进行初始化 //这里需要注意的是: //在传统C语言中，va_start把ap中内部指针设置为传递给函数参数的【第一个实参】； //而在标准的C中，va_start接受一个额外参数，也就是最后一个【固定参数】的名称， //并把ap中的内部指针设置为传递给函数的第一个【可变参数】. //所以你在VC&#43;&#43; 6.0和VS2008等高版本的编译器中使用va_start需要注意区别 //这里使用标准C va_start(ap, szFirstSentence); //第三步： //使用va_arg宏返回实参列表中的下一个参数值，并把ap的内部指针推向下一个参数（如果有的话） //必须指定下一个参数的类型。 //在调用va_start之后第一次调用va_arg将返回第一个可变参数的值 wprintf(szFirstSentence); wchar_t* p = 0; while(p = va_arg(ap, wchar_t*)) { wprintf(L&#34;%s&#34;, p); num &#43;&#43;; } //第四步： //待所有可变参数都读取完毕以后，调用va_end宏对ap和va_list做必要的清理工作 va_end(ap); return num; } int main(int argc, char* argv[]) { setlocale(LC_ALL, &#34;&#34;); int z = ShowLoveL&#34;我喜欢你！\n&#34;); int y = ShowLove(L&#34;我喜欢你！&#34;, L&#34;你喜欢谁？\n&#34;); int l = ShowLove(L&#34;我喜欢你！&#34;, L&#34;你喜欢谁？&#34;, L&#34;萧雨萌！\n&#34;); printf(&#34;可变参数个数依次是：%d\t%d\t%d\n&#34;, z, y, l); return 0; } 上述代码的运行结果是：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/e3f33300987a43d08044b27dbbc5e9ec/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/e3f33300987a43d08044b27dbbc5e9ec/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -93,18 +93,18 @@ va_list va_start va_end 这几个宏是C函数库提供的，位于头文件stda
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "不定参数函数实现var_arg系列的宏",
-      "item": "http://121.199.2.5:6080/e3f33300987a43d08044b27dbbc5e9ec/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/e3f33300987a43d08044b27dbbc5e9ec/"
     }
   ]
 }
@@ -126,14 +126,14 @@ va_list va_start va_end 这几个宏是C函数库提供的，位于头文件stda
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/e3f33300987a43d08044b27dbbc5e9ec/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/e3f33300987a43d08044b27dbbc5e9ec/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -155,7 +155,7 @@ va_list va_start va_end 这几个宏是C函数库提供的，位于头文件stda
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -181,38 +181,48 @@ va_list va_start va_end 这几个宏是C函数库提供的，位于头文件stda
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -222,7 +232,7 @@ va_list va_start va_end 这几个宏是C函数库提供的，位于头文件stda
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       不定参数函数实现var_arg系列的宏
     </h1>
@@ -244,7 +254,7 @@ va_list va_start va_end 这几个宏是C函数库提供的，位于头文件stda
     </details>
 </div>
 
-  <div class="post-content"><h2 id="不定参数函数实现var_arg系列的宏">不定参数函数实现var_arg系列的宏<a hidden class="anchor" aria-hidden="true" href="#不定参数函数实现var_arg系列的宏">#</a></h2>
+  <div class="post-content"><h2 id="不定参数函数实现var_arg系列的宏">不定参数函数实现var_arg系列的宏</h2>
 <p>电驴的源码日志模块有一个叫 <strong>DebugLogError</strong> 函数，其签名如下：</p>
 <pre tabindex="0"><code>//代码位于easyMule-master/src/WorkLayer/Log.h 55行
 void DebugLogError(LPCTSTR pszLine, ...);
@@ -513,19 +523,18 @@ LOG_LEECHER      1000 0000
 </code></pre><p>然后与 uFlags 或起来等于 <strong>1010 0000</strong>，你看下是不是刚好把 <strong>LOG_DONTNOTIFY</strong> 去掉了呀？</p>
 <p>这种方法效率高不仅是因为在二进制层次上运算，而且它可以用一个较小的数据类型代表多个信息，对数据的利用程度精准到二进制位。</p>
 
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/0da28a69a69242919c3333dc8e970a8f/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/0da28a69a69242919c3333dc8e970a8f/">
     <span class="title">« Prev</span>
     <br>
     <span>TeamTalk源码解析</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/15d5370937664a8d84891f5e983b87f4/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/15d5370937664a8d84891f5e983b87f4/">
     <span class="title">Next »</span>
     <br>
     <span>为什么你的简历没人看</span>
@@ -536,14 +545,6 @@ LOG_LEECHER      1000 0000
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

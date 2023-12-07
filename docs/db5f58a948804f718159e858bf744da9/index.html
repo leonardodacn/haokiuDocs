@@ -77,15 +77,15 @@
 最后是一个纯技术问题，有关socket连接数的最大限制。开始学习网络编程的时候我犯过这样的错误，以为port的定义为unsigned short，所以想当然的认为服务器的最大连接数为65535，这会是一个硬性的限制。而实际上，一个socket描述符在windows上的定义是unsigned int，因此要有限制那也是四十多亿，放心好了。
 在服务器上port是监听用的，想象这样一种情况，web server在80端口上监听，当一个连接到来时，系统会为这个连接分配一个socket句柄，同时与其在80端口上进行通讯；当另一个连接到来时，服务器仍然在80端口与之通信，只是分配的socket句柄不一样。这个socket句柄才是描述每个连接的唯一标识。按windows网络编程第二版上的说法，这个上限值配置影响。">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/db5f58a948804f718159e858bf744da9/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/db5f58a948804f718159e858bf744da9/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -195,7 +195,7 @@
 最后是一个纯技术问题，有关socket连接数的最大限制。开始学习网络编程的时候我犯过这样的错误，以为port的定义为unsigned short，所以想当然的认为服务器的最大连接数为65535，这会是一个硬性的限制。而实际上，一个socket描述符在windows上的定义是unsigned int，因此要有限制那也是四十多亿，放心好了。
 在服务器上port是监听用的，想象这样一种情况，web server在80端口上监听，当一个连接到来时，系统会为这个连接分配一个socket句柄，同时与其在80端口上进行通讯；当另一个连接到来时，服务器仍然在80端口与之通信，只是分配的socket句柄不一样。这个socket句柄才是描述每个连接的唯一标识。按windows网络编程第二版上的说法，这个上限值配置影响。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/db5f58a948804f718159e858bf744da9/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/db5f58a948804f718159e858bf744da9/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -276,18 +276,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "9 百万用户级游戏服务器架构设计",
-      "item": "http://121.199.2.5:6080/db5f58a948804f718159e858bf744da9/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/db5f58a948804f718159e858bf744da9/"
     }
   ]
 }
@@ -309,14 +309,14 @@
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/db5f58a948804f718159e858bf744da9/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/db5f58a948804f718159e858bf744da9/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -338,7 +338,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -364,38 +364,48 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -405,7 +415,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       9 百万用户级游戏服务器架构设计
     </h1>
@@ -460,8 +470,8 @@
     </details>
 </div>
 
-  <div class="post-content"><h1 id="9-百万用户级游戏服务器架构设计">9 百万用户级游戏服务器架构设计<a hidden class="anchor" aria-hidden="true" href="#9-百万用户级游戏服务器架构设计">#</a></h1>
-<h3 id="服务器结构探讨----最简单的结构">服务器结构探讨 &ndash; 最简单的结构<a hidden class="anchor" aria-hidden="true" href="#服务器结构探讨----最简单的结构">#</a></h3>
+  <div class="post-content"><h1 id="9-百万用户级游戏服务器架构设计">9 百万用户级游戏服务器架构设计</h1>
+<h3 id="服务器结构探讨----最简单的结构">服务器结构探讨 &ndash; 最简单的结构</h3>
 <p>所谓服务器结构，也就是如何将服务器各部分合理地安排，以实现最初的功能需求。所以，结构本无所谓正确与错误；当然，优秀的结构更有助于系统的搭建，对系统的可扩展性及可维护性也有更大的帮助。</p>
 <p>好的结构不是一蹴而就的，而且每个设计者心中的那把尺都不相同，所以这个优秀结构的定义也就没有定论。在这里，我们不打算对现有游戏结构做评价，而是试着从头开始搭建一个我们需要的<strong>MMOG结构</strong>。</p>
 <p>对于一个最简单的游戏服务器来说，它只需要能够接受来自客户端的连接请求，然后处理客户端在游戏世界中的移动及交互，也即游戏逻辑处理即可。如果我们把这两项功能集成到一个服务进程中，则最终的结构很简单：</p>
@@ -476,7 +486,7 @@
 <p>早期的游戏大都采用的是这种结构，有些游戏在实现时采用了一些技术手段使得在切换游戏服时不需要再次验证帐号，但整体结构还是未做改变。</p>
 <p>该结构存在一个服务器资源配置的问题。因为登录服处理的逻辑相对来说比较简单，就是将玩家提交的帐号和密码送到数据库进行验证，和生成会话密钥发送给游戏服和客户端，操作完成后连接就会立即断开，而且玩家在以后的游戏过程中不会再与登录服打任何交道。这样处理短连接的过程使得系统在大多数情况下都是比较空闲的，但是在某些时候，由于请求比较密集，比如开新服的时候，登录服的负载又会比较大，甚至会处理不过来。</p>
 <p>另外在实际的游戏运营中，有些游戏世界很火爆，而有些游戏世界却非常冷清，甚至没有多少人玩的情况也是很常见的。所以，我们能否更合理地配置登录服资源，使得整个大区内的登录服可以共享就成了下一步改进的目标。</p>
-<h3 id="服务器结构探讨----登录服的负载均衡">服务器结构探讨 &ndash; 登录服的负载均衡<a hidden class="anchor" aria-hidden="true" href="#服务器结构探讨----登录服的负载均衡">#</a></h3>
+<h3 id="服务器结构探讨----登录服的负载均衡">服务器结构探讨 &ndash; 登录服的负载均衡</h3>
 <p>回想一下我们在玩wow时的操作流程：运行wow.exe进入游戏后，首先就会要求我们输入用户名和密码进行验证，验证成功后才会出来游戏世界列表，之后是排队进入游戏世界，开始游戏…</p>
 <p>可以看到跟前面的描述有个很明显的不同，那就是要先验证帐号再选择游戏世界。这种结构也就使得登录服不是固定配备给个游戏世界，而是全区共有的。</p>
 <p>我们可以试着从实际需求的角度来考虑一下这个问题。正如我们之前所描述过的那样，登录服在大多数情况下都是比较空闲的，也许我们的一个拥有20个游戏世界的大区仅仅使用10台或更少的登录服即可满足需求。而当在开新区的时候，或许要配备40台登录服才能应付那如潮水般涌入的玩家登录请求。所以，登录服在设计上应该能满足这种动态增删的需求，我们可以在任何时候为大区增加或减少登录服的部署。</p>
@@ -492,7 +502,7 @@
 </p>
 <p>这里既然讨论到了大区及帐号数据库，所以顺带也说一下关于激活大区的概念。wow中一共有八个大区，我们想要进入某个大区游戏之前，必须到官网上激活这个区，这是为什么呢？</p>
 <p>一般来说，在各个大区帐号数据库之上还有一个总的帐号数据库，我们可以称它为中心数据库。比如我们在官网上注册了一个帐号，这时帐号数据是只保存在中心数据库上的。而当我们要到一区去创建角色开始游戏的时候，在一区的帐号数据库中并没有我们的帐号数据，所以，我们必须先到官网上做一次激活操作。这个激活的过程也就是从中心库上把我们的帐号数据拷贝到所要到的大区帐号数据库中。</p>
-<h3 id="服务器结构探讨----简单的世界服实现">服务器结构探讨 &ndash; 简单的世界服实现<a hidden class="anchor" aria-hidden="true" href="#服务器结构探讨----简单的世界服实现">#</a></h3>
+<h3 id="服务器结构探讨----简单的世界服实现">服务器结构探讨 &ndash; 简单的世界服实现</h3>
 <p>讨论了这么久我们一直都还没有进入游戏世界服务器内部，现在就让我们来窥探一下里面的结构吧。</p>
 <p>对于现在大多数MMORPG来说，游戏服务器要处理的基本逻辑有移动、聊天、技能、物品、任务和生物等，另外还有地图管理与消息广播来对其他高级功能做支撑。如纵队、好友、公会、战场和副本等，这些都是通过基本逻辑功能组合或扩展而成。</p>
 <p>在所有这些基础逻辑中，与我们要讨论的服务器结构关系最紧密的当属地图管理方式。决定了地图的管理方式也就决定了我们的服务器结构，我们仍然先从最简单的实现方式开始说起。</p>
@@ -505,7 +515,7 @@
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/324c40358fff869499f65dca44c9ec35.png" alt=""  />
 </p>
 <p>很简单，不是吗。但是简单并不表示功能上会有什么损失，简单也更不能表示游戏不能赚钱。早期不少游戏也确实采用的就是这种简单结构。</p>
-<h3 id="服务器结构探讨----继续世界服">服务器结构探讨 &ndash; 继续世界服<a hidden class="anchor" aria-hidden="true" href="#服务器结构探讨----继续世界服">#</a></h3>
+<h3 id="服务器结构探讨----继续世界服">服务器结构探讨 &ndash; 继续世界服</h3>
 <p>都已经看出来了，这种每切换一次地图就要重新连接服务器的方式实在是不够优雅，而且在实际游戏运营中也发现，地图切换导致的卡号，复制装备等问题非常多，这里完全就是一个事故多发地段，如何避免这种频繁的连接操作呢？</p>
 <p>最直接的方法就是把那个图倒转过来就行了。客户端只需要连接到中心服上，所有到地图服务器的数据都由中心服来转发。很完美的解决方案，不是吗？</p>
 <p>这种结构在实际的部署中也遇到了一些挑战。对于一般的MMORPG服务器来说，单台服务器的承载量平均在2000左右，如果你的服务器很不幸地只能带1000人，没关系，不少游戏都是如此；如果你的服务器上跑了3000多玩家依然比较流畅，那你可以自豪地告诉你的策划，多设计些大量消耗服务器资源的玩法吧，比如大型国战、公会战争等。</p>
@@ -520,7 +530,7 @@
 <p>最后的结构看起来大概是这样的：</p>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/44a41780752c2f86c7fab8192c31e35d.png" alt=""  />
 </p>
-<h3 id="服务器结构探讨----最终的结构">服务器结构探讨 &ndash; 最终的结构<a hidden class="anchor" aria-hidden="true" href="#服务器结构探讨----最终的结构">#</a></h3>
+<h3 id="服务器结构探讨----最终的结构">服务器结构探讨 &ndash; 最终的结构</h3>
 <p>如果我们就此打住，可能马上就会有人要嗤之以鼻了，就这点古董级的技术也敢出来现。好吧，我们还是把之前留下的问题拿出来解决掉吧。</p>
 <p>一般来说，当某一部分能力达不到我们的要求时，最简单的解决方法就是在此多投入一点资源。既然想要更多的连接数，那就再加一台网关服务器吧。新增加了网关服后需要在大区服上做相应的支持，或者再简单点，有一台主要的网关服，当其负载较高时，主动将新到达的连接重定向到其他网关服上。</p>
 <p>而对于游戏服来说，有一台还是多台网关服是没有什么区别的。每个代表客户端玩家的对象内部都保留一个代表其连接的对象，消息广播时要求每个玩家对象使用自己的连接对象发送数据即可，至于连接是在什么地方，那是完全透明的。当然，这只是一种简单的实现，也是普通使用的一种方案，如果后期想对消息广播做一些优化的话，那可能才需要多考虑一下。</p>
@@ -537,7 +547,7 @@
 <p>在以时间收费的游戏中，我们还需要一台计费的服务器，这台服务器一般接在网关服务器上，注册玩家登录和退出事件以记录玩家的游戏时间。</p>
 <p>任何为用户提供服务的地方都会有日志记录，游戏服务器当然也不例外。从记录玩家登录的时间，地址，机器信息到游戏过程中的每一项操作都可以作为日志记录下来，以备查错及数据挖掘用。至于搜集玩家机器资料所涉及到的法律问题不是我们该考虑的。</p>
 <p>差不多就这么多了吧，接下来我们会按照这个大致的结构来详细讨论各部分的实现。</p>
-<h3 id="服务器结构探讨--一点杂谈">服务器结构探讨 —— 一点杂谈<a hidden class="anchor" aria-hidden="true" href="#服务器结构探讨--一点杂谈">#</a></h3>
+<h3 id="服务器结构探讨--一点杂谈">服务器结构探讨 —— 一点杂谈</h3>
 <p>再强调一下，服务器结构本无所谓好坏，只有是否适合自己。我们在前面探讨了一些在现在的游戏中见到过的结构，并尽我所知地分析了各自存在的一些问题和可以做的一些改进，希望其中没有谬误，如果能给大家也带来些启发那自然更好。</p>
 <p>突然发现自己一旦罗嗦起来还真是没完没了。接下来先说说我在开发中遇到过的一些困惑和一基础问题探讨吧，这些问题可能有人与我一样，也曾遇到过，或者正在被困扰中，而所要探讨的这些基础问题向来也是争论比较多的，我们也不评价其中的好与坏，只做简单的描述。</p>
 <p>首先是服务器操作系统，linux与windows之争随处可见，其实在大多数情况下这不是我们所能决定的，似乎各大公司也基本都有了自己的传统，如网易的freebsd，腾讯的linux等。如果真有权利去选择的话，选自己最熟悉的吧。</p>
@@ -548,7 +558,7 @@
 <p>最后是一个纯技术问题，有关<strong>socket连接数</strong>的最大限制。开始学习网络编程的时候我犯过这样的错误，以为port的定义为unsigned short，所以想当然的认为服务器的最大连接数为65535，这会是一个硬性的限制。而实际上，一个socket描述符在windows上的定义是unsigned int，因此要有限制那也是四十多亿，放心好了。</p>
 <p>在服务器上port是监听用的，想象这样一种情况，web server在80端口上监听，当一个连接到来时，系统会为这个连接分配一个socket句柄，同时与其在80端口上进行通讯；当另一个连接到来时，服务器仍然在80端口与之通信，只是分配的socket句柄不一样。这个socket句柄才是描述每个连接的唯一标识。按windows网络编程第二版上的说法，这个上限值配置影响。</p>
 <p>好了，废话说完了，我们开始进入登录服的设计吧。</p>
-<h3 id="登录服的设计----功能需求">登录服的设计 &ndash; 功能需求<a hidden class="anchor" aria-hidden="true" href="#登录服的设计----功能需求">#</a></h3>
+<h3 id="登录服的设计----功能需求">登录服的设计 &ndash; 功能需求</h3>
 <p>正如我们在前面曾讨论过的，登录服要实现的功能相当简单，就是帐号验证。为了便于描述，我们暂不引入那些讨论过的优化手段，先以最简单的方式实现，另外也将基本以<strong>mangos</strong>的代码作为参考来进行描述。</p>
 <p>想象一下帐号验证的实现方法，最容易的那就是把用户输入的明文用帐号和密码直接发给登录服，服务器根据帐号从数据库中取出密码，与用户输入的密码相比较。</p>
 <p>这个方法存在的安全隐患实在太大，明文的密码传输太容易被截获了。那我们试着在传输之前先加一下密，为了服务器能进行密码比较，我们应该采用一个可逆的加密算法，在服务器端把这个加密后的字串还原为原始的明文密码，然后与数据库密码进行比较。既然是一个可逆的过程，那外挂制作者总有办法知道我们的加密过程，所以，这个方法仍不够安全。</p>
@@ -559,7 +569,7 @@
 <p>登录服除了帐号验证外还得提供另一项功能，就是在玩家的帐号验证成功后返回给他一个服务器列表让他去选择。这个列表的状态要定时刷新，可能有新的游戏世界开放了，也可能有些游戏世界非常不幸地停止运转了，这些状态的变化都要尽可能及时地让玩家知道。不管发生了什么事，用户都有权利知道，特别是对于付过费的用户来说，我们不该藏着掖着，不是吗？</p>
 <p>这个游戏世界列表的功能将由大区服来提供，具体的结构我们在之前也描述过，这里暂不做讨论。登录服将从大区服上获取到的游戏世界列表发给已验证通过的客户端即可。好了，登录服要实现的功能就这些，很简单，是吧。</p>
 <p>确实是太简单了，不过简单的结构正好更适合我们来看一看游戏服务器内部的模块结构，以及一些服务器共有组件的实现方法。这就留作下一篇吧。</p>
-<h3 id="服务器公共组件实现----mangos的游戏主循环">服务器公共组件实现 &ndash; mangos的游戏主循环<a hidden class="anchor" aria-hidden="true" href="#服务器公共组件实现----mangos的游戏主循环">#</a></h3>
+<h3 id="服务器公共组件实现----mangos的游戏主循环">服务器公共组件实现 &ndash; mangos的游戏主循环</h3>
 <p>当阅读一项工程的源码时，我们大概会选择从main函数开始，而当开始一项新的工程时，第一个写下的函数大多也是main。那我们就先来看看，游戏服务器代码实现中，main函数都做了些什么。</p>
 <p>由于我在读技术文章时最不喜看到的就是大段大段的代码，特别是那些直接Ctrl+C再Ctrl+V后未做任何修改的代码，用句时髦的话说，一点技术含量都没有！所以在我们今后所要讨论的内容中，尽量会避免出现直接的代码，在有些地方确实需要代码来表述时，也将会选择使用伪码。</p>
 <p>先从mangos的登录服代码开始。mangos的登录服是一个<strong>单线程</strong>的结构，虽然在数据库连接中可以开启一个独立的线程，但这个线程也只是对无返回结果的执行类SQL做缓冲，而对需要有返回结果的查询类SQL还是在主逻辑线程中阻塞调用的。</p>
@@ -570,7 +580,7 @@
 <p>另外，在服务器实现上，网络IO与逻辑处理一般会放在不同的线程中，以免耗时较长的IO过程阻塞住了需要立即反应的游戏逻辑。</p>
 <p>数据库的处理也类似，会使用异步的方式，也是避免耗时的查询过程将游戏服务器主循环阻塞住。想象一下，因某个玩家上线而发起的一次数据库查询操作导致服务器内所有在线玩家都卡住不动将是多么恐怖的一件事！</p>
 <p>另外还有一些如事件、脚本、消息队列、状态机、日志和异常处理等公共组件，我们也会在接下来的时间里进行探讨。</p>
-<h3 id="服务器公共组件实现----继续来说主循环">服务器公共组件实现 &ndash; 继续来说主循环<a hidden class="anchor" aria-hidden="true" href="#服务器公共组件实现----继续来说主循环">#</a></h3>
+<h3 id="服务器公共组件实现----继续来说主循环">服务器公共组件实现 &ndash; 继续来说主循环</h3>
 <p>前面我们只简单了解了下mangos登录服的程序结构，也发现了一些不足之处，现在我们就来看看如何提供一个更好的方案。</p>
 <p>正如我们曾讨论过的，为了游戏主逻辑循环的流畅运行，所有比较耗时的IO操作都会分享到单独的线程中去做，如网络IO，数据库IO和日志IO等。当然，也有把这些分享到单独的进程中去做的。</p>
 <p>另外对于大多数服务器程序来说，在运行时都是作为精灵进程或服务进程的，所以我们并不需要服务器能够处理控制台用户输入，我们所要处理的数据来源都来自网络。</p>
@@ -591,7 +601,7 @@
 }
 </code></pre><p>网络IO，数据库IO线程把整理好的消息包都加入到主逻辑循环线程的这个消息队列中便返回。有关消息队列的实现和线程间消息的传递在ACE中有比较完全的代码实现及描述，还有一些使用示例，是个很好的参考。</p>
 <p>这样的话，我们的主循环就很清晰了，从主线程的消息队列中取消息，处理消息，再取下一条消息……</p>
-<h3 id="服务器公共组件实现----消息队列">服务器公共组件实现 &ndash; 消息队列<a hidden class="anchor" aria-hidden="true" href="#服务器公共组件实现----消息队列">#</a></h3>
+<h3 id="服务器公共组件实现----消息队列">服务器公共组件实现 &ndash; 消息队列</h3>
 <p>既然说到了消息队列，那我们继续来稍微多聊一点吧。</p>
 <p>我们所能想到的最简单的消息队列可能就是使用<strong>stl的****list</strong>来实现了，即消息队列内部维护一个list和一个互斥锁，putMessage时将message加入到队列尾，getMessage时从队列头取一个message返回，同时在getMessage和putMessage之前都要求先获取锁资源。</p>
 <p>实现虽然简单，但功能是绝对满足需求的，只是性能上可能稍稍有些不尽如人意。其最大的问题在频繁的锁竞争上。</p>
@@ -601,18 +611,18 @@
 <p>这个方案与上一个方案基本类似，只是不再提供队列容器，因为在这个方案中只使用了两个队列，arthur在他的一封邮件中描述了这个方案的实现及部分代码。两个队列，一个给逻辑线程读，一个给IO线程用来写，当逻辑线程读完队列后会将自己的队列与IO线程的队列相调换。所以，这种方案下加锁的次数会比较多一些，IO线程每次写队列时都要加锁，逻辑线程在调换队列时也需要加锁，但逻辑线程在读队列时是不需要加锁的。</p>
 <p>虽然看起来锁的调用次数是比前一种方案要多很多，但实际上大部分锁调用都是不会引起阻塞的，只有在逻辑线程调换队列的那一瞬间可能会使得某个线程阻塞一下。另外对于锁调用过程本身来说，其开销是完全可以忽略的，我们所不能忍受的仅仅是因为锁调用而引起的阻塞而已。</p>
 <p>两种方案都是很优秀的优化方案，但也都是有其适用范围的。Ghost Cheng的方案因为提供了多个队列，可以使得多个IO线程可以总工程师的，互不干扰的使用自己的队列，只是还有一个遗留问题我们还不了解其解决方法。arthur的方案很好的解决了上一个方案遗留的问题，但因为只有一个写队列，所以当想要提供多个IO线程时，线程间互斥地写入数据可能会增大竞争的机会，当然，如果只有一个IO线程那将是非常完美的。</p>
-<h3 id="服务器公共组件实现----环形缓冲区">服务器公共组件实现 &ndash; 环形缓冲区<a hidden class="anchor" aria-hidden="true" href="#服务器公共组件实现----环形缓冲区">#</a></h3>
+<h3 id="服务器公共组件实现----环形缓冲区">服务器公共组件实现 &ndash; 环形缓冲区</h3>
 <p>消息队列锁调用太频繁的问题算是解决了，另一个让人有些苦恼的大概是这太多的内存分配和释放操作了。频繁的内存分配不但增加了系统开销，更使得内存碎片不断增多，非常不利于我们的服务器长期稳定运行。也许我们可以使用内存池，比如SGI STL中附带的小内存分配器。但是对于这种按照严格的先进先出顺序处理的，块大小并不算小的，而且块大小也并不统一的内存分配情况来说，更多使用的是一种叫做环形缓冲区的方案，mangos的网络代码中也有这么一个东西，其原理也是比较简单的。</p>
 <p>就好比两个人围着一张圆形的桌子在追逐，跑的人被网络IO线程所控制，当写入数据时，这个人就往前跑；追的人就是逻辑线程，会一直往前追直到追上跑的人。如果追上了怎么办？那就是没有数据可读了，先等会儿呗，等跑的人向前跑几步了再追，总不能让游戏没得玩了吧。那要是追的人跑的太慢，跑的人转了一圈过来反追上追的人了呢？那您也先歇会儿吧。要是一直这么反着追，估计您就只能换一个跑的更快的追逐者了，要不这游戏还真没法玩下去。</p>
 <p>前面我们特别强调了，按照严格的先进先出顺序进行处理，这是环形缓冲区的使用必须遵守的一项要求。也就是，大家都得遵守规定，追的人不能从桌子上跨过去，跑的人当然也不允许反过来跑。至于为什么，不需要多做解释了吧。</p>
 <p>环形缓冲区是一项很好的技术，不用频繁的分配内存，而且在大多数情况下，内存的反复使用也使得我们能用更少的内存块做更多的事。</p>
 <p>在网络IO线程中，我们会为每一个连接都准备一个环形缓冲区，用于临时存放接收到的数据，以应付半包及粘包的情况。在解包及解密完成后，我们会将这个数据包复制到逻辑线程消息队列中，如果我们只使用一个队列，那这里也将会是个环形缓冲区，IO线程往里写，逻辑线程在后面读，互相追逐。可要是我们使用了前面介绍的优化方案后，可能这里便不再需要环形缓冲区了，至少我们并不再需要他们是环形的了。因为我们对同一个队列不再会出现同时读和写的情况，每个队列在写满后交给逻辑线程去读，逻辑线程读完后清空队列再交给IO线程去写，一段固定大小的缓冲区即可。没关系，这么好的技术，在别的地方一定也会用到的。</p>
-<h3 id="服务器公共组件实现----发包的方式">服务器公共组件实现 &ndash; 发包的方式<a hidden class="anchor" aria-hidden="true" href="#服务器公共组件实现----发包的方式">#</a></h3>
+<h3 id="服务器公共组件实现----发包的方式">服务器公共组件实现 &ndash; 发包的方式</h3>
 <p>前面一直都在说接收数据时的处理方法，我们应该用专门的IO线程，接收到完整的消息包后加入到主线程的消息队列，但是主线程如何发送数据还没有探讨过。</p>
 <p>一般来说最直接的方法就是逻辑线程什么时候想发数据了就直接调用相关的socket API发送，这要求服务器的玩家对象中保存其连接的socket句柄。但是直接send调用有时候有会存在一些问题，比如遇到系统的发送缓冲区满而阻塞住的情况，或者只发送了一部分数据的情况也时有发生。我们可以将要发送的数据先缓存一下，这样遇到未发送完的，在逻辑线程的下一次处理时可以接着再发送。</p>
 <p>考虑数据缓存的话，那这里这可以有两种实现方式了，一是为每个玩家准备一个缓冲区，另外就是只有一个全局的缓冲区，要发送的数据加入到全局缓冲区的时候同时要指明这个数据是发到哪个socket的。如果使用全局缓冲区的话，那我们可以再进一步，使用一个独立的线程来处理数据发送，类似于逻辑线程对数据的处理方式，这个独立发送线程也维护一个消息队列，逻辑线程要发数据时也只是把数据加入到这个队列中，发送线程循环取包来执行send调用，这时的阻塞也就不会对逻辑线程有任何影响了。</p>
 <p>采用第二种方式还可以附带一个优化方案。一般对于广播消息而言，发送给周围玩家的数据都是完全相同的，我们如果采用给每个玩家一个缓冲队列的方式，这个数据包将需要拷贝多份，而采用一个全局发送队列时，我们只需要把这个消息入队一次，同时指明该消息包是要发送给哪些socket的即可。有关该优化的说明在云风描述其连接服务器实现的blog文章中也有讲到，有兴趣的可以去阅读一下。</p>
-<h3 id="服务器公共组件实现----状态机">服务器公共组件实现 &ndash; 状态机<a hidden class="anchor" aria-hidden="true" href="#服务器公共组件实现----状态机">#</a></h3>
+<h3 id="服务器公共组件实现----状态机">服务器公共组件实现 &ndash; 状态机</h3>
 <p>有关State模式的设计意图及实现就不从设计模式中摘抄了，我们只来看看游戏服务器编程中如何使用State设计模式。</p>
 <p>首先还是从mangos的代码开始看起，我们注意到登录服在处理客户端发来的消息时用到了这样一个结构体：</p>
 <pre tabindex="0"><code>struct AuthHandler 
@@ -643,7 +653,7 @@
 　　
 正如同在设计模式中所描述的，所有的模式都是已有问题的另一种解决方案，也就是说这并不是唯一的解决方案。放到我们今天讨论的State模式中，就拿登录服所处理的两个状态来说，也许用mangos所采用的遍历处理函数的方法可能更简单，但当系统中的状态数量增多，状态标识也变多的时候，State模式就显得尤其重要了。</p>
 <p>比如在游戏服务器上玩家的状态管理，还有在实现NPC人工智能时的各种状态管理，这些就留作以后的专题吧。</p>
-<h3 id="服务器公共组件----事件与信号">服务器公共组件 &ndash; 事件与信号<a hidden class="anchor" aria-hidden="true" href="#服务器公共组件----事件与信号">#</a></h3>
+<h3 id="服务器公共组件----事件与信号">服务器公共组件 &ndash; 事件与信号</h3>
 <p>关于这一节，这几天已经打了好几遍草稿，总觉得说不清楚，也不好组织这些内容，但是打铁要趁热，为避免热情消退，先整理一点东西放这，好继续下面的主题，以后如果有机会再回来完善吧。本节内容欠考虑，希望大家多给点意见。</p>
 <p>有些类似于<strong>QT中的event与signal</strong>，我将一些动作请求消息定义为事件，而将状态改变消息定义为信号。比如在QT应用程序中，用户的一次鼠标点击会产生一个鼠标点击事件加入到事件队列中，当处理此事件时可能会导致某个按钮控件产生一个clicked()信号。</p>
 <p>对应到我们的服务器上的一个例子，玩家登录时会发给服务器一个请求登录的数据包，服务器可将其当作一个用户登录事件，该事件处理完后可能会产生一个用户已登录信号。</p>
@@ -684,19 +694,18 @@
 <p><a href="https://blog.csdn.net/GoOnDrift/article/details/18843483">https://blog.csdn.net/GoOnDrift/article/details/18843483</a></p>
 <p><a href="https://blog.csdn.net/erlib/article/details/8936990">https://blog.csdn.net/erlib/article/details/8936990</a></p>
 
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/5b23fbec804b470cb12e3c20af54d1d0/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/5b23fbec804b470cb12e3c20af54d1d0/">
     <span class="title">« Prev</span>
     <br>
     <span>8 大型多人在线游戏服务器架构设计</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/48af9bced29e4786944b5661c4155665/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/48af9bced29e4786944b5661c4155665/">
     <span class="title">Next »</span>
     <br>
     <span>bind 函数重难点解析</span>
@@ -707,14 +716,6 @@
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

@@ -12,15 +12,15 @@ MysqlWriter 面向ETL开发工程师，他们使用 MysqlWriter 从数仓导入�
 2 实现原理 MysqlWriter 通过 DataX 框架获取 Reader 生成的协议数据，根据你配置的 writeMode 生成
 insert into...(当主键/唯一性索引冲突时会写不进去冲突的行) 或者 replace into...(没有遇到主键/唯一性索引冲突时，与 insert into 行为一致，冲突时会用新行替换原有行所有字段) 的语句写入数据到 Mysql。出于性能考虑，采用了 PreparedStatement &#43; Batch，并且设置了：rewriteBatchedStatements=true，将数据缓冲到线程上下文 Buffer 中，当 Buffer 累计到预定阈值时，才发起写入请求。 注意：目的表所在数据库必须是主库才能写入数据；整个任务至少需要具备 insert/replace into...的权限，是否需要其他权限，取决于你任务配置中在 preSql 和 postSql 中指定的语句。 3 功能说明 3.1 配置样例 这里使用一份从内存产生到 Mysql 导入的数据。 { &#34;job&#34;: { &#34;setting&#34;: { &#34;speed&#34;: { &#34;channel&#34;: 1 } }, &#34;content&#34;: [ { &#34;reader&#34;: { &#34;name&#34;: &#34;streamreader&#34;, &#34;parameter&#34;: { &#34;column&#34; : [ { &#34;value&#34;: &#34;DataX&#34;, &#34;type&#34;: &#34;string&#34; }, { &#34;value&#34;: 19880808, &#34;type&#34;: &#34;long&#34; }, { &#34;value&#34;: &#34;1988-08-08 08:08:08&#34;, &#34;type&#34;: &#34;date&#34; }, { &#34;value&#34;: true, &#34;type&#34;: &#34;bool&#34; }, { &#34;value&#34;: &#34;test&#34;, &#34;type&#34;: &#34;bytes&#34; } ], &#34;sliceRecordCount&#34;: 1000 } }, &#34;writer&#34;: { &#34;name&#34;: &#34;mysqlwriter&#34;, &#34;parameter&#34;: { &#34;writeMode&#34;: &#34;insert&#34;, &#34;username&#34;: &#34;root&#34;, &#34;password&#34;: &#34;root&#34;, &#34;column&#34;: [ &#34;id&#34;, &#34;name&#34; ], &#34;session&#34;: [ &#34;set session sql_mode=&#39;ANSI&#39;&#34; ], &#34;preSql&#34;: [ &#34;delete from test&#34; ], &#34;connection&#34;: [ { &#34;jdbcUrl&#34;: &#34;jdbc:mysql://127.">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/ee3103b29d5b4fa696cb69e35fefb970/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/ee3103b29d5b4fa696cb69e35fefb970/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -65,7 +65,7 @@ MysqlWriter 面向ETL开发工程师，他们使用 MysqlWriter 从数仓导入�
 2 实现原理 MysqlWriter 通过 DataX 框架获取 Reader 生成的协议数据，根据你配置的 writeMode 生成
 insert into...(当主键/唯一性索引冲突时会写不进去冲突的行) 或者 replace into...(没有遇到主键/唯一性索引冲突时，与 insert into 行为一致，冲突时会用新行替换原有行所有字段) 的语句写入数据到 Mysql。出于性能考虑，采用了 PreparedStatement &#43; Batch，并且设置了：rewriteBatchedStatements=true，将数据缓冲到线程上下文 Buffer 中，当 Buffer 累计到预定阈值时，才发起写入请求。 注意：目的表所在数据库必须是主库才能写入数据；整个任务至少需要具备 insert/replace into...的权限，是否需要其他权限，取决于你任务配置中在 preSql 和 postSql 中指定的语句。 3 功能说明 3.1 配置样例 这里使用一份从内存产生到 Mysql 导入的数据。 { &#34;job&#34;: { &#34;setting&#34;: { &#34;speed&#34;: { &#34;channel&#34;: 1 } }, &#34;content&#34;: [ { &#34;reader&#34;: { &#34;name&#34;: &#34;streamreader&#34;, &#34;parameter&#34;: { &#34;column&#34; : [ { &#34;value&#34;: &#34;DataX&#34;, &#34;type&#34;: &#34;string&#34; }, { &#34;value&#34;: 19880808, &#34;type&#34;: &#34;long&#34; }, { &#34;value&#34;: &#34;1988-08-08 08:08:08&#34;, &#34;type&#34;: &#34;date&#34; }, { &#34;value&#34;: true, &#34;type&#34;: &#34;bool&#34; }, { &#34;value&#34;: &#34;test&#34;, &#34;type&#34;: &#34;bytes&#34; } ], &#34;sliceRecordCount&#34;: 1000 } }, &#34;writer&#34;: { &#34;name&#34;: &#34;mysqlwriter&#34;, &#34;parameter&#34;: { &#34;writeMode&#34;: &#34;insert&#34;, &#34;username&#34;: &#34;root&#34;, &#34;password&#34;: &#34;root&#34;, &#34;column&#34;: [ &#34;id&#34;, &#34;name&#34; ], &#34;session&#34;: [ &#34;set session sql_mode=&#39;ANSI&#39;&#34; ], &#34;preSql&#34;: [ &#34;delete from test&#34; ], &#34;connection&#34;: [ { &#34;jdbcUrl&#34;: &#34;jdbc:mysql://127." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/ee3103b29d5b4fa696cb69e35fefb970/" /><meta property="article:section" content="4" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/ee3103b29d5b4fa696cb69e35fefb970/" /><meta property="article:section" content="4" />
 <meta property="article:published_time" content="2021-02-02T17:45:01+00:00" />
 <meta property="article:modified_time" content="2021-02-02T17:45:01+00:00" />
 
@@ -81,18 +81,18 @@ insert into...(当主键/唯一性索引冲突时会写不进去冲突的行) �
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "4s",
-      "item": "http://121.199.2.5:6080/4/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/4/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "DataX MysqlWriter",
-      "item": "http://121.199.2.5:6080/ee3103b29d5b4fa696cb69e35fefb970/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/ee3103b29d5b4fa696cb69e35fefb970/"
     }
   ]
 }
@@ -114,14 +114,14 @@ insert into...(当主键/唯一性索引冲突时会写不进去冲突的行) �
   "dateModified": "2021-02-02T17:45:01Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/ee3103b29d5b4fa696cb69e35fefb970/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/ee3103b29d5b4fa696cb69e35fefb970/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -143,7 +143,7 @@ insert into...(当主键/唯一性索引冲突时会写不进去冲突的行) �
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -169,47 +169,47 @@ insert into...(当主键/唯一性索引冲突时会写不进去冲突的行) �
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/tags/" title="Tags">
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
                     <span>tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/categories/" title="Categories">
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -220,7 +220,7 @@ insert into...(当主键/唯一性索引冲突时会写不进去冲突的行) �
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://121.199.2.5:6080">Home</a>&nbsp;»&nbsp;<a href="http://121.199.2.5:6080/4/">4s</a></div>
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/4/">4s</a></div>
     <h1 class="post-title">
       DataX MysqlWriter
     </h1>
@@ -1056,20 +1056,8 @@ attribute_cc: 1
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://121.199.2.5:6080/tags/datax/">datax</a></li>
+      <li><a href="https://leonardodacn.github.io/haokiuDocs/tags/datax/">datax</a></li>
     </ul>
-<nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/1b755458e9fa4e6f89a7d44321cd92ec/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>Datax MongoDBWriter</span>
-  </a>
-  <a class="next" href="http://121.199.2.5:6080/d4b1e453f8274dda834a305a5e6a38bf/">
-    <span class="title">Next »</span>
-    <br>
-    <span>DataX OCSWriter 适用memcached客户端写入ocs</span>
-  </a>
-</nav>
 
   </footer>
 </article>

@@ -19,15 +19,15 @@ S1 根据initial offset跳转到调用者指定的位置，开始读取日志文
 if (last_record_offset_ &lt;initial_offset_) { // 当前偏移 &lt; 指定的偏移，需要Seek if (!SkipToInitialBlock()) return false; } 下面的代码是SkipToInitialBlock函数调整read offset的逻辑：
 // 计算在block内的偏移位置，并圆整到开始读取block的起始位置 size_t offset_in_block =initial_offset_ % kBlockSize; uint64_t block_start_location =initial_offset_ - offset_in_block; // 如果偏移在最后的6byte里，肯定不是一条完整的记录，跳到下一个block if (offset_in_block &gt;kBlockSize - 6) { offset_in_block = 0; block_start_location &#43;=kBlockSize; } end_of_buffer_offset_ =block_start_location; // 设置读取偏移 if (block_start_location &gt; 0) file_-&gt;Skip(block_start_location); // 跳转 首先计算出在block内的偏移位置，然后圆整到要读取block的起始位置。开始读取日志的时候都要保证读取的是完整的block，这就是调整的目的。">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/3e005b6becda44edaa67dc81f32d5499/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/3e005b6becda44edaa67dc81f32d5499/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -79,7 +79,7 @@ S1 根据initial offset跳转到调用者指定的位置，开始读取日志文
 if (last_record_offset_ &lt;initial_offset_) { // 当前偏移 &lt; 指定的偏移，需要Seek if (!SkipToInitialBlock()) return false; } 下面的代码是SkipToInitialBlock函数调整read offset的逻辑：
 // 计算在block内的偏移位置，并圆整到开始读取block的起始位置 size_t offset_in_block =initial_offset_ % kBlockSize; uint64_t block_start_location =initial_offset_ - offset_in_block; // 如果偏移在最后的6byte里，肯定不是一条完整的记录，跳到下一个block if (offset_in_block &gt;kBlockSize - 6) { offset_in_block = 0; block_start_location &#43;=kBlockSize; } end_of_buffer_offset_ =block_start_location; // 设置读取偏移 if (block_start_location &gt; 0) file_-&gt;Skip(block_start_location); // 跳转 首先计算出在block内的偏移位置，然后圆整到要读取block的起始位置。开始读取日志的时候都要保证读取的是完整的block，这就是调整的目的。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/3e005b6becda44edaa67dc81f32d5499/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/3e005b6becda44edaa67dc81f32d5499/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -102,18 +102,18 @@ if (last_record_offset_ &lt;initial_offset_) { // 当前偏移 &lt; 指定的偏
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "leveldb源码分析6",
-      "item": "http://121.199.2.5:6080/3e005b6becda44edaa67dc81f32d5499/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/3e005b6becda44edaa67dc81f32d5499/"
     }
   ]
 }
@@ -135,14 +135,14 @@ if (last_record_offset_ &lt;initial_offset_) { // 当前偏移 &lt; 指定的偏
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/3e005b6becda44edaa67dc81f32d5499/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/3e005b6becda44edaa67dc81f32d5499/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -164,7 +164,7 @@ if (last_record_offset_ &lt;initial_offset_) { // 当前偏移 &lt; 指定的偏
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -190,38 +190,48 @@ if (last_record_offset_ &lt;initial_offset_) { // 当前偏移 &lt; 指定的偏
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -231,7 +241,7 @@ if (last_record_offset_ &lt;initial_offset_) { // 当前偏移 &lt; 指定的偏
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       leveldb源码分析6
     </h1>
@@ -295,12 +305,12 @@ if (last_record_offset_ &lt;initial_offset_) { // 当前偏移 &lt; 指定的偏
     </details>
 </div>
 
-  <div class="post-content"><h1 id="leveldb源码分析6">leveldb源码分析6<a hidden class="anchor" aria-hidden="true" href="#leveldb源码分析6">#</a></h1>
+  <div class="post-content"><h1 id="leveldb源码分析6">leveldb源码分析6</h1>
 <p>本系列《leveldb源码分析》共有22篇文章，这是第六篇。</p>
-<h2 id="5-操作log-2">5. 操作Log 2<a hidden class="anchor" aria-hidden="true" href="#5-操作log-2">#</a></h2>
-<h3 id="53-读日志">5.3 读日志<a hidden class="anchor" aria-hidden="true" href="#53-读日志">#</a></h3>
+<h2 id="5-操作log-2">5. 操作Log 2</h2>
+<h3 id="53-读日志">5.3 读日志</h3>
 <p>日志读取显然比写入要复杂，要检查<strong>checksum</strong>，检查是否有损坏等等，处理各种错误。</p>
-<h4 id="531-类层次">5.3.1 类层次<a hidden class="anchor" aria-hidden="true" href="#531-类层次">#</a></h4>
+<h4 id="531-类层次">5.3.1 类层次</h4>
 <p>Reader主要用到了两个接口，一个是<strong>汇报错误的Reporter</strong>，另一个是log文件<strong>读取类SequentialFile</strong>。</p>
 <p>Reporter的接口只有<strong>一个</strong>：</p>
 <pre tabindex="0"><code>void Corruption(size_t bytes,const Status&amp; status);
@@ -317,9 +327,9 @@ uint64_t last_record_offset_;  // 函数ReadRecord返回的上一个record的偏
 uint64_t end_of_buffer_offset_;// 当前的读取偏移
 uint64_t const initial_offset_;// 偏移，从哪里开始读取第一条record
 Slice   buffer_;               // 读取的内容
-</code></pre><h4 id="532日志读取流程">5.3.2日志读取流程<a hidden class="anchor" aria-hidden="true" href="#532日志读取流程">#</a></h4>
+</code></pre><h4 id="532日志读取流程">5.3.2日志读取流程</h4>
 <p>Reader只有一个接口，那就是ReadRecord，下面来分析下这个函数。</p>
-<h6 id="s1-根据initial-offset跳转到调用者指定的位置开始读取日志文件跳转就是直接调用sequentialfile的seek接口">S1 根据initial offset跳转到调用者指定的位置，开始读取日志文件。跳转就是直接调用SequentialFile的Seek接口。<a hidden class="anchor" aria-hidden="true" href="#s1-根据initial-offset跳转到调用者指定的位置开始读取日志文件跳转就是直接调用sequentialfile的seek接口">#</a></h6>
+<h6 id="s1-根据initial-offset跳转到调用者指定的位置开始读取日志文件跳转就是直接调用sequentialfile的seek接口">S1 根据initial offset跳转到调用者指定的位置，开始读取日志文件。跳转就是直接调用SequentialFile的Seek接口。</h6>
 <p>另外，需要先调整调用者传入的<strong>initialoffset</strong>参数，调整和跳转逻辑在SkipToInitialBlock函数中。</p>
 <pre tabindex="0"><code>if (last_record_offset_ &lt;initial_offset_) 
 { // 当前偏移 &lt; 指定的偏移，需要Seek
@@ -340,11 +350,11 @@ end_of_buffer_offset_ =block_start_location;
 if (block_start_location &gt; 0)  file_-&gt;Skip(block_start_location); // 跳转
 </code></pre><p>首先计算出在<strong>block</strong>内的偏移位置，然后圆整到要读取block的起始位置。开始读取日志的时候都要保证读取的是完整的block，这就是<strong>调整的目的</strong>。</p>
 <p>同时成员变量end_of_buffer_offset_<strong>记录</strong>了这个值，在后续读取中会用到。</p>
-<h6 id="s2在开始while循环前首先初始化几个标记">S2在开始while循环前首先初始化几个标记：<a hidden class="anchor" aria-hidden="true" href="#s2在开始while循环前首先初始化几个标记">#</a></h6>
+<h6 id="s2在开始while循环前首先初始化几个标记">S2在开始while循环前首先初始化几个标记：</h6>
 <pre tabindex="0"><code>// 当前是否在fragment内，也就是遇到了FIRST 类型的record
 bool in_fragmented_record = false;
 uint64_t prospective_record_offset = 0; // 我们正在读取的逻辑record的偏移
-</code></pre><h6 id="s3-进入到whiletrue循环直到读取到klasttype或者kfulltype的record或者到了文件结尾从日志文件读取完整的record是readphysicalrecord函数完成的">S3 进入到while(true)循环，直到读取到KLastType或者KFullType的record，或者到了文件结尾。从日志文件读取完整的record是ReadPhysicalRecord函数完成的。<a hidden class="anchor" aria-hidden="true" href="#s3-进入到whiletrue循环直到读取到klasttype或者kfulltype的record或者到了文件结尾从日志文件读取完整的record是readphysicalrecord函数完成的">#</a></h6>
+</code></pre><h6 id="s3-进入到whiletrue循环直到读取到klasttype或者kfulltype的record或者到了文件结尾从日志文件读取完整的record是readphysicalrecord函数完成的">S3 进入到while(true)循环，直到读取到KLastType或者KFullType的record，或者到了文件结尾。从日志文件读取完整的record是ReadPhysicalRecord函数完成的。</h6>
 <p>读取出现错误时，并不会退出循环，而是<strong>汇报错误</strong>，继续执行，直到<strong>成功读取</strong>一条user record，或者遇到文件结尾。
 <strong>S3.1 从文件读取record</strong></p>
 <pre tabindex="0"><code>uint64_t physical_record_offset = end_of_buffer_offset_ -buffer_.size();
@@ -425,11 +435,11 @@ return false;
 in_fragmented_record = false; // 重置fragment标记
 scratch-&gt;clear();// 清空scratch
 </code></pre><p>上面就是ReadRecord的全部逻辑，解释起来还有些费力。</p>
-<h4 id="533-从log文件读取record">5.3.3 从log文件读取record<a hidden class="anchor" aria-hidden="true" href="#533-从log文件读取record">#</a></h4>
+<h4 id="533-从log文件读取record">5.3.3 从log文件读取record</h4>
 <p>就是前面讲过的<strong>ReadPhysicalRecord函数</strong>，它调用SequentialFile的Read接口，从文件读取数据。</p>
 <p>该函数开始就进入了一个<strong>while(true)循环</strong>，其目的是为了读取到一个完整的record。读取的内容存放在成员变量**buffer_**中。这样的逻辑有些奇怪，实际上，完全不需要一个while(true)循环的。</p>
 <p>函数基本逻辑如下：</p>
-<h6 id="s1-如果buffer_小于block-header大小kheadersize进入如下的几个分支">S1 如果buffer_小于block header大小kHeaderSize，进入如下的几个分支：<a hidden class="anchor" aria-hidden="true" href="#s1-如果buffer_小于block-header大小kheadersize进入如下的几个分支">#</a></h6>
+<h6 id="s1-如果buffer_小于block-header大小kheadersize进入如下的几个分支">S1 如果buffer_小于block header大小kHeaderSize，进入如下的几个分支：</h6>
 <p><strong>S1.1 如果eof_为false，表明还没有到文件结尾，清空buffer，并读取数据。</strong></p>
 <pre tabindex="0"><code>buffer_.clear(); 
 // 因为上次肯定读取了一个完整的record
@@ -455,7 +465,7 @@ continue; // 继续下次循环
 buffer_.clear();
 ReportCorruption(drop_size,&#34;truncated record at end of file&#34;);
 return kEof;
-</code></pre><h6 id="s2-进入到这里表明上次循环中的read读取到了一个完整的log-recordcontinue后的第二次循环判断buffer_size--kheadersize将执行到此处">S2 进入到这里表明上次循环中的Read读取到了一个完整的log record，continue后的第二次循环判断buffer_.size() &gt;= kHeaderSize将执行到此处。<a hidden class="anchor" aria-hidden="true" href="#s2-进入到这里表明上次循环中的read读取到了一个完整的log-recordcontinue后的第二次循环判断buffer_size--kheadersize将执行到此处">#</a></h6>
+</code></pre><h6 id="s2-进入到这里表明上次循环中的read读取到了一个完整的log-recordcontinue后的第二次循环判断buffer_size--kheadersize将执行到此处">S2 进入到这里表明上次循环中的Read读取到了一个完整的log record，continue后的第二次循环判断buffer_.size() &gt;= kHeaderSize将执行到此处。</h6>
 <p>解析出log record的header部分，判断长度是否一致。</p>
 <p>根据log的格式，前4byte是crc32。后面就是length和type，解析如下：</p>
 <pre tabindex="0"><code>const char* header = buffer_.data();
@@ -475,8 +485,8 @@ if (type == kZeroType&amp;&amp; length == 0)
     buffer_.clear();
     return kBadRecord; // 依然返回kBadRecord
 }
-</code></pre><h6 id="s3-校验crc32如果校验出错则汇报错误并返回kbadrecord">S3 校验CRC32，如果校验出错，则汇报错误，并返回kBadRecord。<a hidden class="anchor" aria-hidden="true" href="#s3-校验crc32如果校验出错则汇报错误并返回kbadrecord">#</a></h6>
-<h6 id="s4-如果record的开始位置在initial-offset之前则跳过并返回kbadrecord否则返回record数据和type">S4 如果record的开始位置在initial offset之前，则跳过，并返回kBadRecord，否则返回record数据和type。<a hidden class="anchor" aria-hidden="true" href="#s4-如果record的开始位置在initial-offset之前则跳过并返回kbadrecord否则返回record数据和type">#</a></h6>
+</code></pre><h6 id="s3-校验crc32如果校验出错则汇报错误并返回kbadrecord">S3 校验CRC32，如果校验出错，则汇报错误，并返回kBadRecord。</h6>
+<h6 id="s4-如果record的开始位置在initial-offset之前则跳过并返回kbadrecord否则返回record数据和type">S4 如果record的开始位置在initial offset之前，则跳过，并返回kBadRecord，否则返回record数据和type。</h6>
 <pre tabindex="0"><code>buffer_.remove_prefix(kHeaderSize+ length);
 if (end_of_buffer_offset_ -buffer_.size() - kHeaderSize - 
     length &lt; initial_offset_) 
@@ -488,19 +498,18 @@ if (end_of_buffer_offset_ -buffer_.size() - kHeaderSize -
 return type;
 </code></pre><p>从log文件读取record的逻辑就是这样的。至此，读日志的逻辑也完成了。接下来将进入磁盘存储的<strong>sstable</strong>部分。</p>
 
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/81982087975a4f49913e723952169670/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/81982087975a4f49913e723952169670/">
     <span class="title">« Prev</span>
     <br>
     <span>leveldb源码分析5</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/b3a81cdfb8624332bd1f184097675b32/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/b3a81cdfb8624332bd1f184097675b32/">
     <span class="title">Next »</span>
     <br>
     <span>leveldb源码分析7</span>
@@ -511,14 +520,6 @@ return type;
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

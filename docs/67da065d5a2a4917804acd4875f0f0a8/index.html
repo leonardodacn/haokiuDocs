@@ -42,15 +42,15 @@
 我们可以根据自己的需求来决定，甚至你可以在一个循环里面反复recv或者read，对于非阻塞模式的socket，如果没有数据了，recv或者read也会立刻返回，错误码EWOULDBLOCK会表明当前已经没有数据了。示例：
 1bool CIUSocket::Recv() 2{ 3 int nRet = 0; 4 5 while(true) 6 { 7 char buff[512]; 8 nRet = ::recv(m_hSocket, buff, 512, 0); 9 //一旦出现错误就立刻关闭Socket 10 if(nRet == SOCKET_ERROR) 11 { 12 if (::WSAGetLastError() == WSAEWOULDBLOCK) 13 break; 14 else 15 return false; 16 } 17 else if(nRet &lt; 1) 18 return false; 19 20 m_strRecvBuf.">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/67da065d5a2a4917804acd4875f0f0a8/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/67da065d5a2a4917804acd4875f0f0a8/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -125,7 +125,7 @@
 我们可以根据自己的需求来决定，甚至你可以在一个循环里面反复recv或者read，对于非阻塞模式的socket，如果没有数据了，recv或者read也会立刻返回，错误码EWOULDBLOCK会表明当前已经没有数据了。示例：
 1bool CIUSocket::Recv() 2{ 3 int nRet = 0; 4 5 while(true) 6 { 7 char buff[512]; 8 nRet = ::recv(m_hSocket, buff, 512, 0); 9 //一旦出现错误就立刻关闭Socket 10 if(nRet == SOCKET_ERROR) 11 { 12 if (::WSAGetLastError() == WSAEWOULDBLOCK) 13 break; 14 else 15 return false; 16 } 17 else if(nRet &lt; 1) 18 return false; 19 20 m_strRecvBuf." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/67da065d5a2a4917804acd4875f0f0a8/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/67da065d5a2a4917804acd4875f0f0a8/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:43+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:43+00:00" />
 
@@ -171,18 +171,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "高性能服务器架构设计总结",
-      "item": "http://121.199.2.5:6080/67da065d5a2a4917804acd4875f0f0a8/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/67da065d5a2a4917804acd4875f0f0a8/"
     }
   ]
 }
@@ -204,14 +204,14 @@
   "dateModified": "2021-01-11T09:20:43Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/67da065d5a2a4917804acd4875f0f0a8/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/67da065d5a2a4917804acd4875f0f0a8/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -233,7 +233,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -259,38 +259,48 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -300,7 +310,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       高性能服务器架构设计总结
     </h1>
@@ -348,7 +358,7 @@
     </details>
 </div>
 
-  <div class="post-content"><h2 id="高性能服务器架构设计总结">高性能服务器架构设计总结<a hidden class="anchor" aria-hidden="true" href="#高性能服务器架构设计总结">#</a></h2>
+  <div class="post-content"><h2 id="高性能服务器架构设计总结">高性能服务器架构设计总结</h2>
 <p>系列目录</p>
 <p>第01篇 主线程与工作线程的分工</p>
 <p>第02篇 Reactor模式</p>
@@ -364,9 +374,9 @@
 <p>这篇文章算是对这个系列的一个系统性地总结。我们将介绍服务器的开发，并从多个方面探究如何开发一款高性能高并发的服务器程序。</p>
 <p>所谓<strong>高性能</strong>就是服务器能流畅地处理各个客户端的连接并尽量低延迟地应答客户端的请求；所谓<strong>高并发</strong>，指的是服务器可以同时支持多的客户端连接，且这些客户端在连接期间内会不断与服务器有数据来往。</p>
 <p>这篇文章将从两个方面来介绍，一个是<strong>服务器的框架</strong>，即单个服务器程序的代码组织结构；另外一个是一组服务程序的<strong>如何组织与交互</strong>，即架构。注意：本文以下内容中的客户端是相对概念，指的是连接到当前讨论的服务程序的终端，所以这里的客户端既可能是我们传统意义上的客户端程序，也可能是连接该服务的其他服务器程序。</p>
-<h2 id="一框架篇">一、框架篇<a hidden class="anchor" aria-hidden="true" href="#一框架篇">#</a></h2>
+<h2 id="一框架篇">一、框架篇</h2>
 <p>按上面介绍的思路，我们先从单个服务程序的组织结构开始介绍。</p>
-<h3 id="一网络通信">（一）、网络通信<a hidden class="anchor" aria-hidden="true" href="#一网络通信">#</a></h3>
+<h3 id="一网络通信">（一）、网络通信</h3>
 <p>既然是服务器程序肯定会涉及到网络通信部分，那么服务器程序的网络通信模块要解决哪些问题？</p>
 <p>笔者认为至少要解决以下问题：</p>
 <ol>
@@ -384,7 +394,7 @@
 connect函数默认连接另外一端的时候，也会阻塞在那里；
 又或者是给对端发送一份数据，需要等待对端回答，如果对方一直不应答，当前线程就阻塞在这里。
 以上都不是高效服务器的开发思维方式，因为上面的例子都不满足“尽量减少等待”的原则，为什么一定要等待呢？有没用一种方法，这些过程不需要等待，最好是不仅不需要等待，而且这些事情完成之后能通知我。这样在这些本来用于等待的cpu时间片内，我就可以做一些其他的事情。有，也就是我们下文要讨论的<strong>IO Multiplexing技术（IO复用技术）</strong>。</p>
-<h3 id="二几种io复用机制的比较">（二）、几种IO复用机制的比较<a hidden class="anchor" aria-hidden="true" href="#二几种io复用机制的比较">#</a></h3>
+<h3 id="二几种io复用机制的比较">（二）、几种IO复用机制的比较</h3>
 <p>目前windows系统支持select、WSAAsyncSelect、WSAEventSelect、完成端口（IOCP），linux系统支持select、poll、epoll。这里我们不具体介绍每个具体的函数的用法，我们来讨论一点深层次的东西，以上列举的API函数可以分为两个层次：</p>
 <ul>
 <li>层次一 select和poll</li>
@@ -393,7 +403,7 @@ connect函数默认连接另外一端的时候，也会阻塞在那里；
 <p>为什么这么分呢？先来介绍<strong>第一层次</strong>，select和poll函数本质上还是在一定时间内主动去查询socket句柄（可能是一个也可能是多个）上是否有事件，比如可读事件，可写事件或者出错事件，也就是说我们还是需要每隔一段时间内去主动去做这些检测，如果在这段时间内检测出一些事件来，我们这段时间就算没白花，但是倘若这段时间内没有事件呢？我们只能是做无用功了，说白了，还是在浪费时间，因为假如一个服务器有多个连接，在cpu时间片有限的情况下，我们花费了一定的时间检测了一部分socket连接，却发现它们什么事件都没有，而在这段时间内我们却有一些事情需要处理，那我们为什么要花时间去做这个检测呢？把这个时间用在做我们需要做的事情不好吗？所以对于服务器程序来说，要想高效，我们应该尽量避免花费时间主动去查询一些socket是否有事件，而是等这些socket有事件的时候告诉我们去处理。这也就是<strong>层次二</strong>的各个函数做的事情，它们实际相当于变主动查询是否有事件为当有事件时，系统会告诉我们，此时我们再去处理，也就是“好钢用在刀刃”上了。只不过层次二的函数通知我们的方式是各不相同，比如WSAAsyncSelect是利用windows消息队列的事件机制来通知我们设定的窗口过程函数，IOCP是利用GetQueuedCompletionStatus返回正确的状态，epoll是epoll_wait函数返回而已。</p>
 <p>比如connect函数连接另外一端，如果连接socket是异步的，那么connect虽然不能立刻连接完成，但是也是会立刻返回，无需等待，等连接完成之后，WSAAsyncSelect会返回FD_CONNECT事件告诉我们连接成功，epoll会产生EPOLLOUT事件，我们也能知道连接完成。甚至socket有数据可读时，WSAAsyncSelect产生FD_READ事件，epoll产生EPOLLIN事件，等等。</p>
 <p>所以有了上面的讨论，我们就可以得到网络通信检测可读可写或者出错事件的正确姿势。这是我这里提出的<strong>第二个原则：尽量减少做无用功的时间</strong>。这个在服务程序资源够用的情况下可能体现不出来什么优势，但是如果有大量的任务要处理，个人觉得这个可能带来无用。</p>
-<h3 id="三检测网络事件的正确姿势">（三）、检测网络事件的正确姿势<a hidden class="anchor" aria-hidden="true" href="#三检测网络事件的正确姿势">#</a></h3>
+<h3 id="三检测网络事件的正确姿势">（三）、检测网络事件的正确姿势</h3>
 <p>根据上面的介绍，第一，为了避免无意义的等待时间，第二，不采用主动查询各个socket的事件，而是采用等待操作系统通知我们有事件的状态的策略。我们的**socket都要设置成异步的。**在此基础上我们回到栏目（一）中提到的七个问题：</p>
 <ol>
 <li>
@@ -451,10 +461,10 @@ connect函数默认连接另外一端的时候，也会阻塞在那里；
 <p>这个问题比较难处理，因为这里的“发送完”不一定是真正的发送完，我们调用send或者write函数即使成功，也只是向操作系统的协议栈里面成功写入数据，至于能否被发出去、何时被发出去很难判断，发出去对方是否收到就更难判断了。所以，我们目前只能简单地认为send或者write返回我们发出数据的字节数大小，我们就认为“发完数据”了。然后调用close等socket API关闭连接。关闭连接的话题，我们再单独开一个小的标题来专门讨论一下。</p>
 </li>
 </ol>
-<h3 id="四被动关闭连接和主动关闭连接">（四）被动关闭连接和主动关闭连接<a hidden class="anchor" aria-hidden="true" href="#四被动关闭连接和主动关闭连接">#</a></h3>
+<h3 id="四被动关闭连接和主动关闭连接">（四）被动关闭连接和主动关闭连接</h3>
 <p>在实际的应用中，<strong>被动关闭连接</strong>是由于我们检测到了连接的异常事件，比如EPOLLERR，或者对端关闭连接，send或recv返回0，这个时候这路连接已经没有存在必要的意义了，我们被迫关闭连接。</p>
 <p>而<strong>主动关闭连接</strong>，是我们主动调用close/closesocket来关闭连接。比如客户端给我们发送非法的数据，比如一些网络攻击的尝试性数据包。这个时候出于安全考虑，我们关闭socket连接。</p>
-<h3 id="五发送缓冲区和接收缓冲区">（五）发送缓冲区和接收缓冲区<a hidden class="anchor" aria-hidden="true" href="#五发送缓冲区和接收缓冲区">#</a></h3>
+<h3 id="五发送缓冲区和接收缓冲区">（五）发送缓冲区和接收缓冲区</h3>
 <p>上面已经介绍了发送缓冲区了，并说明了其存在的意义。接收缓冲区也是一样的道理，当收到数据以后，我们可以直接进行解包，但是这样并不好，</p>
 <ol>
 <li>理由一：除非一些约定俗称的协议格式，比如http协议，大多数服务器的业务的协议都是不同的，也就是说一个数据包里面的数据格式的解读应该是业务层的事情，和网络通信层应该解耦，为了网络层更加通用，我们无法知道上层协议长成什么样子，因为不同的协议格式是不一样的，它们与具体的业务有关。</li>
@@ -462,7 +472,7 @@ connect函数默认连接另外一端的时候，也会阻塞在那里；
 </ol>
 <p>说了这么多，那发送缓冲区和接收缓冲区该设计成多大的容量？这是一个老生常谈的问题了，因为我们经常遇到这样的问题：预分配的内存太小不够用，太大的话可能会造成浪费。怎么办呢？答案就是像string、vector一样，设计出一个可以动态增长的缓冲区，按需分配，不够还可以扩展。</p>
 <p><strong>需要特别注意的是，这里说的发送缓冲区和接收缓冲区是每一个socket连接都存在一个</strong>。这是我们最常见的设计方案。</p>
-<h3 id="六协议的设计">（六）协议的设计<a hidden class="anchor" aria-hidden="true" href="#六协议的设计">#</a></h3>
+<h3 id="六协议的设计">（六）协议的设计</h3>
 <p>除了一些通用的协议，如http、ftp协议以外，大多数服务器协议都是根据业务制定的。协议设计好了，数据包的格式就根据协议来设置。我们知道<strong>tcp/ip</strong>协议是流式数据，所以流式数据就是像流水一样，数据包与数据包之间没有明显的界限。比如A端给B端连续发了三个数据包，每个数据包都是50个字节，B端可能先收到10个字节，再收到140个字节；或者先收到20个字节，再收到20个字节，再收到110个字节；也可能一次性收到150个字节。这150个字节可以以任何字节数目组合和次数被B收到。</p>
 <p>所以我们讨论协议的设计第一个问题就是如何界定包的界线，也就是接收端如何知道每个包数据的大小。目前常用有如下三种方法：</p>
 <ol>
@@ -562,7 +572,7 @@ connect函数默认连接另外一端的时候，也会阻塞在那里；
 18{  
 19    return false;  
 20}  
-</code></pre><h3 id="七服务器程序结构的组织">（七）、服务器程序结构的组织<a hidden class="anchor" aria-hidden="true" href="#七服务器程序结构的组织">#</a></h3>
+</code></pre><h3 id="七服务器程序结构的组织">（七）、服务器程序结构的组织</h3>
 <p>上面的六个标题，我们讨论了很多具体的细节问题，现在是时候讨论将这些细节组织起来了。根据我的个人经验，目前主流的思想是one thread one loop的策略。通俗点说就是在一个线程的函数里面不断地循环依次做一些事情，这些事情包括检测网络事件、解包数据产生业务逻辑。我们先从最简单地来说，<strong>设定一些线程在一个循环里面做网络通信相关的事情</strong>，伪码如下：</p>
 <pre tabindex="0"><code> 1while(退出标志)  
  2{  
@@ -618,7 +628,7 @@ connect函数默认连接另外一端的时候，也会阻塞在那里；
 20    //程序自定义任务2  
 21} 
 </code></pre><p>注意：之所以将定时器事件的处理放在网络IO事件的检测之前，是因为避免定时器事件过期时间太长。假如放在后面的话，可能前面的处理耗费了一点时间，等到处理定时器事件时，时间间隔已经过去了不少时间。虽然这样处理，也没法保证定时器事件百分百精确，但是能尽量保证。</p>
-<h2 id="八高性能服务器架构设计总结2以flamigo服务器代码为例">（八）高性能服务器架构设计总结2——以flamigo服务器代码为例<a hidden class="anchor" aria-hidden="true" href="#八高性能服务器架构设计总结2以flamigo服务器代码为例">#</a></h2>
+<h2 id="八高性能服务器架构设计总结2以flamigo服务器代码为例">（八）高性能服务器架构设计总结2——以flamigo服务器代码为例</h2>
 <p>系列目录</p>
 <p>第01篇 主线程与工作线程的分工</p>
 <p>第02篇 Reactor模式</p>
@@ -1171,7 +1181,7 @@ connect函数默认连接另外一端的时候，也会阻塞在那里；
 <p>第09篇 高性能服务器架构设计总结2</p>
 <p>第10篇 高性能服务器架构设计总结3</p>
 <p>第11篇 高性能服务器架构设计总结4</p>
-<h2 id="八高性能服务器架构设计总结3以flamigo服务器代码为例">（八）高性能服务器架构设计总结3——以flamigo服务器代码为例<a hidden class="anchor" aria-hidden="true" href="#八高性能服务器架构设计总结3以flamigo服务器代码为例">#</a></h2>
+<h2 id="八高性能服务器架构设计总结3以flamigo服务器代码为例">（八）高性能服务器架构设计总结3——以flamigo服务器代码为例</h2>
 <p>系列目录</p>
 <p>第01篇 主线程与工作线程的分工</p>
 <p>第02篇 Reactor模式</p>
@@ -1655,7 +1665,7 @@ connect函数默认连接另外一端的时候，也会阻塞在那里；
 468        return DefWindowProc(hWnd, message, wParam, lParam);  
 469    } 
 </code></pre><p>关于单个服务程序的框架，我已经介绍完了，如果你能完全理解我要表达的意思，我相信你也能构建出一套高性能服务程序来。</p>
-<h2 id="八高性能服务器架构设计总结4以flamigo服务器代码为例">（八）高性能服务器架构设计总结4——以flamigo服务器代码为例<a hidden class="anchor" aria-hidden="true" href="#八高性能服务器架构设计总结4以flamigo服务器代码为例">#</a></h2>
+<h2 id="八高性能服务器架构设计总结4以flamigo服务器代码为例">（八）高性能服务器架构设计总结4——以flamigo服务器代码为例</h2>
 <p>系列目录</p>
 <p>第01篇 主线程与工作线程的分工</p>
 <p>第02篇 Reactor模式</p>
@@ -1668,7 +1678,7 @@ connect函数默认连接另外一端的时候，也会阻塞在那里；
 <p>第09篇 高性能服务器架构设计总结2</p>
 <p>第10篇 高性能服务器架构设计总结3</p>
 <p>第11篇 高性能服务器架构设计总结4</p>
-<h2 id="二架构篇">二、架构篇<a hidden class="anchor" aria-hidden="true" href="#二架构篇">#</a></h2>
+<h2 id="二架构篇">二、架构篇</h2>
 <p>一个项目的服务器端往往由很多服务组成，就算单个服务在性能上做到极致，支持的并发数量也是有限的。举个简单的例子，假如一个聊天服务器，每个用户的信息是1k，那对于一个8G的内存的机器，在不考虑其它的情况下8<em>1024</em>1024*1024 / 100 = 1024，实际有838万，但实际这只是非常理想的情况。<strong>所以我们有时候需要需要某个服务部署多套，就单个服务的实现来讲还是《框架篇》中介绍的</strong>。</p>
 <p>1</p>
 <p>我们举个例子：<img loading="lazy" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="img"  />
@@ -1838,19 +1848,18 @@ connect函数默认连接另外一端的时候，也会阻塞在那里；
 <p><img loading="lazy" src="https://mmbiz.qpic.cn/mmbiz_png/TufFCFqd0g1auSibZlAkictBtctpBKJzkiakQOTPBFLeRvjib25cL3EAccpH5YKFwhKEuxKVwFTKacWKm5ic6rnB1Ew/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="img"  />
 </p>
 
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/7050b3d426bf44b29c25c3d30ae77006/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/7050b3d426bf44b29c25c3d30ae77006/">
     <span class="title">« Prev</span>
     <br>
     <span>非阻塞模式下 send 和 recv 函数的返回值</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/95e6ea6c39e345bf8177b77fb2d24548/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/95e6ea6c39e345bf8177b77fb2d24548/">
     <span class="title">Next »</span>
     <br>
     <span>高性能服务器框架设计</span>
@@ -1861,14 +1870,6 @@ connect函数默认连接另外一端的时候，也会阻塞在那里；
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

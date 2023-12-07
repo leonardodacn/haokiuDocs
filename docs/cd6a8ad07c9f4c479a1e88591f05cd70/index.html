@@ -16,15 +16,15 @@ constFilterPolicy* const user_policy_; 其Name()返回的是user_policy_-&gt;Nam
 bool InternalFilterPolicy::KeyMayMatch(const Slice&amp; key, constSlice&amp; f) const { returnuser_policy_-&gt;KeyMayMatch(ExtractUserKey(key), f); } void InternalFilterPolicy::CreateFilter(const Slice* keys, int n,std::string* dst) const { Slice* mkey =const_cast&lt;Slice*&gt;(keys); for (int i = 0; i &lt; n; i&#43;&#43;)mkey[i] = ExtractUserKey(keys[i]); user_policy_-&gt;CreateFilter(keys, n, dst); } 8.3 BloomFilter 8.3.1 基本理论 Bloom Filter实际上是一种hash算法，数学之美系列有专门介绍。它是由巴顿.布隆于一九七零年提出的，它实际上是一个很长的二进制向量和一系列随机映射函数。 Bloom Filter将元素映射到一个长度为m的bit向量上的一个bit，当这个bit是1时，就表示这个元素在集合内。使用hash的缺点就是元素很多时可能有冲突，为了减少误判，就使用k个hash函数计算出k个bit，只要有一个bit为0，就说明元素肯定不在集合内。下面的图8.3-1是一个示意图。
 在leveldb的实现中，Name()返回&quot;leveldb.BuiltinBloomFilter&quot;，因此metaindex block** 中的key就是”filter.leveldb.BuiltinBloomFilter”。Leveldb使用了double hashing来模拟多个hash函数，当然这里不是用来解决冲突的。 和线性再探测（linearprobing）一样，Double hashing从一个hash值开始，重复向前迭代，直到解决冲突或者搜索完hash表。不同的是，double hashing使用的是另外一个hash函数，而不是固定的步长。 给定两个独立的hash函数h1和h2，对于hash表T和值k，第i次迭代计算出的位置就是：h(i, k) = (h1(k) &#43; i*h2(k)) mod |T|。 对此，Leveldb选择的hash函数是：">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/cd6a8ad07c9f4c479a1e88591f05cd70/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/cd6a8ad07c9f4c479a1e88591f05cd70/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -73,7 +73,7 @@ constFilterPolicy* const user_policy_; 其Name()返回的是user_policy_-&gt;Nam
 bool InternalFilterPolicy::KeyMayMatch(const Slice&amp; key, constSlice&amp; f) const { returnuser_policy_-&gt;KeyMayMatch(ExtractUserKey(key), f); } void InternalFilterPolicy::CreateFilter(const Slice* keys, int n,std::string* dst) const { Slice* mkey =const_cast&lt;Slice*&gt;(keys); for (int i = 0; i &lt; n; i&#43;&#43;)mkey[i] = ExtractUserKey(keys[i]); user_policy_-&gt;CreateFilter(keys, n, dst); } 8.3 BloomFilter 8.3.1 基本理论 Bloom Filter实际上是一种hash算法，数学之美系列有专门介绍。它是由巴顿.布隆于一九七零年提出的，它实际上是一个很长的二进制向量和一系列随机映射函数。 Bloom Filter将元素映射到一个长度为m的bit向量上的一个bit，当这个bit是1时，就表示这个元素在集合内。使用hash的缺点就是元素很多时可能有冲突，为了减少误判，就使用k个hash函数计算出k个bit，只要有一个bit为0，就说明元素肯定不在集合内。下面的图8.3-1是一个示意图。
 在leveldb的实现中，Name()返回&quot;leveldb.BuiltinBloomFilter&quot;，因此metaindex block** 中的key就是”filter.leveldb.BuiltinBloomFilter”。Leveldb使用了double hashing来模拟多个hash函数，当然这里不是用来解决冲突的。 和线性再探测（linearprobing）一样，Double hashing从一个hash值开始，重复向前迭代，直到解决冲突或者搜索完hash表。不同的是，double hashing使用的是另外一个hash函数，而不是固定的步长。 给定两个独立的hash函数h1和h2，对于hash表T和值k，第i次迭代计算出的位置就是：h(i, k) = (h1(k) &#43; i*h2(k)) mod |T|。 对此，Leveldb选择的hash函数是：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/cd6a8ad07c9f4c479a1e88591f05cd70/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/cd6a8ad07c9f4c479a1e88591f05cd70/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -93,18 +93,18 @@ bool InternalFilterPolicy::KeyMayMatch(const Slice&amp; key, constSlice&amp; f) 
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "leveldb源码分析12",
-      "item": "http://121.199.2.5:6080/cd6a8ad07c9f4c479a1e88591f05cd70/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/cd6a8ad07c9f4c479a1e88591f05cd70/"
     }
   ]
 }
@@ -126,14 +126,14 @@ bool InternalFilterPolicy::KeyMayMatch(const Slice&amp; key, constSlice&amp; f) 
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/cd6a8ad07c9f4c479a1e88591f05cd70/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/cd6a8ad07c9f4c479a1e88591f05cd70/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -155,7 +155,7 @@ bool InternalFilterPolicy::KeyMayMatch(const Slice&amp; key, constSlice&amp; f) 
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -181,38 +181,48 @@ bool InternalFilterPolicy::KeyMayMatch(const Slice&amp; key, constSlice&amp; f) 
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -222,7 +232,7 @@ bool InternalFilterPolicy::KeyMayMatch(const Slice&amp; key, constSlice&amp; f) 
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       leveldb源码分析12
     </h1>
@@ -284,10 +294,10 @@ bool InternalFilterPolicy::KeyMayMatch(const Slice&amp; key, constSlice&amp; f) 
     </details>
 </div>
 
-  <div class="post-content"><h1 id="leveldb源码分析12">leveldb源码分析12<a hidden class="anchor" aria-hidden="true" href="#leveldb源码分析12">#</a></h1>
+  <div class="post-content"><h1 id="leveldb源码分析12">leveldb源码分析12</h1>
 <p>本系列《leveldb源码分析》共有22篇文章，这是第十二篇</p>
-<h2 id="8filterpolicybloom之1">8.FilterPolicy&amp;Bloom之1<a hidden class="anchor" aria-hidden="true" href="#8filterpolicybloom之1">#</a></h2>
-<h3 id="81-filterpolicy">8.1 FilterPolicy<a hidden class="anchor" aria-hidden="true" href="#81-filterpolicy">#</a></h3>
+<h2 id="8filterpolicybloom之1">8.FilterPolicy&amp;Bloom之1</h2>
+<h3 id="81-filterpolicy">8.1 FilterPolicy</h3>
 <p>因名知意，<strong>FilterPolicy</strong>是用于key过滤的，可以快速的排除不存在的key。前面介绍Table的时候，在<strong>Table::InternalGet</strong>函数中有过一面之缘。
 FilterPolicy有3个接口：</p>
 <pre tabindex="0"><code>virtual const char* Name() const = 0; 
@@ -302,7 +312,7 @@ virtual bool KeyMayMatch(const Slice&amp; key, const Slice&amp; filter)const = 0
 涉及到的类如图8.1-1所示。</p>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/005e45a355f4f8a18d090b1ad12de992.webp" alt=""  />
 </p>
-<h3 id="82internalfilterpolicy">8.2InternalFilterPolicy<a hidden class="anchor" aria-hidden="true" href="#82internalfilterpolicy">#</a></h3>
+<h3 id="82internalfilterpolicy">8.2InternalFilterPolicy</h3>
 <p>这是一个简单的<strong>FilterPolicy的wrapper</strong>，以方便的把FilterPolicy应用在InternalKey上，<strong>InternalKey是Leveldb内部使用的key</strong>，这些前面都讲过。它所做的就是从InternalKey<strong>拆分</strong>得到user key，然后在user key上做FilterPolicy的操作。
 它有一个成员：</p>
 <pre tabindex="0"><code>constFilterPolicy* const user_policy_;
@@ -318,8 +328,8 @@ void InternalFilterPolicy::CreateFilter(const Slice* keys,
      for (int i = 0; i &lt; n; i++)mkey[i] = ExtractUserKey(keys[i]);
      user_policy_-&gt;CreateFilter(keys, n, dst);
 }
-</code></pre><h3 id="83-bloomfilter">8.3 BloomFilter<a hidden class="anchor" aria-hidden="true" href="#83-bloomfilter">#</a></h3>
-<h4 id="831-基本理论">8.3.1 基本理论<a hidden class="anchor" aria-hidden="true" href="#831-基本理论">#</a></h4>
+</code></pre><h3 id="83-bloomfilter">8.3 BloomFilter</h3>
+<h4 id="831-基本理论">8.3.1 基本理论</h4>
 <p><strong>Bloom Filter</strong>实际上是一种<strong>hash算法</strong>，数学之美系列有专门介绍。它是由巴顿.布隆于一九七零年提出的，它实际上是一个很长的<strong>二进制向量</strong>和一系列<strong>随机映射函数</strong>。
 Bloom Filter将元素映射到一个长度为m的bit向量上的一个bit，当这个bit是1时，就表示这个元素在集合内。<strong>使用hash</strong>的缺点就是元素很多时可能有冲突，为了减少误判，就使用k个hash函数计算出k个bit，只要有一个bit为0，就说明元素肯定不在集合内。下面的图8.3-1是一个示意图。</p>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/92971d70506838c7114e2d8f9d6ac303.webp" alt=""  />
@@ -332,7 +342,7 @@ Bloom Filter将元素映射到一个长度为m的bit向量上的一个bit，当�
 H2(x)=(H1(x)&gt;&gt;17) | (H1(x)&lt;&lt;15)
 </code></pre><p>H1是一个<strong>基本的hash函数</strong>，H2是由H1循环右移得到的，Gi(x)就是第i次循环得到的hash值。【理论分析可参考论文Kirsch,Mitzenmacher2006】
 在<strong>bloom_filter的数据</strong>的最后一个字节存放的是k_的值，k_实际上就是G(x)的个数，也就是计算时采用的<strong>hash函数个数</strong>。</p>
-<h4 id="832-bloomfilter参数">8.3.2 BloomFilter参数<a hidden class="anchor" aria-hidden="true" href="#832-bloomfilter参数">#</a></h4>
+<h4 id="832-bloomfilter参数">8.3.2 BloomFilter参数</h4>
 <p>这里先来说下其两个成员变量：<strong>bits_per_key_和key_</strong>；其实这就是Bloom Hashing的两个关键参数。
 <strong>变量k_<strong>实际上就是模拟的hash函数的个数；
 关于</strong>变量bits_per_key_</strong>，对于<strong>n个key</strong>，其hash table的大小就是bits_per_key_。它的值越大，发生冲突的概率就越低，那么bloom hashing误判的概率就越低。因此这是一个<strong>时间空间的trade-off</strong>。
@@ -343,11 +353,11 @@ k_ =static_cast&lt;size_t&gt;(bits_per_key * 0.69); // 0.69 =~ ln(2)
 if (k_ &lt; 1) k_ = 1;  
 if (k_ &gt; 30) k_ = 30;
 </code></pre><p>模拟hash函数的个数k_取值为<strong>bits_per_key_*ln(2)</strong>，为何不是0.5或者0.4了，可能是什么理论推导的结果吧，不了解了。</p>
-<h4 id="833-建立bloomfilter">8.3.3 建立BloomFilter<a hidden class="anchor" aria-hidden="true" href="#833-建立bloomfilter">#</a></h4>
+<h4 id="833-建立bloomfilter">8.3.3 建立BloomFilter</h4>
 <p>了解了上面的理论，再来看<strong>leveldb对Bloom Fil****ter的实现</strong>就轻松多了，先来看<strong>Bloom Filter的构建</strong>。这就是<strong>FilterPolicy::CreateFilter接口的实现</strong>：</p>
 <pre tabindex="0"><code>void CreateFilter(const Slice* keys, int n, std::string* dst) const
 </code></pre><p>下面分析其实现代码，大概有如下几个步骤：</p>
-<h5 id="s1-首先根据key个数分配filter空间并圆整到8byte">S1 首先根据key个数分配filter空间，并圆整到8byte。<a hidden class="anchor" aria-hidden="true" href="#s1-首先根据key个数分配filter空间并圆整到8byte">#</a></h5>
+<h5 id="s1-首先根据key个数分配filter空间并圆整到8byte">S1 首先根据key个数分配filter空间，并圆整到8byte。</h5>
 <pre tabindex="0"><code>size_t bits = n * bits_per_key_;  
 if (bits &lt; 64) bits = 64;      
 // 如果n太小FP会很高，限定filter的最小长度  
@@ -355,10 +365,10 @@ size_t bytes = (bits + 7) / 8;    // 圆整到8byte
 bits = bytes * 8;                 // bit计算的空间大小  
 const size_t init_size =dst-&gt;size();  
 dst-&gt;resize(init_size +bytes, 0); // 分配空间
-</code></pre><h5 id="s2-在filter最后的字节位压入hash函数个数">S2 在filter最后的字节位压入hash函数个数<a hidden class="anchor" aria-hidden="true" href="#s2-在filter最后的字节位压入hash函数个数">#</a></h5>
+</code></pre><h5 id="s2-在filter最后的字节位压入hash函数个数">S2 在filter最后的字节位压入hash函数个数</h5>
 <pre tabindex="0"><code>dst-&gt;push_back(static_cast&lt;char&gt;(k_));
 // Remember # of probes in filter
-</code></pre><h5 id="s3-对于每个key使用double-hashing生产一系列的hash值hk_个设置bits-array的第h位1">S3 对于每个key，使用double-hashing生产一系列的hash值h(K_个)，设置bits array的第h位=1。<a hidden class="anchor" aria-hidden="true" href="#s3-对于每个key使用double-hashing生产一系列的hash值hk_个设置bits-array的第h位1">#</a></h5>
+</code></pre><h5 id="s3-对于每个key使用double-hashing生产一系列的hash值hk_个设置bits-array的第h位1">S3 对于每个key，使用double-hashing生产一系列的hash值h(K_个)，设置bits array的第h位=1。</h5>
 <pre tabindex="0"><code>char* array =&amp;(*dst)[init_size];  
 for (size_t i = 0; i &lt; n;i++) 
 {  
@@ -377,10 +387,10 @@ for (size_t i = 0; i &lt; n;i++)
     }  
 } 
 </code></pre><p>Bloom Filter的创建就完成了。</p>
-<h4 id="834-查找bloomfilter">8.3.4 查找BloomFilter<a hidden class="anchor" aria-hidden="true" href="#834-查找bloomfilter">#</a></h4>
+<h4 id="834-查找bloomfilter">8.3.4 查找BloomFilter</h4>
 <p>在指定的filer中查找key是否存在，这就是<strong>bloom filter的查找函数：</strong>
 <strong>bool KeyMayMatch(const Slice&amp; key, const Slice&amp; bloom_filter)</strong>，函数逻辑如下：</p>
-<h5 id="s1-准备工作并做些基本判断">S1 准备工作，并做些基本判断。<a hidden class="anchor" aria-hidden="true" href="#s1-准备工作并做些基本判断">#</a></h5>
+<h5 id="s1-准备工作并做些基本判断">S1 准备工作，并做些基本判断。</h5>
 <pre tabindex="0"><code>
 const size_t len =bloom_filter.size();  
 if (len &lt; 2) return false;  
@@ -390,7 +400,7 @@ const size_t k = array[len-1];
 // 使用filter的k，而不是k_，这样更灵活  
 if (k &gt; 30) return true; 
 // 为短bloom filter保留，当前认为直接match 
-</code></pre><h5 id="s2-计算key的hash值重复计算阶段的步骤循环计算k个hash值只要有一个结果对应的bit位为0就认为不匹配否则认为匹配">S2 计算key的hash值，重复计算阶段的步骤，循环计算k个hash值，只要有一个结果对应的bit位为0，就认为不匹配，否则认为匹配。<a hidden class="anchor" aria-hidden="true" href="#s2-计算key的hash值重复计算阶段的步骤循环计算k个hash值只要有一个结果对应的bit位为0就认为不匹配否则认为匹配">#</a></h5>
+</code></pre><h5 id="s2-计算key的hash值重复计算阶段的步骤循环计算k个hash值只要有一个结果对应的bit位为0就认为不匹配否则认为匹配">S2 计算key的hash值，重复计算阶段的步骤，循环计算k个hash值，只要有一个结果对应的bit位为0，就认为不匹配，否则认为匹配。</h5>
 <pre tabindex="0"><code>uint32_t h = BloomHash(key);  
 const uint32_t delta = (h&gt;&gt; 17) | (h &lt;&lt; 15);  // Rotate right 17 bits  
 for (size_t j = 0; j &lt; k;j++)
@@ -401,7 +411,7 @@ for (size_t j = 0; j &lt; k;j++)
     h += delta;  
 }  
 return true; // match  
-</code></pre><h3 id="84-filter-block格式">8.4 Filter Block格式<a hidden class="anchor" aria-hidden="true" href="#84-filter-block格式">#</a></h3>
+</code></pre><h3 id="84-filter-block格式">8.4 Filter Block格式</h3>
 <p>Filter Block也就是前面sstable中的<strong>meta block</strong>，位于data block之后。</p>
 <p>如果打开db时指定了FilterPolicy，那么每个创建的table都会保存一个filter block，table中的<strong>metaindex</strong>就包含一条从”filter.到filter block的BlockHandle的映射，其中”<!-- raw HTML omitted -->”是filter policy的<strong>Name()函数返回的string</strong>。</p>
 <p>Filter block存储了一连串的filter值，其中第i个filter保存的是block b中所有的key通过<strong>FilterPolicy::CreateFilter()<strong>计算得到的结果，block b在sstable文件中的偏移</strong>满足[ i*base … (i+1)*base-1 ]</strong>。</p>
@@ -412,19 +422,18 @@ Filter block也是一个block，其</strong>格式遵从block</strong>的基本�
 <p>图8.4-1 filter block data</p>
 <p>了解了格式，再分析<strong>构建和读取filter的代码</strong>就很简单了。</p>
 
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/0159e326ba0e4917878529ee1ae3af48/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/0159e326ba0e4917878529ee1ae3af48/">
     <span class="title">« Prev</span>
     <br>
     <span>leveldb源码分析11</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/f110bd8130344cbf801fc30d4d7a7ce9/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/f110bd8130344cbf801fc30d4d7a7ce9/">
     <span class="title">Next »</span>
     <br>
     <span>leveldb源码分析13</span>
@@ -435,14 +444,6 @@ Filter block也是一个block，其</strong>格式遵从block</strong>的基本�
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

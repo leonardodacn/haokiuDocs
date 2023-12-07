@@ -10,15 +10,15 @@
 <meta name="description" content="Memcached源码阅读十六 线程交互 Memcached按之前的分析可以知道，其是典型的Master-Worker线程模型，这种模型很典型，其工作模型是Master绑定端口，监听网络连接，接受网络连接之后，通过线程间通信来唤醒Worker线程，Worker线程已经连接的描述符执行读写操作，这种模型简化了整个通信模型，下面分析下这个过程。
 case conn_listening: addrlen = sizeof(addr); //Master线程(main)进入状态机之后执行accept操作，这个操作也是非阻塞的。 if ((sfd = accept(c-&gt;sfd, (struct sockaddr *) &amp;addr, &amp;addrlen)) == -1) { //非阻塞模型，这个错误码继续等待 if (errno == EAGAIN || errno == EWOULDBLOCK) { stop = true; } //连接超载 else if (errno == EMFILE) { if (settings.verbose &gt; 0) fprintf(stderr, &#34;Too many open connections\n&#34;); accept_new_conns(false); stop = true; } else { perror(&#34;accept()&#34;); stop = true; } break; } //已经accept成功，将accept之后的描述符设置为非阻塞的 if ((flags = fcntl(sfd, F_GETFL, 0)) &lt; 0 || fcntl(sfd, F_SETFL, flags | O_NONBLOCK) &lt; 0) { perror(&#34;setting O_NONBLOCK&#34;); close(sfd); break; } //判断是否超过最大连接数 if (settings.maxconns_fast &amp;&amp; stats.curr_conns &#43; stats.reserved_fd &gt;= settings.maxconns - 1) { str = &#34;ERROR Too many open connections\r\n&#34;; res = write(sfd, str, strlen(str)); close(sfd); STATS_LOCK(); stats.">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/314f7e41e35f43db9facbca467726a7a/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/314f7e41e35f43db9facbca467726a7a/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -61,7 +61,7 @@ case conn_listening: addrlen = sizeof(addr); //Master线程(main)进入状态机
 <meta property="og:description" content="Memcached源码阅读十六 线程交互 Memcached按之前的分析可以知道，其是典型的Master-Worker线程模型，这种模型很典型，其工作模型是Master绑定端口，监听网络连接，接受网络连接之后，通过线程间通信来唤醒Worker线程，Worker线程已经连接的描述符执行读写操作，这种模型简化了整个通信模型，下面分析下这个过程。
 case conn_listening: addrlen = sizeof(addr); //Master线程(main)进入状态机之后执行accept操作，这个操作也是非阻塞的。 if ((sfd = accept(c-&gt;sfd, (struct sockaddr *) &amp;addr, &amp;addrlen)) == -1) { //非阻塞模型，这个错误码继续等待 if (errno == EAGAIN || errno == EWOULDBLOCK) { stop = true; } //连接超载 else if (errno == EMFILE) { if (settings.verbose &gt; 0) fprintf(stderr, &#34;Too many open connections\n&#34;); accept_new_conns(false); stop = true; } else { perror(&#34;accept()&#34;); stop = true; } break; } //已经accept成功，将accept之后的描述符设置为非阻塞的 if ((flags = fcntl(sfd, F_GETFL, 0)) &lt; 0 || fcntl(sfd, F_SETFL, flags | O_NONBLOCK) &lt; 0) { perror(&#34;setting O_NONBLOCK&#34;); close(sfd); break; } //判断是否超过最大连接数 if (settings.maxconns_fast &amp;&amp; stats.curr_conns &#43; stats.reserved_fd &gt;= settings.maxconns - 1) { str = &#34;ERROR Too many open connections\r\n&#34;; res = write(sfd, str, strlen(str)); close(sfd); STATS_LOCK(); stats." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/314f7e41e35f43db9facbca467726a7a/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/314f7e41e35f43db9facbca467726a7a/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -75,18 +75,18 @@ case conn_listening: addrlen = sizeof(addr); //Master线程(main)进入状态机
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "Memcached源码阅读十六 线程交互",
-      "item": "http://121.199.2.5:6080/314f7e41e35f43db9facbca467726a7a/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/314f7e41e35f43db9facbca467726a7a/"
     }
   ]
 }
@@ -108,14 +108,14 @@ case conn_listening: addrlen = sizeof(addr); //Master线程(main)进入状态机
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/314f7e41e35f43db9facbca467726a7a/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/314f7e41e35f43db9facbca467726a7a/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -137,7 +137,7 @@ case conn_listening: addrlen = sizeof(addr); //Master线程(main)进入状态机
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -163,38 +163,48 @@ case conn_listening: addrlen = sizeof(addr); //Master线程(main)进入状态机
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -204,7 +214,7 @@ case conn_listening: addrlen = sizeof(addr); //Master线程(main)进入状态机
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       Memcached源码阅读十六 线程交互
     </h1>
@@ -226,7 +236,7 @@ case conn_listening: addrlen = sizeof(addr); //Master线程(main)进入状态机
     </details>
 </div>
 
-  <div class="post-content"><h1 id="memcached源码阅读十六-线程交互">Memcached源码阅读十六 线程交互<a hidden class="anchor" aria-hidden="true" href="#memcached源码阅读十六-线程交互">#</a></h1>
+  <div class="post-content"><h1 id="memcached源码阅读十六-线程交互">Memcached源码阅读十六 线程交互</h1>
 <p><code>Memcached</code>按之前的分析可以知道，其是典型的<code>Master-Worker</code>线程模型，这种模型很典型，其工作模型是<strong>Master绑定端口，监听网络连接</strong>，接受网络连接之后，通过线程间通信来唤醒Worker线程，Worker线程已经连接的描述符执行读写操作，这种模型简化了整个通信模型，下面分析下这个过程。</p>
 <pre tabindex="0"><code>case conn_listening:
     addrlen = sizeof(addr);
@@ -363,19 +373,18 @@ static void thread_libevent_process(int fd, short which, void *arg) {
 event_base_set(base, &amp;c-&gt;event);
 </code></pre><p><code>event_handler</code>的执行流程最终会进入到业务处理的状态机中，关于状态机，后续分析。</p>
 
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/a795d0b698914f3898a0896633cd92ad/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/a795d0b698914f3898a0896633cd92ad/">
     <span class="title">« Prev</span>
     <br>
     <span>Memcached源码阅读十二 set操作</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/3fee4e4314af42ee9fa58cda4aa0b839/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/3fee4e4314af42ee9fa58cda4aa0b839/">
     <span class="title">Next »</span>
     <br>
     <span>Memcached源码阅读十四 item结构</span>
@@ -386,14 +395,6 @@ event_base_set(base, &amp;c-&gt;event);
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

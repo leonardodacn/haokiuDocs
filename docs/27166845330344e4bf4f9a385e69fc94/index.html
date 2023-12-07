@@ -14,15 +14,15 @@ struct package_header { int32_t bodysize; }; 一个应用中，有许多的应�
 struct package_header { int32_t bodysize; }; //登录数据包 struct register_package { package_header header; //命令号 int32_t cmd; //注册用户名 char username[16]; //注册密码 char password[16]; //注册昵称 char nickname[16]; //注册手机号 char mobileno[16]; }; //登录数据包 struct login_package { package_header header; //命令号 int32_t cmd; //登录用户名 char username[16]; //密码 char password[16]; //客户端类型 int32_t clienttype; //上线类型，如在线、隐身、忙碌、离开等 int32_t onlinetype; }; //获取好友列表 struct getfriend_package { package_header header; //命令号 int32_t cmd; }; //聊天内容 struct chat_package { package_header header; //命令号 int32_t cmd; //发送人userid int32_t senderid; //接收人userid int32_t targetid; //消息内容 char chatcontent[8192]; }; 看到没有？由于每一个业务的内容不一样，定义的结构体也不一样。如果业务比较多的话，我们需要定义各种各样的这种结构体，这简直是一场噩梦。那么有没有什么方法可以避免这个问题呢？有，我受jdk中的流对象的WriteInt32、WriteByte、WriteInt64、WriteString，这样的接口的启发，也发明了一套这样的协议，而且这套协议基本上是通用协议，可用于任何场景。我们的包还是分为包头和包体两部分，包头和上文所说的一样，包体是一个不固定大小的二进制流，其长度由包头中的指定包体长度的字段决定。
 struct package_protocol { int32_t bodysize; //注意：C/C&#43;&#43;语法不能这么定义结构体， //这里只是为了说明含义的伪代码 //bodycontent即为一个不固定大小的二进制流 char binarystream[bodysize]; }; 接下来的核心部分就是如何操作这个二进制流，我们将流分为二进制读和二进制写两种流，下面给出接口定义：">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/27166845330344e4bf4f9a385e69fc94/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/27166845330344e4bf4f9a385e69fc94/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -69,7 +69,7 @@ struct package_header { int32_t bodysize; }; 一个应用中，有许多的应�
 struct package_header { int32_t bodysize; }; //登录数据包 struct register_package { package_header header; //命令号 int32_t cmd; //注册用户名 char username[16]; //注册密码 char password[16]; //注册昵称 char nickname[16]; //注册手机号 char mobileno[16]; }; //登录数据包 struct login_package { package_header header; //命令号 int32_t cmd; //登录用户名 char username[16]; //密码 char password[16]; //客户端类型 int32_t clienttype; //上线类型，如在线、隐身、忙碌、离开等 int32_t onlinetype; }; //获取好友列表 struct getfriend_package { package_header header; //命令号 int32_t cmd; }; //聊天内容 struct chat_package { package_header header; //命令号 int32_t cmd; //发送人userid int32_t senderid; //接收人userid int32_t targetid; //消息内容 char chatcontent[8192]; }; 看到没有？由于每一个业务的内容不一样，定义的结构体也不一样。如果业务比较多的话，我们需要定义各种各样的这种结构体，这简直是一场噩梦。那么有没有什么方法可以避免这个问题呢？有，我受jdk中的流对象的WriteInt32、WriteByte、WriteInt64、WriteString，这样的接口的启发，也发明了一套这样的协议，而且这套协议基本上是通用协议，可用于任何场景。我们的包还是分为包头和包体两部分，包头和上文所说的一样，包体是一个不固定大小的二进制流，其长度由包头中的指定包体长度的字段决定。
 struct package_protocol { int32_t bodysize; //注意：C/C&#43;&#43;语法不能这么定义结构体， //这里只是为了说明含义的伪代码 //bodycontent即为一个不固定大小的二进制流 char binarystream[bodysize]; }; 接下来的核心部分就是如何操作这个二进制流，我们将流分为二进制读和二进制写两种流，下面给出接口定义：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/27166845330344e4bf4f9a385e69fc94/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/27166845330344e4bf4f9a385e69fc94/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -87,18 +87,18 @@ struct package_protocol { int32_t bodysize; //注意：C/C&#43;&#43;语法不能
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "服务器开发通信协议设计介绍",
-      "item": "http://121.199.2.5:6080/27166845330344e4bf4f9a385e69fc94/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/27166845330344e4bf4f9a385e69fc94/"
     }
   ]
 }
@@ -120,14 +120,14 @@ struct package_protocol { int32_t bodysize; //注意：C/C&#43;&#43;语法不能
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/27166845330344e4bf4f9a385e69fc94/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/27166845330344e4bf4f9a385e69fc94/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -149,7 +149,7 @@ struct package_protocol { int32_t bodysize; //注意：C/C&#43;&#43;语法不能
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -175,38 +175,48 @@ struct package_protocol { int32_t bodysize; //注意：C/C&#43;&#43;语法不能
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -216,7 +226,7 @@ struct package_protocol { int32_t bodysize; //注意：C/C&#43;&#43;语法不能
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       服务器开发通信协议设计介绍
     </h1>
@@ -244,12 +254,12 @@ struct package_protocol { int32_t bodysize; //注意：C/C&#43;&#43;语法不能
     </details>
 </div>
 
-  <div class="post-content"><h2 id="服务器开发通信协议设计介绍">服务器开发通信协议设计介绍<a hidden class="anchor" aria-hidden="true" href="#服务器开发通信协议设计介绍">#</a></h2>
+  <div class="post-content"><h2 id="服务器开发通信协议设计介绍">服务器开发通信协议设计介绍</h2>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/792193e0c3b720eba574d0c94dc05513.webp" alt=""  />
 </p>
-<h2 id="一选择tcp还是udp协议">一、选择TCP还是UDP协议<a hidden class="anchor" aria-hidden="true" href="#一选择tcp还是udp协议">#</a></h2>
+<h2 id="一选择tcp还是udp协议">一、选择TCP还是UDP协议</h2>
 <p>由于我们的即时通讯软件的用户存在用户状态问题，即用户登录成功以后可以在他的好友列表中看到哪些好友在线，所以客户端和服务器需要保持长连接状态。另外即时通讯软件一般要求信息准确、有序、完整地到达对端，而这也是TCP协议的特点之一。综合这两个所以这里我们选择TCP协议，而不是UDP协议。</p>
-<h2 id="二协议的结构">二、协议的结构<a hidden class="anchor" aria-hidden="true" href="#二协议的结构">#</a></h2>
+<h2 id="二协议的结构">二、协议的结构</h2>
 <p>由于TCP协议是流式协议，所谓流式协议即通讯的内容是无边界的字节流：如A给B连续发送了三个数据包，每个包的大小都是100个字节，那么B可能会一次性收到300个字节；也可能先收到100个字节，再收到200个字节；也可能先收到100个字节，再收到50个字节，再收到150个字节；或者先收到50个字节，再收到50个字节，再收到50个字节，最后收到150个字节。也就是说，B可能以任何组合形式收到这300个字节。即像水流一样无明确的边界。为了能让对端知道如何给包分界，目前一般有三种做法：</p>
 <ol>
 <li>以固定大小字节数目来分界，上文所说的就是属于这种类型，如每个包100个字节，对端每收齐100个字节，就当成一个包来解析；</li>
@@ -807,7 +817,7 @@ void BinaryWriteStream::Clear()
 12        //cout &lt;&lt; &#34;uncompress:&#34; &lt;&lt; i &lt;&lt; endl;
 13        return true;
 14    }
-</code></pre><h2 id="三关于跨系统与跨语言之间的网络通信协议解析与识别问题">三、关于跨系统与跨语言之间的网络通信协议解析与识别问题<a hidden class="anchor" aria-hidden="true" href="#三关于跨系统与跨语言之间的网络通信协议解析与识别问题">#</a></h2>
+</code></pre><h2 id="三关于跨系统与跨语言之间的网络通信协议解析与识别问题">三、关于跨系统与跨语言之间的网络通信协议解析与识别问题</h2>
 <p>由于我们的即时通讯同时涉及到Java和C++两种编程语言，且有windows、linux、安卓三个平台，而我们为了保障学习的质量和效果，所以我们不用第三跨平台库（其实我们也是在学习如何编写这些跨平台库的原理），所以我们需要学习以下如何在Java语言中去解析C++的网络数据包或者反过来。安卓端发送的数据使用Java语言编写，pc与服务器发送的数据使用C++编写，这里以在Java中解析C++网络数据包为例。 这对于很多人来说是一件很困难的事情，所以只能变着法子使用第三方的库。其实只要你掌握了一定的基础知识，利用一些现成的字节流抓包工具（如tcpdump、wireshark）很容易解决这个问题。我们这里使用tcpdump工具来尝试分析和解决这个问题。
 首先，我们需要明确字节序列这样一个概念，即我们说的大端编码(big endian)和小端编码(little endian)，x86和x64系列的cpu使用小端编码，而数据在网络上传输，以及Java语言中，使用的是大端编码。那么这是什么意思呢？
 我们举个例子，看一个x64机器上的32位数值在内存中的存储方式：</p>
@@ -843,19 +853,18 @@ void BinaryWriteStream::Clear()
 </li>
 </ul>
 
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/5d978400ccba478eaaa6a166b4ffba8d/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/5d978400ccba478eaaa6a166b4ffba8d/">
     <span class="title">« Prev</span>
     <br>
     <span>服务器开发案例实战</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/bb7da7e0bc524808b2a072fb43da3a8e/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/bb7da7e0bc524808b2a072fb43da3a8e/">
     <span class="title">Next »</span>
     <br>
     <span>服务器端发数据时，如果对端一直不收，怎么办？</span>
@@ -866,14 +875,6 @@ void BinaryWriteStream::Clear()
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

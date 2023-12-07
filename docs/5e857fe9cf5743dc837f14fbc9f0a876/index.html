@@ -11,15 +11,15 @@
 2 实现原理 使用elasticsearch的rest api接口， 批量把从reader读入的数据写入elasticsearch
 3 功能说明 3.1 配置样例 job.json { &#34;job&#34;: { &#34;setting&#34;: { &#34;speed&#34;: { &#34;channel&#34;: 1 } }, &#34;content&#34;: [ { &#34;reader&#34;: { ... }, &#34;writer&#34;: { &#34;name&#34;: &#34;elasticsearchwriter&#34;, &#34;parameter&#34;: { &#34;endpoint&#34;: &#34;http://xxx:9999&#34;, &#34;accessId&#34;: &#34;xxxx&#34;, &#34;accessKey&#34;: &#34;xxxx&#34;, &#34;index&#34;: &#34;test-1&#34;, &#34;type&#34;: &#34;default&#34;, &#34;cleanup&#34;: true, &#34;settings&#34;: {&#34;index&#34; :{&#34;number_of_shards&#34;: 1, &#34;number_of_replicas&#34;: 0}}, &#34;discovery&#34;: false, &#34;batchSize&#34;: 1000, &#34;splitter&#34;: &#34;,&#34;, &#34;column&#34;: [ {&#34;name&#34;: &#34;pk&#34;, &#34;type&#34;: &#34;id&#34;}, { &#34;name&#34;: &#34;col_ip&#34;,&#34;type&#34;: &#34;ip&#34; }, { &#34;name&#34;: &#34;col_double&#34;,&#34;type&#34;: &#34;double&#34; }, { &#34;name&#34;: &#34;col_long&#34;,&#34;type&#34;: &#34;long&#34; }, { &#34;name&#34;: &#34;col_integer&#34;,&#34;type&#34;: &#34;integer&#34; }, { &#34;name&#34;: &#34;col_keyword&#34;, &#34;type&#34;: &#34;keyword&#34; }, { &#34;name&#34;: &#34;col_text&#34;, &#34;type&#34;: &#34;text&#34;, &#34;analyzer&#34;: &#34;ik_max_word&#34;}, { &#34;name&#34;: &#34;col_geo_point&#34;, &#34;type&#34;: &#34;geo_point&#34; }, { &#34;name&#34;: &#34;col_date&#34;, &#34;type&#34;: &#34;date&#34;, &#34;format&#34;: &#34;yyyy-MM-dd HH:mm:ss&#34;}, { &#34;name&#34;: &#34;col_nested1&#34;, &#34;type&#34;: &#34;nested&#34; }, { &#34;name&#34;: &#34;col_nested2&#34;, &#34;type&#34;: &#34;nested&#34; }, { &#34;name&#34;: &#34;col_object1&#34;, &#34;type&#34;: &#34;object&#34; }, { &#34;name&#34;: &#34;col_object2&#34;, &#34;type&#34;: &#34;object&#34; }, { &#34;name&#34;: &#34;col_integer_array&#34;, &#34;type&#34;:&#34;integer&#34;, &#34;array&#34;:true}, { &#34;name&#34;: &#34;col_geo_shape&#34;, &#34;type&#34;:&#34;geo_shape&#34;, &#34;tree&#34;: &#34;quadtree&#34;, &#34;precision&#34;: &#34;10m&#34;} ] } } } ] } } 3.">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/5e857fe9cf5743dc837f14fbc9f0a876/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/5e857fe9cf5743dc837f14fbc9f0a876/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -63,7 +63,7 @@
 2 实现原理 使用elasticsearch的rest api接口， 批量把从reader读入的数据写入elasticsearch
 3 功能说明 3.1 配置样例 job.json { &#34;job&#34;: { &#34;setting&#34;: { &#34;speed&#34;: { &#34;channel&#34;: 1 } }, &#34;content&#34;: [ { &#34;reader&#34;: { ... }, &#34;writer&#34;: { &#34;name&#34;: &#34;elasticsearchwriter&#34;, &#34;parameter&#34;: { &#34;endpoint&#34;: &#34;http://xxx:9999&#34;, &#34;accessId&#34;: &#34;xxxx&#34;, &#34;accessKey&#34;: &#34;xxxx&#34;, &#34;index&#34;: &#34;test-1&#34;, &#34;type&#34;: &#34;default&#34;, &#34;cleanup&#34;: true, &#34;settings&#34;: {&#34;index&#34; :{&#34;number_of_shards&#34;: 1, &#34;number_of_replicas&#34;: 0}}, &#34;discovery&#34;: false, &#34;batchSize&#34;: 1000, &#34;splitter&#34;: &#34;,&#34;, &#34;column&#34;: [ {&#34;name&#34;: &#34;pk&#34;, &#34;type&#34;: &#34;id&#34;}, { &#34;name&#34;: &#34;col_ip&#34;,&#34;type&#34;: &#34;ip&#34; }, { &#34;name&#34;: &#34;col_double&#34;,&#34;type&#34;: &#34;double&#34; }, { &#34;name&#34;: &#34;col_long&#34;,&#34;type&#34;: &#34;long&#34; }, { &#34;name&#34;: &#34;col_integer&#34;,&#34;type&#34;: &#34;integer&#34; }, { &#34;name&#34;: &#34;col_keyword&#34;, &#34;type&#34;: &#34;keyword&#34; }, { &#34;name&#34;: &#34;col_text&#34;, &#34;type&#34;: &#34;text&#34;, &#34;analyzer&#34;: &#34;ik_max_word&#34;}, { &#34;name&#34;: &#34;col_geo_point&#34;, &#34;type&#34;: &#34;geo_point&#34; }, { &#34;name&#34;: &#34;col_date&#34;, &#34;type&#34;: &#34;date&#34;, &#34;format&#34;: &#34;yyyy-MM-dd HH:mm:ss&#34;}, { &#34;name&#34;: &#34;col_nested1&#34;, &#34;type&#34;: &#34;nested&#34; }, { &#34;name&#34;: &#34;col_nested2&#34;, &#34;type&#34;: &#34;nested&#34; }, { &#34;name&#34;: &#34;col_object1&#34;, &#34;type&#34;: &#34;object&#34; }, { &#34;name&#34;: &#34;col_object2&#34;, &#34;type&#34;: &#34;object&#34; }, { &#34;name&#34;: &#34;col_integer_array&#34;, &#34;type&#34;:&#34;integer&#34;, &#34;array&#34;:true}, { &#34;name&#34;: &#34;col_geo_shape&#34;, &#34;type&#34;:&#34;geo_shape&#34;, &#34;tree&#34;: &#34;quadtree&#34;, &#34;precision&#34;: &#34;10m&#34;} ] } } } ] } } 3." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/5e857fe9cf5743dc837f14fbc9f0a876/" /><meta property="article:section" content="4" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/5e857fe9cf5743dc837f14fbc9f0a876/" /><meta property="article:section" content="4" />
 <meta property="article:published_time" content="2021-02-02T17:45:01+00:00" />
 <meta property="article:modified_time" content="2021-02-02T17:45:01+00:00" />
 
@@ -78,18 +78,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "4s",
-      "item": "http://121.199.2.5:6080/4/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/4/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "DataX ElasticSearchWriter",
-      "item": "http://121.199.2.5:6080/5e857fe9cf5743dc837f14fbc9f0a876/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/5e857fe9cf5743dc837f14fbc9f0a876/"
     }
   ]
 }
@@ -111,14 +111,14 @@
   "dateModified": "2021-02-02T17:45:01Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/5e857fe9cf5743dc837f14fbc9f0a876/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/5e857fe9cf5743dc837f14fbc9f0a876/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -140,7 +140,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -166,47 +166,47 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/tags/" title="Tags">
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
                     <span>tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/categories/" title="Categories">
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -217,7 +217,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://121.199.2.5:6080">Home</a>&nbsp;»&nbsp;<a href="http://121.199.2.5:6080/4/">4s</a></div>
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/4/">4s</a></div>
     <h1 class="post-title">
       DataX ElasticSearchWriter
     </h1>
@@ -722,20 +722,8 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://121.199.2.5:6080/tags/datax/">datax</a></li>
+      <li><a href="https://leonardodacn.github.io/haokiuDocs/tags/datax/">datax</a></li>
     </ul>
-<nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/d31c9e889b154a0f96e4eb4be5c50467/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>DataX DRDSWriter</span>
-  </a>
-  <a class="next" href="http://121.199.2.5:6080/0b6970ee252d4875841a98382b04f30b/">
-    <span class="title">Next »</span>
-    <br>
-    <span>DataX FtpReader 说明</span>
-  </a>
-</nav>
 
   </footer>
 </article>

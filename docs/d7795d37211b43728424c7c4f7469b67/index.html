@@ -25,15 +25,15 @@
 [图:根据业务处理调度管理内存池]
 ​ 在带虚拟机的语言中，最常见的是JAVA，这个问题一般会简单一些，因为有自动垃圾回收机制。但是，JAVA中的容器类型、以及static变量依然是可能造成内存泄露的原因。加上无规划的使用线程，也有可能造成内存的泄露——有些线程不会退出，而且在不断增加，最后耗尽内存。所以这些问题都要求开发者专门针对static变量以及线程结构做统一设计、严格规范。 2.预分配内存 ​ 动态分配内存在小心谨慎的程序员手上，是能发挥很好的效果的。但是游戏业务往往需要用到的数据结构非常多，变化非常大，这导致了内存管理的风险很高。为了比较彻底的解决内存漏洞的问题，很多团队采用了预先分配内存的结构。在服务器启动的时候分配所有的变量，在运行过程中不调用任何new关键字的代码。 ​ 这样做的好处除了可以有效减少内存漏洞的出现概率，也能降低动态分配内存所消耗的性能。同时由于启动时分配内存，如果硬件资源不够的话，进程就会在启动时失败，而不是像动态分配内存的程序一样，可能在任何一个分配内存的时候崩溃。然而，要获得这些好处，在编码上首先还是要遵循“动态分配架构”中对象树的原则，把一类对象构造为“根”对象，然后用一个内存池来管理这些根对象。而这个内存池能存放的根对象的数目，就是此服务进程的最大承载能力。一切都是在启动的时候决定，非常的稳妥可靠。">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/d7795d37211b43728424c7c4f7469b67/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/d7795d37211b43728424c7c4f7469b67/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -91,7 +91,7 @@
 [图:根据业务处理调度管理内存池]
 ​ 在带虚拟机的语言中，最常见的是JAVA，这个问题一般会简单一些，因为有自动垃圾回收机制。但是，JAVA中的容器类型、以及static变量依然是可能造成内存泄露的原因。加上无规划的使用线程，也有可能造成内存的泄露——有些线程不会退出，而且在不断增加，最后耗尽内存。所以这些问题都要求开发者专门针对static变量以及线程结构做统一设计、严格规范。 2.预分配内存 ​ 动态分配内存在小心谨慎的程序员手上，是能发挥很好的效果的。但是游戏业务往往需要用到的数据结构非常多，变化非常大，这导致了内存管理的风险很高。为了比较彻底的解决内存漏洞的问题，很多团队采用了预先分配内存的结构。在服务器启动的时候分配所有的变量，在运行过程中不调用任何new关键字的代码。 ​ 这样做的好处除了可以有效减少内存漏洞的出现概率，也能降低动态分配内存所消耗的性能。同时由于启动时分配内存，如果硬件资源不够的话，进程就会在启动时失败，而不是像动态分配内存的程序一样，可能在任何一个分配内存的时候崩溃。然而，要获得这些好处，在编码上首先还是要遵循“动态分配架构”中对象树的原则，把一类对象构造为“根”对象，然后用一个内存池来管理这些根对象。而这个内存池能存放的根对象的数目，就是此服务进程的最大承载能力。一切都是在启动的时候决定，非常的稳妥可靠。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/d7795d37211b43728424c7c4f7469b67/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/d7795d37211b43728424c7c4f7469b67/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -120,18 +120,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "12 经典游戏服务器端架构概述",
-      "item": "http://121.199.2.5:6080/d7795d37211b43728424c7c4f7469b67/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/d7795d37211b43728424c7c4f7469b67/"
     }
   ]
 }
@@ -153,14 +153,14 @@
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/d7795d37211b43728424c7c4f7469b67/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/d7795d37211b43728424c7c4f7469b67/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -182,7 +182,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -208,38 +208,48 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -249,7 +259,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       12 经典游戏服务器端架构概述
     </h1>
@@ -329,9 +339,9 @@
     </details>
 </div>
 
-  <div class="post-content"><h1 id="12-经典游戏服务器端架构概述">12 经典游戏服务器端架构概述<a hidden class="anchor" aria-hidden="true" href="#12-经典游戏服务器端架构概述">#</a></h1>
-<h2 id="架构的分析模型">架构的分析模型<a hidden class="anchor" aria-hidden="true" href="#架构的分析模型">#</a></h2>
-<h3 id="一-讨论的背景">一. 讨论的背景<a hidden class="anchor" aria-hidden="true" href="#一-讨论的背景">#</a></h3>
+  <div class="post-content"><h1 id="12-经典游戏服务器端架构概述">12 经典游戏服务器端架构概述</h1>
+<h2 id="架构的分析模型">架构的分析模型</h2>
+<h3 id="一-讨论的背景">一. 讨论的背景</h3>
 <p>​    现代电子游戏，基本上都会使用一定的网络功能。从验证正版，到多人交互等等，都需要架设一些专用的服务器，以及编写在服务器上的程序。因此，游戏服务器端软件的架构，本质上也是游戏服务器这个特定领域的软件架构。
 ​    软件架构的分析，可以通过不同的层面入手。比较经典的软件架构描述，包含了以下几种架构：
 ​    <strong>1.运行时架构</strong>——这种架构关心如何解决运行效率问题，通常以程序进程图、数据流图为表达方式。在大多数开发团队的架构设计文档中，都会包含运行时架构，说明这是一种非常重要的设计方面。这种架构也会显著的影响软件代码的开发效率和部署效率。本文主要讨论的是这种架构。
@@ -339,7 +349,7 @@
 ​    <strong>3.物理架构</strong>——关心软件如何部署，以机房、服务器、网络设备为主要描述对象。
 ​    <strong>4.数据架构</strong>——关心软件涉及的数据结构的设计，对于数据分析挖掘，多系统协作有较大的意义。
 ​    <strong>5.开发架构</strong>——关心软件开发库之间的关系，以及版本管理、开发工具、编译构建的设计，主要为了提高多人协作开发，以及复杂软件库引用的开发效率。现在流行的集成构建系统就是一种开发架构的理论。</p>
-<h3 id="二-游戏服务器架构的要素">二. 游戏服务器架构的要素<a hidden class="anchor" aria-hidden="true" href="#二-游戏服务器架构的要素">#</a></h3>
+<h3 id="二-游戏服务器架构的要素">二. 游戏服务器架构的要素</h3>
 <p>​    服务器端软件的本质，是一个会长期运行的程序，并且它还要服务于多个不定时，不定地点的网络请求。所以这类软件的特点是要非常关注稳定性和性能。这类程序如果需要多个协作来提高承载能力，则还要关注部署和扩容的便利性；同时，还需要考虑如何实现某种程度容灾需求。由于多进程协同工作，也带来了开发的复杂度，这也是需要关注的问题。
 ​    功能约束，是架构设计决定性因素。一个万能的架构，必定是无能的架构。一个优秀的架构，则是正好把握了对应业务领域的核心功能产生的。游戏领域的功能特征，于服务器端系统来说，非常明显的表现为几个功能的需求：
 ​    <strong>1.对于游戏数据和玩家数据的存储</strong>
@@ -350,22 +360,22 @@
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/09da02477f9414e43557377b5b8a33f6.png" alt=""  />
 </p>
 <p>[图：游戏服务器的分析模型]</p>
-<h3 id="三-核心的三个架构">三. 核心的三个架构<a hidden class="anchor" aria-hidden="true" href="#三-核心的三个架构">#</a></h3>
+<h3 id="三-核心的三个架构">三. 核心的三个架构</h3>
 <p>​    基于上述的分析模型，对于游戏服务端架构，最重要的三个部分就是，如何使用CPU、内存、网卡的设计：
 ​    <strong>1.内存架构</strong>：主要决定服务器如何使用内存，以保证尽量少的内存泄漏的可能，以及最大化利用服务器端内存来提高承载量，降低服务延迟。
 ​    <strong>2.调度架构</strong>：设计如何使用进程、线程、协程这些对于CPU调度的方案。选择同步、异步等不同的编程模型，以提高服务器的稳定性和承载量。同时也要考虑对于开发带来的复杂度问题。现在出现的虚拟化技术，如虚拟机、docker、云服务器等，都为调度架构提供了更多的选择。
 ​    <strong>3.通信模式</strong>：决定使用何种方式通讯。网络通讯包含有传输层的选择，如TCP/UDP；据表达层的选择，如定义协议；以及应用层的接口设计，如消息队列、事件分发、远程调用等。
 ​    本文的讨论，也主要是集中于对以上三个架构的分析。</p>
-<h3 id="四-游戏服务器模型的进化历程">四. 游戏服务器模型的进化历程<a hidden class="anchor" aria-hidden="true" href="#四-游戏服务器模型的进化历程">#</a></h3>
+<h3 id="四-游戏服务器模型的进化历程">四. 游戏服务器模型的进化历程</h3>
 <p>​    最早的游戏服务器是比较简单的，如UO《网络创世纪》的服务端一张3.5寸软盘就能存下。基本上只是一个广播和存储文件的服务器程序。后来由于国内的外挂、盗版流行，各游戏厂商开始以MUD为模型，建立主要运行逻辑在服务器端的架构。这种架构在MMORPG类产品的不断更新中发扬光大，从而出现了以地图、视野等分布要素设计的分布式游戏服务器。而在另外一个领域，休闲游戏，天然的需要集中超高的在线用户，所以全区型架构开始出现。现代的游戏服务器架构，基本上都希望能结合承载量和扩展性的有点来设计，从而形成了更加丰富多样的形态。
 ​    本文的讨论主要是选取这些比较典型的游戏服务器模型，分析其底层各种选择的优点和缺点，希望能探讨出更具广泛性，更高开发效率的服务器模型。</p>
-<h2 id="分服模型"><strong>分服模型</strong><a hidden class="anchor" aria-hidden="true" href="#分服模型">#</a></h2>
-<h3 id="一-模型描述">一. 模型描述<a hidden class="anchor" aria-hidden="true" href="#一-模型描述">#</a></h3>
+<h2 id="分服模型"><strong>分服模型</strong></h2>
+<h3 id="一-模型描述">一. 模型描述</h3>
 <p>​    分服模型是游戏服务器中最典型，也是历久最悠久的模型。其特征是游戏服务器是一个个单独的世界。每个服务器的帐号是独立的，而且只用同一服务器的帐号才能产生线上交互。在早期服务器的承载量达到上限的时候，游戏开发者就通过架设更多的服务器来解决。这样提供了很多个游戏的“平行世界”，让游戏中的人人之间的比较，产生了更多的空间。所以后来以服务器的开放、合并形成了一套成熟的运营手段。一个技术上的选择最后导致了游戏运营方式的模式，是一个非常有趣的现象。</p>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/2fb779d4c8a08d719ebb2e44b2524efd.png" alt=""  />
 </p>
 <p>[图：分服模型]</p>
-<h3 id="二-调度架构">二. 调度架构<a hidden class="anchor" aria-hidden="true" href="#二-调度架构">#</a></h3>
+<h3 id="二-调度架构">二. 调度架构</h3>
 <p><strong>1.单进程游戏服务器</strong>
 最简单的游戏服务器只有一个进程，是一个单点。这个进程如果退出，则整个游戏世界消失。在此进程中，由于需要处理并发的客户端的数据包，因此产生了多种选择方法：</p>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/ea05df3f7dc3e9ab7290ba73ba19db68.png" alt=""  />
@@ -384,7 +394,7 @@
 [图:经典的三层模型]</p>
 <p>​    尽管有很多好处，但是多进程系统还有一个需要特别注意的问题——数据存储。由于要保证数据的一致性，所以存储进程一般都难以切分成多个进程。就算对关系型数据做分库分表处理，也是非常复杂的，对业务类型有依赖的。而且如果单个逻辑处理进程承载不了，由于其内存中的数据难以分割和同步，开发者很难去平行的扩展某个特定业务逻辑。他们可能会选择把业务逻辑进程做成无状态的，但是这更加加重了存储进程的性能压力，因为每次业务处理都要去存储进程处拉取或写入数据。
 ​    除了数据的问题，多进程也架构也带来了一系列运维和开发上的问题：首先就是整个系统的部署更为复杂了，因为需要对多个不同类型进程进行连接配置，造成大量的配置文件需要管理；其次是由于进程间通讯很多，所以需要定义的协议也数量庞大，在单进程下一个函数调用解决的问题，在多进程下就要定义一套请求、应答的协议，这造成整个源代码规模的数量级的增大；最后是整个系统被肢解为很多个功能短小的代码片段，如果不了解整体结构，是很难理解一个完整的业务流程是如何被处理的，这让代码的阅读和交接成本巨高无比，特别是在游戏领域，由于业务流程变化非常快，几经修改后的系统，几乎没有人能完全掌握其内容。</p>
-<h3 id="三-内存架构">三. 内存架构<a hidden class="anchor" aria-hidden="true" href="#三-内存架构">#</a></h3>
+<h3 id="三-内存架构">三. 内存架构</h3>
 <p>​    由于服务器进程需要长期自动化运行，所以内存使用的稳定是首要大事。在服务器进程中，就算一个触发几率很小的内存泄露，都会积累起来变成严重的运营事故。需要注意的是，不管你的线程和进程结构如何，内存架构都是需要的，除非是Erlang这种不使用堆的函数式语言。
 <strong>1.动态内存</strong>
 ​    在需要的时候申请内存来处理问题，是每个程序员入门的时候必然要学会的技能。但是，如何控制内存释放却是一个大问题。在C/C++语言中，对于堆的控制至关重要。有一些开发者会以树状来规划内存使用，就是一般只new/delete一个主要的类型的对象，其他对象都是此对象的成员（或者指针成员），只要这棵树上所有的对象都管理好自己的成员，就不会出现内存漏洞，整个结构也比较清晰简单。</p>
@@ -404,7 +414,7 @@
 <p>[图:预分配内存池]</p>
 <p>​    不过这样做，同样有一些缺点：首先是不太好部署，比如你想在某个资源较小的虚拟机上部署一套用来测试，可能一位内没改内存池的大小，导致启动不成功。每次更换环境都需要修改这个配置。其次，是所有的用到的类对象，都要在根节点对象那里有个指针或者引用，否则就可能泄漏内存。由于对于非基本类型的对象，我们一般不喜欢用拷贝的方式来作为函数的参数和返回值，而指针和应用所指向的内存，如果不能new的话，只能是现成的某个对象的成员属性。这回导致程序越复杂，这类的成员属性就越多，这些属性在代码维护是一个不小的负担。
 ​    要解决以上的缺点，可以修改内存池的实现，为动态增长，但是具备上限的模型，每次从内存池中“获取”对象的时候才new。这样就能避免在小内存机器上启动不了的问题。对于对象属性复杂的问题，一般上需要好好的按面向对象的原则规划代码，做到尽量少用仅仅表示函数参数和返回值的属性，而是主要是记录对象的“业务状态”属性为主，多花点功夫在构建游戏的数据模型上。</p>
-<h3 id="四-进程间通讯手段">四. 进程间通讯手段<a hidden class="anchor" aria-hidden="true" href="#四-进程间通讯手段">#</a></h3>
+<h3 id="四-进程间通讯手段">四. 进程间通讯手段</h3>
 <p>​    在多进程的系统中，进程间如何通讯是一个至关重要的问题，其性能和使用便利性，直接决定了多进程系统的技术效能。
 <strong>1.Socket通讯</strong>
 ​    TCP/IP协议是一种通用的、跨语言、跨操作系统、跨机器的通讯方案。这也是开发者首先想到的一种手段。在使用上，有使用TCP和UDP两个选择。一般我们倾向在游戏系统中使用TCP，因为游戏数据的逻辑相关性比较强，UDP由于可能存在的丢包和重发处理，在游戏逻辑上的处理一般比较复杂。由于多进程系统的进程间网络一般情况较好，UDP的性能优势不会特别明显。
@@ -427,7 +437,7 @@
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/31d2d6c99c94037c33f8e6f676629d1b.webp" alt=""  />
 
 [图:远程调用]</p>
-<h3 id="五-容灾和扩容手段">五. 容灾和扩容手段<a hidden class="anchor" aria-hidden="true" href="#五-容灾和扩容手段">#</a></h3>
+<h3 id="五-容灾和扩容手段">五. 容灾和扩容手段</h3>
 <p>​    在多进程模型中，由于可以采用多台物理服务器来部署服务进程，所以为容灾和扩容提供了基础条件。
 ​    在单进程模型下，容灾常常使用的热备服务器，依然可以在多进程模型中使用，但是开着一台什么都不做的服务器完全是为了做容灾，多少有点浪费。所以在多进程环境下，我们会启动多个相同功能的服务器进程，在请求的时候，根据某种规则来确定对哪个服务进程发起请求。如果这种规则能规避访问那些“失效”了的服务进程，就自动实现了容灾，如果这个规则还包括了“更新新增服务进程”的逻辑，就可以做到很方便的扩容了。而这两个规则，统一起来就是一条：对服务进程状态的集中保存和更新。
 ​    为了实现上面的方案，常常会架设一个“目录”服务器进程。这个进程专门负责搜集服务器进程的状态，并且提供查询。ZooKeeper就是实现这种目录服务器的一个优秀工具。</p>
@@ -435,13 +445,13 @@
 
 [图:服务器状态管理]</p>
 <p>​    尽管用简单的目录服务器可以实现大部分容灾和扩容的需求，但是如果被访问进程的内存中有数据存在，那么问题就比较复杂了。对于容灾来说，新的进程必须要有办法重建那个“失效”了的进程内存中的数据，才可能完成容灾功能；对于扩容功能来说，新加入的进程，也必须能把需要的数据载入到自己的内存中才行，而这些数据，可能已经存在于其他平行的进程中，如何把这部分数据转移过来，是一个比较耗费性能和需要编写相当多代码的工作。——所以一般我们喜欢对“无状态”的进程来做扩容和容灾。</p>
-<h2 id="全服分线模型"><strong>全服分线模型</strong><a hidden class="anchor" aria-hidden="true" href="#全服分线模型">#</a></h2>
-<h3 id="一-模型描述-1">一. 模型描述<a hidden class="anchor" aria-hidden="true" href="#一-模型描述-1">#</a></h3>
+<h2 id="全服分线模型"><strong>全服分线模型</strong></h2>
+<h3 id="一-模型描述-1">一. 模型描述</h3>
 <p>​    由于多进程服务器模型的发展，游戏开发者们首先发现，由于游戏业务的特点，那些需要持久化的数据，一般都是玩家的存档，以及一些游戏本身需要用的，在运行期只读的数据。这对于存储进程的分布，提供了非常有利的条件。于是玩家数据可以存放于同一个集群中，可以不再和游戏服务器绑定在一起，因为登录的时候便可根据玩家的ID去存储集群中定位想要存取的存储进程。</p>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/b386916a06fa44534db08a58ca188bb7.png" alt=""  />
 </p>
 <p>[图-全区分线模型]</p>
-<h3 id="二-存储的挑战">二. 存储的挑战<a hidden class="anchor" aria-hidden="true" href="#二-存储的挑战">#</a></h3>
+<h3 id="二-存储的挑战">二. 存储的挑战</h3>
 <p><strong>1.需求：扩容和容灾</strong>
 在全区分线模型下，游戏玩家可以随便选择任何一个服务器登录，自己的帐号数据都可以提取出来玩。这种显然比每个服务器重新“练”一个号要省事的多。而且这样也可以和朋友们约定去一个负载较低的服务器一起玩，而不用苦苦等待某一个特定的服务器变得空闲。然而，这些好处所需要付出的代价，是在存储层的分布式设计。这种设计有一个最需要解决的问题，就是游戏服务器系统的扩容和容灾。
 从模型上说，扩容是加入新的服务器，容灾是减掉失效的服务器。这两个操作在无状态的服务器进程上操作，都只是更新一下连接配置表，然后重启一下即可。但是，由于游戏存在大量的状态，包括运行时内存中的状态，以及持久化的存储状态，这就让扩容和容灾需要更多的处理才能成功。
@@ -474,7 +484,7 @@
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/c7c02de84dd23e83a7827184064f637a.webp" alt=""  />
 </p>
 <p>[图-集成缓存的NOSQL]</p>
-<h3 id="三-跳线和开房间">三. 跳线和开房间<a hidden class="anchor" aria-hidden="true" href="#三-跳线和开房间">#</a></h3>
+<h3 id="三-跳线和开房间">三. 跳线和开房间</h3>
 <p><strong>1.开房间型游戏模型</strong>
 在全区分线服务器模型中，最早出现在开房间类型的游戏中。因为海量玩家需要临时聚合到一个个小的在线服务单元上互动。比如一起下棋、打牌等。这类游戏玩法和MMORPG有很大的不同，在于其在线广播单元的不确定性和广播数量很小。
 这一类游戏最重要的是其“游戏大厅”的承载量，每个“游戏房间”受逻辑所限，需要维持和广播的玩家数据是有限的，但是“游戏大厅”需要维持相当高的在线用户数，所以一般来说，这种游戏还是需要做“分服”的。典型的游戏就是《英雄联盟》《穿越火线》这一类游戏了。而“游戏大厅”里面最有挑战性的任务，就是“自动匹配”玩家进入一个“游戏房间”，这需要对所有在线玩家做搜索和过滤。</p>
@@ -492,12 +502,12 @@
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/18cb948324f2e68eca5c11bb5a56a1ae.webp" alt=""  />
 </p>
 <p>[图-专用聊天服务器]</p>
-<h2 id="全服全线模型"><strong>全服全线模型</strong><a hidden class="anchor" aria-hidden="true" href="#全服全线模型">#</a></h2>
+<h2 id="全服全线模型"><strong>全服全线模型</strong></h2>
 <p>尽管分服的游戏模型已经运营了很多年，但是有一些游戏运营商还是希望能让尽量多的玩家一起玩。因为网游的人气越活跃，产生的交互越多，游戏的乐趣也可能越多。这一点最突出表现在棋牌类网游上。如联众、QQ游戏这类产品，无不是希望更多玩家能同时在线接入一个“大”服务器，从而找到可以一起玩的伙伴。在手游时代，由于手机本身在线时间不稳定，所以想要和朋友一起玩本来就比较困难，如果再以“服务器”划分区域，交互的乐趣就更少了，所以同样也呼唤这一个“大”服务器，能容纳下所有此款游戏的玩家。因此，开发者们在以前积累的分服模型和分线模型基础上，开发出满足海量在线互动需求的一系列游戏服务器模型——全服全线模型。</p>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/b0cf3006a392063f7da88e5753b93ce0.webp" alt=""  />
 </p>
 <p>[图-全服全线模型]</p>
-<h3 id="一-服务进程的组织">一. 服务进程的组织<a hidden class="anchor" aria-hidden="true" href="#一-服务进程的组织">#</a></h3>
+<h3 id="一-服务进程的组织">一. 服务进程的组织</h3>
 <p><strong>1. 静态配置</strong>
 全服全线模型的本质是一个各种不同功能进程组成的分布式系统，因此这些进程间的关系是在运维部署期间必须关注的信息。最简单的处理方法，就是预先规划出具体的进程数量、以及进程部署的物理位置，然后通过一套配置文件来描述这个规划的内容。对于每个进程，需要配置列明每个进程的pid文件位置；内部通讯用的地址，如IP+端口或者消息队列ID；启动和停止脚本路径；日志路径等等……由于有了一套这样的配置文件，我们还可以编写工具对所有的这些进程进行监控和操作批量启停。</p>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/818221aed455b5762ac66b7d2f674ec6.jpeg" alt=""  />
@@ -516,7 +526,7 @@
 
 [图-服务化、云]</p>
 <p>​    使用专人维护的服务化集群确实是一个轻松愉快的过程。但是游戏开发和运营过程中，往往需要多套环境，如各个不同版本的测试环境、给不同运营平台搭建的环境、海外运营的环境等等……这些环境会大大增加维护服务化集群的工作量，对于解决这个问题，建立高度自动化运维的私有云，成为一个需要解决的问题放上了桌面。提高集群的运维效率，降低工作复杂程度，需要一些特别的技术，而虚拟化技术正式解决这些问题的最新突破。</p>
-<h3 id="二-提高开发效率所用的结构">二. 提高开发效率所用的结构<a hidden class="anchor" aria-hidden="true" href="#二-提高开发效率所用的结构">#</a></h3>
+<h3 id="二-提高开发效率所用的结构">二. 提高开发效率所用的结构</h3>
 <p><strong>1.使用RPC提高网络接口编写效率</strong>
 在分布式系统中，如果所有的接口都需要自己定义数据协议报来做交互，这个网络编程的工作量将会非常的大，因为对于一个普通的通信接口来说，至少包括了：一个请求包结构、一个响应包结构、四段代码，包括请求响应包的编码和解码、一个接收数据做分发的代码分支、一个发送回应的调用。由于分布式的游戏服务器进程非常多，一个类似登录这样的操作，可能需要历经三、四个进程的合作处理，这就导致了接近十个数据结构的定义和无数段类似的代码。而这些代码，如果在单进程的环境下，仅仅只是三、四个函数定义而已。
 因此很多开发者投入很大精力，让网络通信的编写过程，尽量简化成类似函数的编写一样。这就是前文所述的远程调用的方法。在全区全线的游戏中，如果是比较重度的游戏，采用RPC方式做开发，会大大降低开发的复杂程度。当然也有一些比较轻度的游戏，还是采用传统的协议包编解码、分发逻辑调用的做法。
@@ -534,7 +544,7 @@
 <strong>3.自动化部署集群环境</strong>
 最新的虚拟化技术给分布式系统提供能更好的部署手段，以Docker为标志的虚拟化平台，可以很好的提高服务化集群的管理。我们可以把每个服务进程打包成一个映像文件，放入Docker虚拟机中运行，也可以把一组互相关联的服务进程打包运行。这些环境问题都由Docker处理了。
 但是，我们同时需要注意的是，如果我们的进程的资源是静态分配的（前文提到），在Docker的虚拟机中可能因为内存不足等原因直接无法启动。这就需要我们把完全静态分配资源的程序，修改为有资源限制，但是动态分配的程序。这样我们才能在任何可以部署Docker的机器上部署我们的游戏服务器。</p>
-<h3 id="三-分布式难点状态同步">三. 分布式难点：状态同步<a hidden class="anchor" aria-hidden="true" href="#三-分布式难点状态同步">#</a></h3>
+<h3 id="三-分布式难点状态同步">三. 分布式难点：状态同步</h3>
 <p><strong>1.分布式接入层</strong>
 一般来说，我们全线服务器系统碰到的第一个问题，就是大量并发的网络请求。特别是大量玩家都在一起交互，产生了大量由于状态同步而需要广播的数据包。这些网络请求的处理，显然应该独立出来成为单独的进程。同时这些网络接入进程，还应该是一个集群中的成员。这就诞生了分布式接入服务层。
 这些网路接入进程的第一个功能，就是把并发的连接，代理成为后端一个串行的连接，这可以让后端服务进程的处理逻辑更简单，而且网络处理消耗变得更小。
@@ -546,15 +556,14 @@
 <p><strong>2.使用P2P</strong>
 网络状态同步产生的广播请求中，绝大多数都是客户端之间的网络状态，因此我们在可以使用P2P的客户端之间，直接建立P2P的UDP数据连接，会比通过服务器转发降低非常多的负载。在一些如赛车、音乐、武打类型的著名游戏中，都有使用P2P技术。而接入进程天然的就是一个P2P撮合服务器。
 有些游戏为了进一步降低延迟，还对所有的玩家状态，只同步输入动作，以及死亡、技能等重要状态，让怪物和一般状态通过计算获得，这样就更能节省玩家的带宽，提高及时性。加上一些动作预测技术，在客户端上能表现的非常流畅。</p>
-<h2 id="展望"><strong>展望</strong><a hidden class="anchor" aria-hidden="true" href="#展望">#</a></h2>
-<h3 id="一-可重用的游戏业务模版">一. 可重用的游戏业务模版<a hidden class="anchor" aria-hidden="true" href="#一-可重用的游戏业务模版">#</a></h3>
+<h2 id="展望"><strong>展望</strong></h2>
+<h3 id="一-可重用的游戏业务模版">一. 可重用的游戏业务模版</h3>
 <p>​    游戏服务端的各种架构中，以前往往比较关注那些非功能性的需求：容灾性、扩容、承载量，延迟。而在现在手游时代，开发效率越来越重要，有些团队甚至不设专门的服务器端程序员。因此游戏服务端架构应该更多的关注业务开发的效率。
 ​    现代游戏中，只要是带RPG元素的，角色系统、物品系统、技能系统、任务系统就都会具备，而且都有一批比较稳定的核心逻辑。只要是能在线交互的，就有好友系统、邮件系统、聊天系统、公会系统等。另外商城系统、活动系统、公告系统更是每个游戏都似乎要重复发明的轮子。
 ​    游戏的后端应用也有很多可重用的部分，比如客服系统、数据统计平台、官网数据接口等等。这些在游戏服务端框架中往往是最后再添加进去的。
 ​    如果把以上的问题都统一考虑起来，我们实际上是可以在一个稳定的底层架构上，构造出一整套常用的游戏业务逻辑模板，用来减少游戏领域的业务代码开发。所以这样一套可以运行各种业务逻辑模版的底层架构，正是游戏服务端架构发展的方向。</p>
-<h3 id="二-动态资源调度的paas云">二. 动态资源调度的PaaS云<a hidden class="anchor" aria-hidden="true" href="#二-动态资源调度的paas云">#</a></h3>
+<h3 id="二-动态资源调度的paas云">二. 动态资源调度的PaaS云</h3>
 <p>​    现在有的团队已经在搭建自己的Docker云，这可以让游戏服务器在虚拟云上动态的生长，从而达到真正的动态扩容和动态容灾。加上如果游戏服务器不再是一个个服务进程，而是真正意义上的一个个服务，可以动态的加入或者离开云环境，那么这就是一个游戏领域的PaaS系统。我热切的希望能看到，可以用一套SDK，开发或重用那些成型的业务模版，然后动态注册到服务云中就能运行，这样一种游戏服务器架构。</p>
-
 
   </div>
 
@@ -562,12 +571,12 @@
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/8d180ec3ae3e409bac6e8a67811f54bc/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/8d180ec3ae3e409bac6e8a67811f54bc/">
     <span class="title">« Prev</span>
     <br>
     <span>11 一种高性能网络游戏服务器架构设计</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/3a513d0ec4fc47e2b3830ec79beb1572/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/3a513d0ec4fc47e2b3830ec79beb1572/">
     <span class="title">Next »</span>
     <br>
     <span>13 游戏跨服架构进化之路</span>
@@ -578,14 +587,6 @@
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

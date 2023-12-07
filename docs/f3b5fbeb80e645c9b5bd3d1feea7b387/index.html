@@ -44,15 +44,15 @@ int listen(int sockfd, int backlog); 2. 一旦该连接的tcp三次握手完成�
 connect函数出错情况 由于connect函数是在建立tcp连接成功或失败才返回，返回成功的情况本文上面已经介绍过了。这里我们介绍connect函数返回失败的几种情况： 第一种 当客户端发送了SYN报文后，没有收到确认则返回ETIMEDOUT错误，值得注意的是，失败一次并不会马上返回ETIMEDOUT错误。即当你调用了connect函数，客户端发送了一个SYN报文，没有收到确认就等6s后再发一个SYN报文，还没有收到就等24s再发一个（不同的linux系统设置的时间可能有所不同，这里以BSD系统为主）。这个时间是累加的，如果总共等了75s后还是没收到确认，那么客户端将返回ETIMEDOUT错误。
 对于linux系统，改变这个系统上限值也比较容易，由于需要改变系统配置参数，你需要root权限。 相关的命令是sysctl net.ipv4.tcp_syn_retries(针对于ipv4)。 在设置该值时还是要比较保守的，因为每次syn包重试的间隔都会增大(比如BSD类的系统实现中间隔会以2到3倍增加)，所有tcp_syn_retries的一个微小变化对connect超时时间的影响都非常大，不过扩大这个值也不会有什么坏处，因为你代码中设置的超时值都能够生效。但是如果代码中没有设置connect的超时值，那么connect就会阻塞很久，你发现对端机器down掉的间隔就更长。 作者建议设置这个值到6或者7，最多8。6对应的connect超时为45s，7对应90s，8对应190s。">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/f3b5fbeb80e645c9b5bd3d1feea7b387/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/f3b5fbeb80e645c9b5bd3d1feea7b387/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -129,7 +129,7 @@ int listen(int sockfd, int backlog); 2. 一旦该连接的tcp三次握手完成�
 connect函数出错情况 由于connect函数是在建立tcp连接成功或失败才返回，返回成功的情况本文上面已经介绍过了。这里我们介绍connect函数返回失败的几种情况： 第一种 当客户端发送了SYN报文后，没有收到确认则返回ETIMEDOUT错误，值得注意的是，失败一次并不会马上返回ETIMEDOUT错误。即当你调用了connect函数，客户端发送了一个SYN报文，没有收到确认就等6s后再发一个SYN报文，还没有收到就等24s再发一个（不同的linux系统设置的时间可能有所不同，这里以BSD系统为主）。这个时间是累加的，如果总共等了75s后还是没收到确认，那么客户端将返回ETIMEDOUT错误。
 对于linux系统，改变这个系统上限值也比较容易，由于需要改变系统配置参数，你需要root权限。 相关的命令是sysctl net.ipv4.tcp_syn_retries(针对于ipv4)。 在设置该值时还是要比较保守的，因为每次syn包重试的间隔都会增大(比如BSD类的系统实现中间隔会以2到3倍增加)，所有tcp_syn_retries的一个微小变化对connect超时时间的影响都非常大，不过扩大这个值也不会有什么坏处，因为你代码中设置的超时值都能够生效。但是如果代码中没有设置connect的超时值，那么connect就会阻塞很久，你发现对端机器down掉的间隔就更长。 作者建议设置这个值到6或者7，最多8。6对应的connect超时为45s，7对应90s，8对应190s。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/f3b5fbeb80e645c9b5bd3d1feea7b387/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/f3b5fbeb80e645c9b5bd3d1feea7b387/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -177,18 +177,18 @@ connect函数出错情况 由于connect函数是在建立tcp连接成功或失�
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "从抓包的角度分析connect()函数的连接过程",
-      "item": "http://121.199.2.5:6080/f3b5fbeb80e645c9b5bd3d1feea7b387/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/f3b5fbeb80e645c9b5bd3d1feea7b387/"
     }
   ]
 }
@@ -210,14 +210,14 @@ connect函数出错情况 由于connect函数是在建立tcp连接成功或失�
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/f3b5fbeb80e645c9b5bd3d1feea7b387/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/f3b5fbeb80e645c9b5bd3d1feea7b387/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -239,7 +239,7 @@ connect函数出错情况 由于connect函数是在建立tcp连接成功或失�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -265,38 +265,48 @@ connect函数出错情况 由于connect函数是在建立tcp连接成功或失�
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -306,7 +316,7 @@ connect函数出错情况 由于connect函数是在建立tcp连接成功或失�
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       从抓包的角度分析connect()函数的连接过程
     </h1>
@@ -337,9 +347,9 @@ connect函数出错情况 由于connect函数是在建立tcp连接成功或失�
     </details>
 </div>
 
-  <div class="post-content"><h2 id="从抓包的角度分析connect函数的连接过程">从抓包的角度分析connect()函数的连接过程<a hidden class="anchor" aria-hidden="true" href="#从抓包的角度分析connect函数的连接过程">#</a></h2>
+  <div class="post-content"><h2 id="从抓包的角度分析connect函数的连接过程">从抓包的角度分析connect()函数的连接过程</h2>
 <p>这篇文章主要是从<strong>tcp</strong>连接建立的角度来分析客户端程序如何利用<strong>connect</strong>函数和服务端程序建立tcp连接的，了解<strong>connect</strong>函数在建立连接的过程中底层协议栈做了哪些事情。</p>
-<h3 id="tcp三次握手">tcp三次握手<a hidden class="anchor" aria-hidden="true" href="#tcp三次握手">#</a></h3>
+<h3 id="tcp三次握手">tcp三次握手</h3>
 <p>在正式介绍connect函数时，我们先来看一下tcp三次握手的过程，下面这个实验是客户端通过telnet远程登录服务端的例子，telnet协议是基于tcp协议，我们可以通过<strong>wireshark</strong>抓包工具看到客户端和服务端之间三次握手的过程，<strong>12.1.1.1</strong>是客户端的ip地址，<strong>12.1.1.2</strong>是服务端的ip地址。</p>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/d9eee6053d680b2b22960fa09b4f9cc0.png" alt=""  />
 </p>
@@ -349,7 +359,7 @@ connect函数出错情况 由于connect函数是在建立tcp连接成功或失�
 <p>我们看到客户端远程登录服务端时，首先发送了一个<strong>SYN</strong>报文，其中目标端口为<strong>23</strong>（远程登录telnet协议使用23端口），初始序号<strong>seq = 0</strong>，并设置自己的窗口<strong>rwnd = 4128</strong>（rwnd是一个对端通告的接收窗口，用于流量控制）<strong>。</strong></p>
 <p>然后服务端回复了一个<strong>SYN + ACK</strong>报文，初始序号<strong>seq = 0</strong>，<strong>ack = 1（在前一个包的seq基础上加1）</strong>，同时也设置自己的窗口<strong>rwnd = 4128</strong>。</p>
 <p>然后客户端收到服务端的<strong>SYN + ACK</strong>报文时，回复了一个<strong>ACK</strong>报文，表示确认建立tcp连接，序号为<strong>seq = 1</strong>， <strong>ack = 1*<em>（在前一个包的seq基础上加1）*</em></strong>， 设置窗口<strong>rwnd = 4128</strong>，此时客户端和服务端之间已经建立tcp连接。</p>
-<h3 id="connect函数">connect函数<a hidden class="anchor" aria-hidden="true" href="#connect函数">#</a></h3>
+<h3 id="connect函数">connect函数</h3>
 <p>前面我们在介绍tcp三次握手的时候说过，客户端在跟服务端建立tcp连接时，通常是由客户端主动向目标服务端发起tcp连接建立请求，服务端被动接受tcp连接请求；同时服务端也会发起tcp连接建立请求，表示服务端希望和客户端建立连接，然后客户端会接受连接并发送一个确认，这样双方就已经建立好连接，可以开始通信。</p>
 <p>这里说明一下：可能有的小伙伴会感到疑惑，为啥服务端也要跟客户端建立连接呢？其实这跟tcp采用全双工通信的方式有关。对于全双工通信，简单来说就是两端可以同时收发数据，如下图所示：</p>
 <p><img loading="lazy" src="http://haokiu.seaxiang.com/haokiu/5b5bed9c6c03479e837c145b522ca1bc.webp" alt=""  />
@@ -391,7 +401,7 @@ connect函数出错情况 由于connect函数是在建立tcp连接成功或失�
 </code></pre><p><strong>2.</strong> 一旦该连接的tcp三次握手完成，就会从未完成队列加入到已完成队列中</p>
 <p><strong>3.</strong> 如果未决连接队列已满，当又接收到一个客户端SYN时，服务端的tcp将会忽略该SYN，也就是不会理客户端的SYN，但是服务端并不会发送RST报文，原因是：客户端tcp可以重传SYN，并期望在超时前未决连接队列找到空位与服务端建立连接，这当然是我们所希望看到的。如果服务端直接发送一个RST的话，那么客户端的connect函数将会立即返回一个错误，而不会让tcp有机会重传SYN，显然我们也并不希望这样做。</p>
 <p>但是不排除有些linux实现在未决连接队列满时，的确会发送RST。但是这种做法是不正确的，因此我们最好忽略这种情况，处理这种额外情况的代码也会降低客户端程序的健壮性。</p>
-<h3 id="connect函数出错情况">connect函数出错情况<a hidden class="anchor" aria-hidden="true" href="#connect函数出错情况">#</a></h3>
+<h3 id="connect函数出错情况">connect函数出错情况</h3>
 <p>由于<strong>connect</strong>函数是在建立tcp连接成功或失败才返回，返回成功的情况本文上面已经介绍过了。这里我们介绍<strong>connect</strong>函数返回失败的几种情况：
 <strong>第一种</strong>
 当客户端发送了<strong>SYN</strong>报文后，没有收到确认则返回<strong>ETIMEDOUT</strong>错误，值得注意的是，失败一次并不会马上返回<strong>ETIMEDOUT</strong>错误。即当你调用了connect函数，客户端发送了一个<strong>SYN</strong>报文，没有收到确认就等6s后再发一个<strong>SYN</strong>报文，还没有收到就等24s再发一个（不同的linux系统设置的时间可能有所不同，这里以BSD系统为主）。这个时间是累加的，如果总共等了75s后还是没收到确认，那么客户端将返回ETIMEDOUT错误。</p>
@@ -460,19 +470,18 @@ connect函数出错情况 由于connect函数是在建立tcp连接成功或失�
 </p>
 <p><strong>学习知识不仅要知其然也要知其所以然，这是我想通过这篇文章传达的一个理念，文中一步步的实验探索体现了学习知识动手实践的重要性，这是非常值得提倡的。</strong></p>
 
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/15d5370937664a8d84891f5e983b87f4/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/15d5370937664a8d84891f5e983b87f4/">
     <span class="title">« Prev</span>
     <br>
     <span>为什么你的简历没人看</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/416ada8e33704bdcadd3202dd2413740/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/416ada8e33704bdcadd3202dd2413740/">
     <span class="title">Next »</span>
     <br>
     <span>从零学习开源项目系列（一） 从一款多人联机实时对战游戏开始</span>
@@ -483,14 +492,6 @@ connect函数出错情况 由于connect函数是在建立tcp连接成功或失�
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

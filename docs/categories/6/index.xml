@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>6 on haokiu</title>
-    <link>http://121.199.2.5:6080/categories/6/</link>
+    <link>https://leonardodacn.github.io/haokiuDocs/categories/6/</link>
     <description>Recent content in 6 on haokiu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>haokiu.com</copyright>
-    <lastBuildDate>Sat, 18 Mar 2023 14:42:36 +0000</lastBuildDate><atom:link href="http://121.199.2.5:6080/categories/6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Mar 2023 14:42:36 +0000</lastBuildDate><atom:link href="https://leonardodacn.github.io/haokiuDocs/categories/6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>googo 邀请码 lbVOQjeS</title>
-      <link>http://121.199.2.5:6080/googo/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/googo/</link>
       <pubDate>Sat, 18 Mar 2023 14:42:36 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/googo/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/googo/</guid>
       <description>googo 可以让你更好的浏览外文网站，比如meta、youtube，google等。 它之前的网址是googo.in，现在已经不用访问。是一款非常好用的科学上网工具，使用简单。
 使用这个链接可以获取优惠：https://cn.googo.us/#/register?code=lbVOQjeS
 或者使用这个邀请码：lbVOQjeS</description>
@@ -21,19 +21,19 @@
     
     <item>
       <title>Hobert读书笔记</title>
-      <link>http://121.199.2.5:6080/bk-5/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/bk-5/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/bk-5/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/bk-5/</guid>
       <description>第一章 并发编程的挑战第2章 InnoDB存储引擎第1章 Java的I/O演进之路第1章 Spring框架的由来第2章 Tomcat总体架构三、Paxos的工程实践序第1章 概述第6章 深入分析ClassLoader工作机制第8章 虚拟机字节码执行系统</description>
     </item>
     
     <item>
       <title>三、Paxos的工程实践</title>
-      <link>http://121.199.2.5:6080/3426588a7834499f8a9a1b7e46817c0c/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/3426588a7834499f8a9a1b7e46817c0c/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/3426588a7834499f8a9a1b7e46817c0c/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/3426588a7834499f8a9a1b7e46817c0c/</guid>
       <description>2.2.3 Paxos算法详解 假设有一组可以提出提案的进程集合，那么对于一个一致性算法来说需要保证以下几点：
 在这些被提出的提案中，只有一个会被选定。
 如果没有填被提出，那么就不会有被选定的提案。
@@ -68,10 +68,10 @@ Proposer发送提案编号Mn； Acceptor根据约束接收提案，如果接收�
     
     <item>
       <title>序</title>
-      <link>http://121.199.2.5:6080/cffcc67d768246fd8624b3e5b98854f5/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/cffcc67d768246fd8624b3e5b98854f5/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/cffcc67d768246fd8624b3e5b98854f5/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/cffcc67d768246fd8624b3e5b98854f5/</guid>
       <description>序 大、快、多样性只是表象，大数据的真正价值在于生命性和生态性。（活数据）
 第1 章 总述 如果不能对数据进行有序、有结构地分类组织和存储，如果不能有效利用并发掘它，继而产生价值，那么它同时也成为一场“灾难”。无需、无结构的数据犹如堆积如山的垃圾，给企业带来的是有令人咋舌的高额成本。
 要求：
@@ -109,10 +109,10 @@ OneService（数据服务平台）一数据仓库整合计算好的数据作为�
     
     <item>
       <title>第1章 Java的I/O演进之路</title>
-      <link>http://121.199.2.5:6080/e15796699f1a419ba85731d159eba322/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/e15796699f1a419ba85731d159eba322/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/e15796699f1a419ba85731d159eba322/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/e15796699f1a419ba85731d159eba322/</guid>
       <description>第1章 Java的I/O演进之路 1.1 I/O基础入门 1.1.1 Linux网络I/O模型简介 UNIX提供了5种I/O模型：
 （1）阻塞I/O模型
 （2）非阻塞I/O模型
@@ -131,10 +131,10 @@ epoll的优点：
     
     <item>
       <title>第1章 Spring框架的由来</title>
-      <link>http://121.199.2.5:6080/567c6d054f1d4d53a29e9d24f213165a/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/567c6d054f1d4d53a29e9d24f213165a/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/567c6d054f1d4d53a29e9d24f213165a/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/567c6d054f1d4d53a29e9d24f213165a/</guid>
       <description>第1章 Spring框架的由来 1.1 Spring之崛起 1.2 Spring框架概述 基于POJO（Plain Old Java Object，简单Java对象）的轻量级开发理念。
 Spring总体架构：
 1.3 Spring大观园 1.4 小结 第2章 Spring的IOC容器 2.1 我们的理念是：让别人为你服务 2.2 手语，呼喊，还是心有灵犀 2.2.1 构造方法注入 IoC Service Provider会检查被注入对象的构造方法，取得它所需要的依赖对象列表，进而为其注 入相应的对象。同一个对象是不可能被构造两次的，因此，被注入对象的构造乃至其整个生命周期， 应该是由IoC Service Provider来管理的。
@@ -146,10 +146,10 @@ Spring总体架构：
     
     <item>
       <title>第1章 概述</title>
-      <link>http://121.199.2.5:6080/b221a7f05b774f7ab4305cff0f244d52/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/b221a7f05b774f7ab4305cff0f244d52/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/b221a7f05b774f7ab4305cff0f244d52/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/b221a7f05b774f7ab4305cff0f244d52/</guid>
       <description>第1章 概述 互联网公司的分布式两个特点：规模大、成本低。
 1.1 分布式存储概念 定义：分布式存储系统是大量普通PC服务器通过Internet互联，对外作为一个整体提供存储服务。
 特性：
@@ -185,10 +185,10 @@ B+树的根节点是常驻内存的。修改操作首先需要记录提交日志
     
     <item>
       <title>第2章 InnoDB存储引擎</title>
-      <link>http://121.199.2.5:6080/232f08ac38d0478dab889420f809c20e/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/232f08ac38d0478dab889420f809c20e/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/232f08ac38d0478dab889420f809c20e/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/232f08ac38d0478dab889420f809c20e/</guid>
       <description>第2章 InnoDB存储引擎 事务安全。
 2.1 InnoDB存储引擎概述 Mysql5.5开始是默认的表存储引擎（之前尽在Window下是）。第一个完整支持ACID事务的MySQL存储引擎。其特点是行锁设计、支持MVCC、支持外键、提供一致性非锁定读，同时被设计用来最有效地利用以及使用内存和CUP。
 高性能、高可用、高扩展。
@@ -225,10 +225,10 @@ IO Thread 大量使用AIO（Async IO），极大提高性能。IO Thread主要�
     
     <item>
       <title>第2章 Tomcat总体架构</title>
-      <link>http://121.199.2.5:6080/a9dcb2a7a21d49dea965eedc7e169c79/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/a9dcb2a7a21d49dea965eedc7e169c79/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/a9dcb2a7a21d49dea965eedc7e169c79/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/a9dcb2a7a21d49dea965eedc7e169c79/</guid>
       <description>第2章 Tomcat总体架构 系统设计及中间件设计时的参考：生命周期管理、可扩展的容器组件设计、类加载方式。
 2.1 总体设计 如何设计一个应用服务器？
 2.1.1 Server 最基本的功能：接收请求，业务处理，返回响应。
@@ -279,10 +279,10 @@ Tomcat组件说明：
     
     <item>
       <title>第6章 深入分析ClassLoader工作机制</title>
-      <link>http://121.199.2.5:6080/eec901917e884002a43f917c02f47dd9/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/eec901917e884002a43f917c02f47dd9/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/eec901917e884002a43f917c02f47dd9/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/eec901917e884002a43f917c02f47dd9/</guid>
       <description>第6章 深入分析ClassLoader工作机制 三个作用：
 将Class加载到JVM中； 审查每个类应该由谁加载（双亲委派）； 将CLass字节码重新解析成JVM统一要求的格式。 6.1 ClassLoader类结构解析 defineClass方法：将byte字节流解析成JVM能够识别的Class对象。意味着不仅仅可以通过class文件实例化对象。调用此方法生成的Class对象还没有resolve，resolve会在对象真正实例化时才进行。
 findClass方法：通过直接覆盖ClassLoader父类的findClass方法来实现类的加载规则，从而取得要加载的字节码。然后调用defineClass方法生成类的Class对象。如果想在类被加载到JVM的时候就被链接（Link），那么可以接着调用另外一个resolveClass方法。
@@ -334,10 +334,10 @@ Ioc容器如何为我所用 扩展点。通过扩展点来改变Spring的通用�
     
     <item>
       <title>第8章 虚拟机字节码执行系统</title>
-      <link>http://121.199.2.5:6080/499b1754f0844c299d9bf24652161845/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/499b1754f0844c299d9bf24652161845/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/499b1754f0844c299d9bf24652161845/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/499b1754f0844c299d9bf24652161845/</guid>
       <description>6.4字节码指令简介 Java虚拟机的指令由一个字节长度的、代表着某种特定操作含义的数字（称为操作码，Opcode）以及跟随其后的零至多个代表此操作所需参数（称为操作数，Operands）而构成。由于Java虚拟机采用面向操作数栈而不是寄存器的架构，所以大多数的指令都不包含操作数，而只有一个操作码。
 6.4.1 字节码与数据类型 Java虚拟机的指令集中，大多数的指令都包含了其操作数所对应的数据类型信息。
 如果每一种与数据类型相关的指令都支持Java虚拟机所有运行时数据类型的话，那指令的数量恐怕就会超出一个字节所能表示的数量范围了
@@ -362,10 +362,10 @@ Java中明确的64位的数据类型只有long和double两种。分割存储的�
     
     <item>
       <title>第一章 并发编程的挑战</title>
-      <link>http://121.199.2.5:6080/f6ad1487667e4880973e3b21505810be/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/f6ad1487667e4880973e3b21505810be/</link>
       <pubDate>Tue, 08 Jun 2021 17:51:46 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/f6ad1487667e4880973e3b21505810be/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/f6ad1487667e4880973e3b21505810be/</guid>
       <description>本书特色 结合JDK源码介绍了Java并发框架、线程池的实现原理。
 不仅仅局限于Java层面，更深入JVM，CPU。
 结合线上应用，给出了一些并发编程实战技巧。
@@ -403,28 +403,28 @@ Lock前缀的指令在多核处理器下会引发两件事情：
     
     <item>
       <title>lantern 邀请码</title>
-      <link>http://121.199.2.5:6080/g6ADCM/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/g6ADCM/</link>
       <pubDate>Tue, 08 Jun 2021 10:09:53 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/g6ADCM/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/g6ADCM/</guid>
       <description>lantern 是一款专业的代理软件，方便更好的使用互联网，输入我的邀请码 46KBX2 来获得三个月的蓝灯专业版！立即下载 https://github.com/getlantern/forum</description>
     </item>
     
     <item>
       <title>idea 付费版和免费版的区别</title>
-      <link>http://121.199.2.5:6080/oqQib8/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/oqQib8/</link>
       <pubDate>Thu, 24 Sep 2020 11:08:33 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/oqQib8/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/oqQib8/</guid>
       <description>idea 付费版和免费版的区别 IntelliJ IDEA Ultimate IntelliJ IDEA Community Edition Java, Kotlin, Groovy, Scala + + Android + + Maven, Gradle, sbt + + Git, SVN, Mercurial + + Debugger + + Profiling tools + - Spring, Java EE, Micronaut, Quarkus, Helidon, and more + - Swagger, Open API Specifications + - JavaScript, TypeScript + - Database Tools, SQL + - </description>
     </item>
     
     <item>
       <title>github 的 master 分支将更改为 main</title>
-      <link>http://121.199.2.5:6080/LcW9jL/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/LcW9jL/</link>
       <pubDate>Tue, 22 Sep 2020 09:22:43 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/LcW9jL/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/LcW9jL/</guid>
       <description>从今年 10 月 1 日起，GitHub 在该平台上创建的所有新的源代码仓库将默认被命名为 &amp;ldquo;main&amp;rdquo;，而不是原先的&amp;quot;master&amp;quot;。值得注意的是，现有的存储库不会受到此更改影响。
 早在今年 6 月份，受美国大规模的 “Black Lives Matter”运动影响，为了安抚愈演愈烈的民众情绪，GitHub 就宣布将替换掉 master 等术语，以避免联想奴隶制。现如今，在外界一些声音的催促下，这一举措则终于要正式落地了。
 除 GitHub 外，为了避免带有所谓的“种族歧视色彩”，许多科技巨头或知名软件也都调整了自己的业务和产品，以平息社会舆论。包括有：MySQL 宣布删除 master、黑名单白名单等术语；Linus Torvalds 通过了 Linux 中避免 master/slave 等术语的提案；还有 Twitter 、GitHub、微软、LinkedIn、Ansible、Splunk、OpenZFS、OpenSSL、JP Morgan、 Android 移动操作系统、Go 编程语言、PHPUnit 和 Curl 等宣布要对此类术语进行删除或更改。同时，IBM、亚马逊、微软也都接连调整面部识别平台业务，以防加深歧视或遭受指责。
@@ -437,38 +437,38 @@ Lock前缀的指令在多核处理器下会引发两件事情：
     
     <item>
       <title>免费的云存储</title>
-      <link>http://121.199.2.5:6080/0K1gzu/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/0K1gzu/</link>
       <pubDate>Fri, 18 Sep 2020 09:47:06 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/0K1gzu/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/0K1gzu/</guid>
       <description>七牛云存储 提供了每月10G的免费存储，一般的网站已经够用，如果超额了，费用也很低，可以考虑将网站的图片存在七牛，安全可靠。</description>
     </item>
     
     <item>
       <title>在线交互式学习k8s/docker/linux</title>
-      <link>http://121.199.2.5:6080/baIB8x/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/baIB8x/</link>
       <pubDate>Thu, 17 Sep 2020 13:58:36 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/baIB8x/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/baIB8x/</guid>
       <description>katacoda is Interactive Learning and Training Platform for Software Engineers Helping Developers Learn and Companies Increase Adoption
 可以交互式的学习各种前沿技术：k8s linux docker 机器学习等</description>
     </item>
     
     <item>
       <title>vscode 列选择 快捷键</title>
-      <link>http://121.199.2.5:6080/QCpYff/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/QCpYff/</link>
       <pubDate>Mon, 14 Sep 2020 09:27:25 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/QCpYff/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/QCpYff/</guid>
       <description>vscode 列选择 快捷键: shift + alt + 鼠标左键</description>
     </item>
     
     <item>
       <title>frp 使用</title>
-      <link>http://121.199.2.5:6080/HYawYY/</link>
+      <link>https://leonardodacn.github.io/haokiuDocs/HYawYY/</link>
       <pubDate>Tue, 08 Sep 2020 09:50:15 +0000</pubDate>
       
-      <guid>http://121.199.2.5:6080/HYawYY/</guid>
+      <guid>https://leonardodacn.github.io/haokiuDocs/HYawYY/</guid>
       <description>frp 是一个可用于内网穿透的高性能的反向代理应用，支持 tcp, udp, http, https 协议。本文简单的介绍frp的配置使用。
 实现内网穿需要有一台公网服务器。本文将公网服务器称为服务端，内网服务器称为客户端。需要开启相关的端口。相关端口没开通，访问就会失败。
 frp git地址:https://github.com/fatedier/frp 中文文档：https://github.com/fatedier/frp/blob/master/README_zh.md frp下载地址：https://github.com/fatedier/frp/releases 本文使用软件：frp_0.21.0_linux_amd64.tar.gz 本文使用系统：centos7（公网一台，内网一台）

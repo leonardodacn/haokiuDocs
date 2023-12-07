@@ -19,15 +19,15 @@ shard 当数据量较大时，索引的存储空间需求超出单个节点磁�
 副本 其实，分片全称是主分片，简称为分片。主分片是相对于副本来说的，副本是对主分片的一个或多个复制版本（或称拷贝），这些复制版本（拷贝）可以称为复制分片，可以直接称之为副本。当主分片丢失时，集群可以将一个副本升级为新的主分片。
 对比 ElasticSearch RDBMS 索引（index） 数据库（database） 类型（type） 表（table） 文档（document） 行（row） 字段（field） 列（column） 映射（mapping） 表结构（schema） 全文索引 索引 查询DSL SQL GET select PUT/POST update DELETE delete 节点信息 查看节点信息 curl localhost:9200 查看节点健康度 curl localhost:9200/_cat/health?v&amp;pretty=true 查看集群状况 curl localhost:9200/_cat/nodes?v&amp;pretty=true index(索引)操作 查看当前节点的所有 Index。 curl -X GET &#39;http://localhost:9200/_cat/indices?v&#39; 可以列出每个 Index 所包含的 Type curl &#39;localhost:9200/_mapping?pretty=true&#39; 新建一个名叫weather的 Index。 curl -X PUT &#39;localhost:9200/weather&#39; 删除这个 Index。 curl -X DELETE &#39;localhost:9200/weather&#39; 文档操作 获取 GET /website/blog/123?">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/3XTrh1/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/3XTrh1/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -79,7 +79,7 @@ shard 当数据量较大时，索引的存储空间需求超出单个节点磁�
 副本 其实，分片全称是主分片，简称为分片。主分片是相对于副本来说的，副本是对主分片的一个或多个复制版本（或称拷贝），这些复制版本（拷贝）可以称为复制分片，可以直接称之为副本。当主分片丢失时，集群可以将一个副本升级为新的主分片。
 对比 ElasticSearch RDBMS 索引（index） 数据库（database） 类型（type） 表（table） 文档（document） 行（row） 字段（field） 列（column） 映射（mapping） 表结构（schema） 全文索引 索引 查询DSL SQL GET select PUT/POST update DELETE delete 节点信息 查看节点信息 curl localhost:9200 查看节点健康度 curl localhost:9200/_cat/health?v&amp;pretty=true 查看集群状况 curl localhost:9200/_cat/nodes?v&amp;pretty=true index(索引)操作 查看当前节点的所有 Index。 curl -X GET &#39;http://localhost:9200/_cat/indices?v&#39; 可以列出每个 Index 所包含的 Type curl &#39;localhost:9200/_mapping?pretty=true&#39; 新建一个名叫weather的 Index。 curl -X PUT &#39;localhost:9200/weather&#39; 删除这个 Index。 curl -X DELETE &#39;localhost:9200/weather&#39; 文档操作 获取 GET /website/blog/123?" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/3XTrh1/" /><meta property="article:section" content="4" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/3XTrh1/" /><meta property="article:section" content="4" />
 <meta property="article:published_time" content="2020-09-23T16:53:39+00:00" />
 <meta property="article:modified_time" content="2020-09-23T16:53:39+00:00" />
 
@@ -102,18 +102,18 @@ shard 当数据量较大时，索引的存储空间需求超出单个节点磁�
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "4s",
-      "item": "http://121.199.2.5:6080/4/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/4/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "elasticsearch",
-      "item": "http://121.199.2.5:6080/3XTrh1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/3XTrh1/"
     }
   ]
 }
@@ -135,14 +135,14 @@ shard 当数据量较大时，索引的存储空间需求超出单个节点磁�
   "dateModified": "2020-09-23T16:53:39Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/3XTrh1/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/3XTrh1/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -164,7 +164,7 @@ shard 当数据量较大时，索引的存储空间需求超出单个节点磁�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -190,47 +190,47 @@ shard 当数据量较大时，索引的存储空间需求超出单个节点磁�
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/tags/" title="Tags">
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
                     <span>tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/categories/" title="Categories">
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -241,7 +241,7 @@ shard 当数据量较大时，索引的存储空间需求超出单个节点磁�
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://121.199.2.5:6080">Home</a>&nbsp;»&nbsp;<a href="http://121.199.2.5:6080/4/">4s</a></div>
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/4/">4s</a></div>
     <h1 class="post-title">
       elasticsearch
     </h1>
@@ -526,15 +526,8 @@ shard 当数据量较大时，索引的存储空间需求超出单个节点磁�
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://121.199.2.5:6080/tags/bigdata/">bigdata</a></li>
+      <li><a href="https://leonardodacn.github.io/haokiuDocs/tags/bigdata/">bigdata</a></li>
     </ul>
-<nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/XEhpYv/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>sql 优化</span>
-  </a>
-</nav>
 
   </footer>
 </article>

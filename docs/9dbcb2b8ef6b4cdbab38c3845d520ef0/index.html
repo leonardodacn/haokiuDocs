@@ -10,15 +10,15 @@
 <meta name="description" content="Memcached源码阅读六 get过程 我们在前面分析过，Memcached从网络读取完数据，解析数据，如果是get操作，则执行get操作，下面我们分析下get操作的流程。
 //根据key信息和key的长度信息读取数据 item *item_get(const char *key, const size_t nkey) { item *it; uint32_t hv; hv = hash(key, nkey, 0);//获得分段锁信息，如果未进行扩容，则item的hash表是多个hash桶共用同一个锁，即是分段的锁 item_lock(hv);//执行分段加锁 it = do_item_get(key, nkey, hv);//执行get操作 item_unlock(hv);//释放锁 return it; } //执行分段加锁 void item_lock(uint32_t hv) { uint8_t *lock_type = pthread_getspecific(item_lock_type_key); if (likely(*lock_type == ITEM_LOCK_GRANULAR)) { mutex_lock(&amp;item_locks[(hv &amp; hashmask(hashpower)) % item_lock_count]);//执行分段加锁 } else {//如果在扩容过程中 mutex_lock(&amp;item_global_lock); } } //执行分段解锁 void item_unlock(uint32_t hv) { uint8_t *lock_type = pthread_getspecific(item_lock_type_key); if (likely(*lock_type == ITEM_LOCK_GRANULAR)) { mutex_unlock(&amp;item_locks[(hv &amp; hashmask(hashpower)) % item_lock_count]);//释放分段锁 } else {//如果在扩容过程中 mutex_unlock(&amp;item_global_lock); } } //执行读取操作 item *do_item_get(const char *key, const size_t nkey, const uint32_t hv) { item *it = assoc_find(key, nkey, hv);//从Hash表中获取相应的结构 if (it !">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/9dbcb2b8ef6b4cdbab38c3845d520ef0/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/9dbcb2b8ef6b4cdbab38c3845d520ef0/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -61,7 +61,7 @@
 <meta property="og:description" content="Memcached源码阅读六 get过程 我们在前面分析过，Memcached从网络读取完数据，解析数据，如果是get操作，则执行get操作，下面我们分析下get操作的流程。
 //根据key信息和key的长度信息读取数据 item *item_get(const char *key, const size_t nkey) { item *it; uint32_t hv; hv = hash(key, nkey, 0);//获得分段锁信息，如果未进行扩容，则item的hash表是多个hash桶共用同一个锁，即是分段的锁 item_lock(hv);//执行分段加锁 it = do_item_get(key, nkey, hv);//执行get操作 item_unlock(hv);//释放锁 return it; } //执行分段加锁 void item_lock(uint32_t hv) { uint8_t *lock_type = pthread_getspecific(item_lock_type_key); if (likely(*lock_type == ITEM_LOCK_GRANULAR)) { mutex_lock(&amp;item_locks[(hv &amp; hashmask(hashpower)) % item_lock_count]);//执行分段加锁 } else {//如果在扩容过程中 mutex_lock(&amp;item_global_lock); } } //执行分段解锁 void item_unlock(uint32_t hv) { uint8_t *lock_type = pthread_getspecific(item_lock_type_key); if (likely(*lock_type == ITEM_LOCK_GRANULAR)) { mutex_unlock(&amp;item_locks[(hv &amp; hashmask(hashpower)) % item_lock_count]);//释放分段锁 } else {//如果在扩容过程中 mutex_unlock(&amp;item_global_lock); } } //执行读取操作 item *do_item_get(const char *key, const size_t nkey, const uint32_t hv) { item *it = assoc_find(key, nkey, hv);//从Hash表中获取相应的结构 if (it !" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/9dbcb2b8ef6b4cdbab38c3845d520ef0/" /><meta property="article:section" content="1" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/9dbcb2b8ef6b4cdbab38c3845d520ef0/" /><meta property="article:section" content="1" />
 <meta property="article:published_time" content="2021-01-11T09:20:42+00:00" />
 <meta property="article:modified_time" content="2021-01-11T09:20:42+00:00" />
 
@@ -75,18 +75,18 @@
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "1s",
-      "item": "http://121.199.2.5:6080/1/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/1/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "Memcached源码阅读六 get过程",
-      "item": "http://121.199.2.5:6080/9dbcb2b8ef6b4cdbab38c3845d520ef0/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/9dbcb2b8ef6b4cdbab38c3845d520ef0/"
     }
   ]
 }
@@ -108,14 +108,14 @@
   "dateModified": "2021-01-11T09:20:42Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/9dbcb2b8ef6b4cdbab38c3845d520ef0/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/9dbcb2b8ef6b4cdbab38c3845d520ef0/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -137,7 +137,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -163,38 +163,48 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
+                    <span>tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
+                    <span>categories</span>
                 </a>
             </li>
         </ul>
@@ -204,7 +214,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/1/">1s</a></div>
     <h1 class="post-title">
       Memcached源码阅读六 get过程
     </h1>
@@ -226,7 +236,7 @@
     </details>
 </div>
 
-  <div class="post-content"><h1 id="memcached源码阅读六-get过程">Memcached源码阅读六 get过程<a hidden class="anchor" aria-hidden="true" href="#memcached源码阅读六-get过程">#</a></h1>
+  <div class="post-content"><h1 id="memcached源码阅读六-get过程">Memcached源码阅读六 get过程</h1>
 <p>我们在前面分析过，<code>Memcached</code>从网络读取完数据，解析数据，如果是get操作，则执行get操作，下面我们分析下get操作的流程。</p>
 <pre tabindex="0"><code>//根据key信息和key的长度信息读取数据
 item *item_get(const char *key, const size_t nkey) {
@@ -390,19 +400,18 @@ void do_item_unlink(item *it, const uint32_t hv) {
 }
 </code></pre><p><code>Memcached</code>的get操作在读取数据时，会判断数据的有效性，使得不用额外去处理过期数据，get操作牵涉到<strong>Slab结构，Hash表，LRU队列的更新</strong>，我们后面专门分析这些的变更，这里暂不分析。</p>
 
-
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/63c41390d91c4392a0d3cc433c49a4ac/">
+  <a class="prev" href="https://leonardodacn.github.io/haokiuDocs/63c41390d91c4392a0d3cc433c49a4ac/">
     <span class="title">« Prev</span>
     <br>
     <span>Memcached源码阅读八 内存池</span>
   </a>
-  <a class="next" href="http://121.199.2.5:6080/857ca75e1a154abc91281759ea864d5c/">
+  <a class="next" href="https://leonardodacn.github.io/haokiuDocs/857ca75e1a154abc91281759ea864d5c/">
     <span class="title">Next »</span>
     <br>
     <span>Memcached源码阅读十 Hash表操作</span>
@@ -413,14 +422,6 @@ void do_item_unlink(item *it, const uint32_t hv) {
 </article>
     </main>
     
-<footer class="footer">
-    <span>haokiu.com</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

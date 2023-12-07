@@ -23,15 +23,15 @@ csv类型支持压缩格式有：gzip、bz2、zip、lzo、lzo_deflate、snappy�
 我们暂时不能做到：
 单个File支持多线程并发读取，这里涉及到单个File内部切分算法。二期考虑支持。 目前还不支持hdfs HA; 3 功能说明 3.1 配置样例 { &#34;job&#34;: { &#34;setting&#34;: { &#34;speed&#34;: { &#34;channel&#34;: 3 } }, &#34;content&#34;: [ { &#34;reader&#34;: { &#34;name&#34;: &#34;hdfsreader&#34;, &#34;parameter&#34;: { &#34;path&#34;: &#34;/user/hive/warehouse/mytable01/*&#34;, &#34;defaultFS&#34;: &#34;hdfs://xxx:port&#34;, &#34;column&#34;: [ { &#34;index&#34;: 0, &#34;type&#34;: &#34;long&#34; }, { &#34;index&#34;: 1, &#34;type&#34;: &#34;boolean&#34; }, { &#34;type&#34;: &#34;string&#34;, &#34;value&#34;: &#34;hello&#34; }, { &#34;index&#34;: 2, &#34;type&#34;: &#34;double&#34; } ], &#34;fileType&#34;: &#34;orc&#34;, &#34;encoding&#34;: &#34;UTF-8&#34;, &#34;fieldDelimiter&#34;: &#34;,&#34; } }, &#34;writer&#34;: { &#34;name&#34;: &#34;streamwriter&#34;, &#34;parameter&#34;: { &#34;print&#34;: true } } } ] } } 3.">
 <meta name="author" content="">
-<link rel="canonical" href="http://121.199.2.5:6080/e123c1afd572427f9fa4d27ba10b1e99/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+<link rel="canonical" href="https://leonardodacn.github.io/haokiuDocs/e123c1afd572427f9fa4d27ba10b1e99/">
+<link crossorigin="anonymous" href="/haokiuDocs/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/haokiuDocs/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://121.199.2.5:6080/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://121.199.2.5:6080/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://121.199.2.5:6080/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://121.199.2.5:6080/apple-touch-icon.png">
-<link rel="mask-icon" href="http://121.199.2.5:6080/safari-pinned-tab.svg">
+<link rel="icon" href="https://leonardodacn.github.io/haokiuDocs/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://leonardodacn.github.io/haokiuDocs/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://leonardodacn.github.io/haokiuDocs/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://leonardodacn.github.io/haokiuDocs/apple-touch-icon.png">
+<link rel="mask-icon" href="https://leonardodacn.github.io/haokiuDocs/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -87,7 +87,7 @@ csv类型支持压缩格式有：gzip、bz2、zip、lzo、lzo_deflate、snappy�
 我们暂时不能做到：
 单个File支持多线程并发读取，这里涉及到单个File内部切分算法。二期考虑支持。 目前还不支持hdfs HA; 3 功能说明 3.1 配置样例 { &#34;job&#34;: { &#34;setting&#34;: { &#34;speed&#34;: { &#34;channel&#34;: 3 } }, &#34;content&#34;: [ { &#34;reader&#34;: { &#34;name&#34;: &#34;hdfsreader&#34;, &#34;parameter&#34;: { &#34;path&#34;: &#34;/user/hive/warehouse/mytable01/*&#34;, &#34;defaultFS&#34;: &#34;hdfs://xxx:port&#34;, &#34;column&#34;: [ { &#34;index&#34;: 0, &#34;type&#34;: &#34;long&#34; }, { &#34;index&#34;: 1, &#34;type&#34;: &#34;boolean&#34; }, { &#34;type&#34;: &#34;string&#34;, &#34;value&#34;: &#34;hello&#34; }, { &#34;index&#34;: 2, &#34;type&#34;: &#34;double&#34; } ], &#34;fileType&#34;: &#34;orc&#34;, &#34;encoding&#34;: &#34;UTF-8&#34;, &#34;fieldDelimiter&#34;: &#34;,&#34; } }, &#34;writer&#34;: { &#34;name&#34;: &#34;streamwriter&#34;, &#34;parameter&#34;: { &#34;print&#34;: true } } } ] } } 3." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://121.199.2.5:6080/e123c1afd572427f9fa4d27ba10b1e99/" /><meta property="article:section" content="4" />
+<meta property="og:url" content="https://leonardodacn.github.io/haokiuDocs/e123c1afd572427f9fa4d27ba10b1e99/" /><meta property="article:section" content="4" />
 <meta property="article:published_time" content="2021-02-02T17:45:01+00:00" />
 <meta property="article:modified_time" content="2021-02-02T17:45:01+00:00" />
 
@@ -114,18 +114,18 @@ csv类型支持压缩格式有：gzip、bz2、zip、lzo、lzo_deflate、snappy�
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [, 
+  "itemListElement": [
     {
       "@type": "ListItem",
-      "position":  2 ,
+      "position":  1 ,
       "name": "4s",
-      "item": "http://121.199.2.5:6080/4/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/4/"
     }, 
     {
       "@type": "ListItem",
-      "position":  3 ,
+      "position":  2 ,
       "name": "DataX HdfsReader 插件文档",
-      "item": "http://121.199.2.5:6080/e123c1afd572427f9fa4d27ba10b1e99/"
+      "item": "https://leonardodacn.github.io/haokiuDocs/e123c1afd572427f9fa4d27ba10b1e99/"
     }
   ]
 }
@@ -147,14 +147,14 @@ csv类型支持压缩格式有：gzip、bz2、zip、lzo、lzo_deflate、snappy�
   "dateModified": "2021-02-02T17:45:01Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://121.199.2.5:6080/e123c1afd572427f9fa4d27ba10b1e99/"
+    "@id": "https://leonardodacn.github.io/haokiuDocs/e123c1afd572427f9fa4d27ba10b1e99/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "haokiu",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://121.199.2.5:6080/favicon.ico"
+      "url": "https://leonardodacn.github.io/haokiuDocs/favicon.ico"
     }
   }
 }
@@ -176,7 +176,7 @@ csv类型支持压缩格式有：gzip、bz2、zip、lzo、lzo_deflate、snappy�
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://121.199.2.5:6080" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
+            <a href="https://leonardodacn.github.io/haokiuDocs/" accesskey="h" title="haokiu (Alt + H)">haokiu</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -202,47 +202,47 @@ csv类型支持压缩格式有：gzip、bz2、zip、lzo、lzo_deflate、snappy�
         </div>
         <ul id="menu">
             <li>
-                <a href="http://121.199.2.5:6080/" title="haokiu">
+                <a href="https://leonardodacn.github.io/haokiuDocs/" title="haokiu">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/1/" title="1">
+                <a href="https://leonardodacn.github.io/haokiuDocs/1/" title="1s">
                     <span>后端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/2/" title="2s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/2/" title="2s">
                     <span>前端</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/3/" title="3s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/3/" title="3s">
                     <span>区块链</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/4/" title="4s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/4/" title="4s">
                     <span>大数据</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/5/" title="5s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/5/" title="5s">
                     <span>linux</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/6/" title="6s">
+                <a href="https://leonardodacn.github.io/haokiuDocs/6/" title="6s">
                     <span>其他</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/tags/" title="Tags">
+                <a href="https://leonardodacn.github.io/haokiuDocs/tags/" title="Tags">
                     <span>tags</span>
                 </a>
             </li>
             <li>
-                <a href="http://121.199.2.5:6080/categories/" title="Categories">
+                <a href="https://leonardodacn.github.io/haokiuDocs/categories/" title="Categories">
                     <span>categories</span>
                 </a>
             </li>
@@ -253,7 +253,7 @@ csv类型支持压缩格式有：gzip、bz2、zip、lzo、lzo_deflate、snappy�
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://121.199.2.5:6080">Home</a>&nbsp;»&nbsp;<a href="http://121.199.2.5:6080/4/">4s</a></div>
+    <div class="breadcrumbs"><a href="https://leonardodacn.github.io/haokiuDocs/">Home</a>&nbsp;»&nbsp;<a href="https://leonardodacn.github.io/haokiuDocs/4/">4s</a></div>
     <h1 class="post-title">
       DataX HdfsReader 插件文档
     </h1>
@@ -704,20 +704,8 @@ boolean captureRawRecord = true;
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://121.199.2.5:6080/tags/datax/">datax</a></li>
+      <li><a href="https://leonardodacn.github.io/haokiuDocs/tags/datax/">datax</a></li>
     </ul>
-<nav class="paginav">
-  <a class="prev" href="http://121.199.2.5:6080/3830a303d3e34cec88b98eab9934006d/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>DataX GDBWriter</span>
-  </a>
-  <a class="next" href="http://121.199.2.5:6080/dd5ebd2f221f4913ae09f61f3877725e/">
-    <span class="title">Next »</span>
-    <br>
-    <span>DataX HdfsWriter 插件文档</span>
-  </a>
-</nav>
 
   </footer>
 </article>
